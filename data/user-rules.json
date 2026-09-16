@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "status": "CANON",
+  "source": "Explicit user decisions in this conversation; supersede conflicting live Doc statements",
+  "energy": {
+    "initialFraction": 0.5,
+    "basicDefault": 20,
+    "skillDefault": 30,
+    "killDefault": 10,
+    "followUpDefault": 10,
+    "myrkHasEnergy": false,
+    "fixedGainAffectedByRecharge": true,
+    "percentageGainAffectedByRecharge": false,
+    "characterCaps": {
+      "veyr:janus": 130
+    }
+  },
+  "planck": {
+    "initial": 3,
+    "defaultCap": 5,
+    "basicGain": 1,
+    "skillDefaultCost": 1,
+    "overflow": "lost",
+    "refundAfterCost": true,
+    "kitExceptions": "Preserve explicit exceptions; no generic extra generation"
+  },
+  "stats": {
+    "critRateDefault": 0.05,
+    "critDamageDefault": 0.5,
+    "speedRounding": "nearest_integer_final",
+    "artifactFlatMain123Bucket": "base",
+    "intermediateVeyrAndMemoryLevels": null
+  },
+  "break": {
+    "baseAt60": 1691,
+    "otherLevels": "1691*level/60",
+    "coefficients": {
+      "Hỏa": 2,
+      "Nham": 2,
+      "Phong": 1.5,
+      "Băng": 1,
+      "Lôi": 1,
+      "Thủy": 0.5,
+      "Ám": 0.5,
+      "Quang": 1
+    },
+    "elementAliases": {
+      "Hỏa Ngục": "Hỏa",
+      "Thủy Triều": "Thủy"
+    },
+    "toughnessMultiplierOnBreakingHit": 0.9,
+    "annihilationOnBreakingHit": true,
+    "annihilationRequiresKit": true,
+    "weaknessImplant": "Allows toughness damage only; does not reduce RES",
+    "defaultToughness": {
+      "normal": 140,
+      "elite": 400,
+      "boss": 720
+    },
+    "defaultActionToughness": {
+      "Basic": 30,
+      "Skill": 60,
+      "Ult": {
+        "Vajra": 120,
+        "Gungnir": 120,
+        "other": 90
+      },
+      "FUA": 20,
+      "precedence": "Explicit kit value overrides default; per action, not per hit",
+      "bouncePerHit": 10
+    }
+  },
+  "controls": {
+    "Hất Tung": {
+      "turns": 1,
+      "skipAction": true,
+      "allowsToughnessRecovery": true
+    },
+    "Đầm Lầy": {
+      "delay": 0.3
+    },
+    "Đóng Băng": {
+      "turns": 1,
+      "skipAction": true,
+      "allowsToughnessRecovery": false
+    },
+    "Chết Đuối": {
+      "turns": 1,
+      "skipAction": true,
+      "allowsToughnessRecovery": false
+    },
+    "Thiêu Đốt": {
+      "turns": 2
+    },
+    "Tê Liệt": {
+      "turns": 2
+    }
+  },
+  "dot": {
+    "durationDecrement": "Immediately after damage tick at Myrk turn"
+  },
+  "quangTich": {
+    "recordFraction": 0.2,
+    "capAttackRatio": 2,
+    "capStat": "current_breaker_attack_dynamic"
+  },
+  "damageReduction": {
+    "stacking": "additive",
+    "cap": 0.9
+  },
+  "followUpChain": {
+    "forbidDirectSelfTrigger": true,
+    "allowAtoBtoA": true,
+    "kitTriggerLimitsRequired": true
+  },
+  "memory": {
+    "passiveRequiresSameAspect": true,
+    "crossAspectEquip": "Allowed by latest user decision; passive disabled",
+    "refinementIntermediate": "TL1 + (TL5-TL1)*(rank-1)/4"
+  },
+  "artifact": {
+    "minLevel": 1,
+    "maxLevel": 15,
+    "mainScaling": "level/15",
+    "initialSubstats": [
+      3,
+      4
+    ],
+    "upgradeEveryLevels": 3,
+    "upgradeRule": "Unlock fourth line if only three, otherwise upgrade one chosen line",
+    "sameMainAndSubstat": false,
+    "randomDropRates": "Out of scope for calculator",
+    "mainStatsAt15": [
+      {
+        "hpBase": 707
+      },
+      {
+        "defBase": 590
+      },
+      {
+        "atkBase": 350
+      },
+      {
+        "atkPct": 43.2,
+        "hpPct": 43.2,
+        "defPct": 54,
+        "speed": 25,
+        "break": 64.8
+      },
+      {
+        "crit": 32.4,
+        "critDmg": 64.8,
+        "atkPct": 43.2,
+        "hpPct": 43.2,
+        "defPct": 54,
+        "break": 32.8,
+        "hit": 43.2,
+        "resist": 43.2
+      },
+      {
+        "energy": 19.2,
+        "pierce": 32.8,
+        "element": 38.9,
+        "atkPct": 43.2,
+        "hpPct": 43.2,
+        "defPct": 54
+      }
+    ],
+    "substatsPerRoll": {
+      "crit": [
+        2.5,
+        2.8,
+        3.2
+      ],
+      "critDmg": [
+        5.5,
+        5.8,
+        6.5
+      ],
+      "speed": [
+        2.2,
+        2.5,
+        2.8
+      ],
+      "break": [
+        5.1,
+        5.5,
+        6.5
+      ],
+      "hit": [
+        3.9,
+        4.2,
+        5
+      ],
+      "resist": [
+        3.9,
+        4.2,
+        5
+      ],
+      "atkPct": [
+        3.9,
+        4.2,
+        5
+      ],
+      "hpPct": [
+        3.9,
+        4.2,
+        5
+      ],
+      "defPct": [
+        3.9,
+        4.2,
+        5
+      ],
+      "atkFlat": [
+        17,
+        19,
+        21
+      ],
+      "hpFlat": [
+        33,
+        38,
+        42
+      ],
+      "defFlat": [
+        17,
+        19,
+        21
+      ]
+    }
+  },
+  "conflicts": [
+    {
+      "topic": "Memory Aspect",
+      "liveText": "Only same Aspect may equip",
+      "effectiveRule": "Latest user says only passive requires matching Aspect; keep separate from equip"
+    }
+  ],
+  "characterImplementation": {
+    "VM3_VM5": "Deferred by user; do not infer level scaling",
+    "Apollo_A1_crit": "Snapshot current Energy at battle entry; 1% per 5 Energy above 150, max 20%",
+    "Durga_VM1": {
+      "5": 0.25,
+      "4": 0.35,
+      "3": 0.35,
+      "2": 0.75,
+      "1": 0.75
+    },
+    "Hephaestus_TalentCooldown": "2 Hephaestus turns",
+    "Hephaestus_VM1Duration": 2,
+    "Cassian_A2": "15% of preceding skill actual damage, per target",
+    "Hermes_VM2": "One follow-up per actual wind-weak target hit by ally action",
+    "Avery_VM2": {
+      "duration": 2,
+      "stacking": false
+    },
+    "Liora_VM1": "Includes overheal; true damage based on triggering ally damage",
+    "Tomas_VM4": "One extra hit per target per action",
+    "Theo_UltExtraToughness": "15% maximum toughness",
+    "Veylen_VM2": "Only enhanced Skill; true damage based on preceding damage",
+    "Seren_Talent": {
+      "attackBase": "recipient ATK",
+      "cap": "20% Seren DEF",
+      "duration": 2,
+      "restore": "Seren shields only"
+    },
+    "Lucan_Ult": "Skill shield remains a separate layer, gains 20% current value and refreshes",
+    "Lucan_VM6Duration": 2,
+    "Rhydan_VM1ShieldValue": "largest shield before incoming attack",
+    "Hecate_VM2Duration": 2,
+    "Hecate_VM1": "FUA 30% HP; 10000 HP gives 1000% critical damage",
+    "Hecate_VM6": "Explicit exception allowing self follow-up repeats, maximum 2",
+    "Eris_HatTung": "Kit delays 15%/20% without control duration; wind Break independently skips one enemy action and allows toughness recovery",
+    "Hecate_VM2": {
+      "duration": 2,
+      "stacking": false
+    },
+    "Lugh_RoyalCounter": {
+      "main": 3,
+      "adjacent": 1.7
+    },
+    "Thor_VM6": "Skill uses current Loi Ap and includes VM2 extra DK",
+    "Hades_DeathSnapshot": "Recorded final damage of original DoTs is subsequently modified by Hades buffs and target DEF/RES",
+    "Athena_Overkill": "Convert surplus back to pre-DEF/RES damage and recalculate against the new target",
+    "Athena_SkillCrit": {
+      "duration": 2,
+      "stacking": false
+    },
+    "Ares_Tier3": {
+      "planck": 2,
+      "currentHPCost": 0.5
+    },
+    "Poseidon_Phase": "Extreme tide ends by duration including extensions; VM6 retains 2 tide stacks when entering ebb",
+    "Janus_VM4": "4 activations per Janus turn while reverse face remains active"
+  }
+}

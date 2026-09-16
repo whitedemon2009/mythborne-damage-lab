@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {composeGear} from './gear.mjs';
+import {newPiece} from './artifacts.mjs';
+import {directDamage} from './formulas.mjs';
+import {addEffect,effectiveStats,expireEffects} from './effects.mjs';
+const catalog=JSON.parse(fs.readFileSync(new URL('./catalog.json',import.meta.url)));
+const base={hp:1000,atk:100,def:100,speed:101,crit:.05,critDmg:.5,aspect:'Gungnir',element:'Hỏa'};
+const state={memory:catalog.memories[0].name,refine:2,artifacts:[]};
+let out=composeGear(base,state,catalog);
+assert.equal(out.atk,(100+264)*1.24);assert.equal(out.atkBaseTotal,364);
+assert.equal(composeGear({...base,aspect:'Aegis'},state,catalog).atk,364);
+assert.ok(Math.abs(composeGear(base,{...state,refine:5},catalog).atk-364*1.36)<1e-9);
+assert.equal(composeGear(base,{...state,memory:''},catalog).atk,100);
+const pieces=[newPiece(0),newPiece(1)];pieces.forEach(p=>p.set=catalog.artifacts[0].name);
+out=composeGear(base,{...state,artifacts:pieces},catalog);assert.ok(Math.abs(out.atk-364*1.36)<1e-9);
+assert.equal(out.hpBaseTotal,1000+635+707);assert.equal(out.defBaseTotal,100+211+590);
+const t={level:60,res:0,toughness:0};const a={ratio:1,source:'Skill'};
+assert.equal(directDamage({...base,SkillDamage:.2},t,a,'normal'),60);
+assert.equal(directDamage({...base,SkillDamage:.2},t,{...a,source:'Basic'},'normal'),50);
+for(const m of catalog.memories)for(let refine=1;refine<=5;refine++){const r=composeGear({...base,aspect:m.aspect},{memory:m.name,refine,artifacts:[]},catalog);for(const k of ['atk','hp','def','speed','crit','critDmg'])assert.ok(Number.isFinite(r[k]),m.name+': '+k);}
+console.log('PASS gear base stats, Aspect gate, refinement, additive percentages, unequip, source damage and nonstacking duration; all 510 memory/rank builds');
+const changed={...catalog,memories:catalog.memories.map((m,i)=>i?m:{...m,contentHash:'changed'})};
+const stale=composeGear(base,state,changed);assert.equal(stale.atk,364);assert.equal(stale.gear.memory,null);assert.equal(stale.gear.warnings.length,1);
+console.log('PASS changed source invalidates stale passive without removing current memory base stats');

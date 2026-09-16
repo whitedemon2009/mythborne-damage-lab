@@ -1,0 +1,7 @@
+export const rhydanKit={
+ minor:{def:.18,hp:.12,speed:6},
+ resolve(r,u,k){return k==='Basic'?{name:'Brace Hit',ratio:.65}:k==='Skill'?{name:'Safe Radius',support:true}:{name:'No Passage',support:true,energyCost:125};},
+ sync(r,u){const shielded=t=>t.shieldLayers.some(l=>l.owner===u.index&&l.value>0);if(r.vm(u,4))r.buff(u,u,'VM4',{def:r.allies().every(shielded)?.2:0});if(r.asc(u))for(const t of r.allies())r.buff(u,t,'A1',{reduction:shielded(t)&&t.currentHP<r.eff(t).hp*.5?.05:0});},
+ after(r,u,a){if(!['Skill','Ult'].includes(a.ability))return;const c=r.eff(u);for(const t of r.allies())r.shieldValue(u,t,a.ability==='Skill'?.22*c.def+600:.3*c.def+850,2,a);if(a.ability==='Ult')for(const t of r.enemies())if(r.debuff(u,t,'Chùn Bước',2,a)){r.buff(u,t,'Chùn Bước',{damage:r.vm(u,2)?-.16:-.12},2,{debuff:true});r.ctx.gear.dispatch('debuff',{unit:u,target:t,action:a});if(r.asc(u))r.gain(u,5);}},
+ event(r,u,type,e){if(type!=='shieldAttack')return;if(r.vm(u,1))r.queue(u,{name:'Rhydan VM1',source:'Extra',ratio:0,flat:e.shield*.15,noCrit:true,toughness:0,energy:0,target:e.enemy.index},{chain:e.chain,actor:u.index});if(!e.layers.some(l=>l.owner===u.index&&l.value>0))return;const s=r.state(u);s.hold=Math.min(5,(s.hold||0)+1);if(s.hold>=5&&r.once(u,'Intercept Line')){s.hold=0;for(const t of r.allies()){for(const l of t.shieldLayers)if(l.owner===u.index&&l.value>0){l.value+=(.08*r.eff(u).def+180)*(r.vm(u,6)?1.5:1);if(r.asc(u)&&!l.extended){l.duration++;l.extended=true;}}t.shields=t.shieldLayers.map(l=>l.value);if(r.vm(u,6))r.buff(u,t,'VM6',{resist:.15},2);}}}
+};

@@ -1,0 +1,26 @@
+{
+  "status": "CANON_USER",
+  "date": "2026-09-13",
+  "buffs": {
+    "memory:tan-kich-noi-tam-gioi": {
+      "duration": 2,
+      "stacking": false
+    },
+    "memory:ngon-lua-khong-tat-o-nga-ba-cuoi": {
+      "duration": 2,
+      "stacking": false
+    },
+    "memory:ngon-giao-cam-tren-canh-dong-khong-nguoi": {
+      "duration": 2,
+      "stacking": false
+    }
+  },
+  "artifact:lo-ren-dia-tam": {
+    "breakDotBonus": 0.15,
+    "controlBonus": 0
+  },
+  "memory:khi-duong-chan-troi-chim-duoi-song": {
+    "consumeHaiTuyen": false,
+    "refreshDaiTrieu": false
+  }
+}

@@ -1,0 +1,8 @@
+export const seraphineKit={
+ minor:{crit:.104,critDmg:.12,elementDamage:.078},
+ resolve(r,u,k){return k==='Basic'?{name:'Thin Line',ratio:.85}:k==='Skill'?{name:'Threefold Cue',ratio:1.45,splash:.8,blast:true}:{name:'Curtain Call',ratio:1.9,splash:1.05,blast:true,energyCost:120};},
+ fua(r,u,targets,a){if(!targets.length)return;const echo=!!r.effect(u,u,'Dư Âm');r.queue(u,{name:'Answering Blade',source:'FUA',target:targets[0],targetIndices:targets,targets:targets.length,primaryTarget:targets[0],ratio:(r.vm(u,1)?1.1:.95)*(r.asc(u)&&echo?1.2:1)},a);},
+ after(r,u,a,targets){if(a.source==='Skill')for(const i of targets){const t=r.ctx.enemies[i],charges=Math.min(2,(r.effect(u,t,'Nhịp Điệu')?.charges||0)+1);r.buff(u,t,'Nhịp Điệu',{},2,{charges,debuff:true});}if(a.source==='Ult')r.buff(u,u,'Dư Âm',{FUADamage:.25},2);if(a.source==='FUA'){for(const i of targets){const t=r.ctx.enemies[i],b=r.effect(u,t,'Nhịp Điệu');if(b&&--b.charges<=0)r.remove(u,t,'Nhịp Điệu');}if(r.asc(u)&&targets.size>=3)r.gain(u,4);if(r.vm(u,4)){const s=r.state(u);s.followups=(s.followups||0)+1;if(s.followups%6===0)r.advance(u,.5);}}},
+ observe(r,u,{unit:t,action:a,targets}){if(t===u||!r.attack(a)||![...targets].some(i=>r.effect(u,r.ctx.enemies[i],'Nhịp Điệu')))return;seraphineKit.fua(r,u,r.enemies().filter(t=>r.effect(u,t,'Nhịp Điệu')).slice(0,3).map(t=>t.index),a);},
+ event(r,u,type,e){if(type==='break'&&r.vm(u,2)&&r.effect(u,e.target,'Nhịp Điệu'))seraphineKit.fua(r,u,[e.target.index],e.action);if(type==='modify'&&e.unit===u&&e.action.source==='FUA'){if(r.asc(u))e.crit+=.1;if(r.vm(u,6)&&r.effect(u,u,'Dư Âm')&&e.target.index===e.action.primaryTarget)e.bonus+=.3;}}
+};

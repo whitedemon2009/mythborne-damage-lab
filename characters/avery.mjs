@@ -1,0 +1,6 @@
+export const averyKit={
+ minor:{hp:.18,def:.1,speed:6},
+ resolve(r,u,k){return k==='Basic'?{name:'Clear Drop',ratio:.65}:k==='Skill'?{name:'Immediate Care',support:true,needsRecipient:true}:{name:'All Hands',support:true,energyCost:115};},
+ after(r,u,a){const s=r.state(u);if(a.ability==='Skill'){const t=r.ctx.units[a.recipient],low=t.currentHP<r.eff(t).hp*.5;r.heal(u,t,.14,180,a,low?1.25+(r.asc(u)?.1:0):1);if(r.vm(u,1))r.cleanse(u,t,a);if(low&&r.vm(u,2)){r.gain(u,5);r.buff(u,u,'VM2',{outgoing:.1},2);}r.allySkill(u,t,a);}if(a.ability==='Ult'){s.ults=(s.ults||0)+1;for(const t of r.allies()){const low=t.currentHP<r.eff(t).hp*.5;r.heal(u,t,.09,120,a);if(low)r.heal(u,t,.03,0,a);if(r.vm(u,1))r.cleanse(u,t,a);}if(r.asc(u)){const t=r.allies().sort((a,b)=>a.currentHP-b.currentHP)[0];if(t)r.buff(u,t,'A2',{def:.08},2);}if(r.vm(u,4)){const t=r.allies().sort((a,b)=>a.currentEnergy-b.currentEnergy)[0];if(t)r.gain(t,5);}}},
+ event(r,u,type,e){if(type!=='hpLost'||e.amount<=0)return;const t=e.unit,s=r.state(u);if(!r.alive(t)||t.currentHP>=r.eff(t).hp*.35)return;s.saved??={};const limit=r.asc(u)&&(s.ults||0)>=2?2:1;if((s.saved[t.index]||0)>=limit)return;s.saved[t.index]=(s.saved[t.index]||0)+1;r.heal(u,t,.06,80,{ability:'Talent'});if(r.vm(u,6))r.buff(u,t,'VM6',{reduction:.15},1);}
+};

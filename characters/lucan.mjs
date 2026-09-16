@@ -1,0 +1,8 @@
+export const lucanKit={
+ minor:{def:.12,hp:.12,speed:6},
+ skillLayer(r,u,t){return t.shieldLayers.find(l=>l.key===r.shieldKey(u)+':Skill'&&l.value>0);},
+ sync(r,u){const any=r.allies().some(t=>t.shieldLayers.some(l=>l.owner===u.index&&l.value>0));if(r.vm(u,4))r.buff(u,u,'VM4',{def:any?.15:0});for(const t of r.allies())r.buff(u,t,'Hold Position · Kháng',{resist:lucanKit.skillLayer(r,u,t)?.2:0});},
+ resolve(r,u,k){return k==='Basic'?{name:'Cold Check',ratio:.65}:k==='Skill'?{name:'Hold Position',support:true,needsRecipient:true}:{name:'Stand Behind Me',support:true,energyCost:120};},
+ after(r,u,a){const c=r.eff(u);if(a.ability==='Skill'){const t=r.ctx.units[a.recipient],mult=1+(r.vm(u,1)?.12:0)+(r.asc(u)&&t.currentHP<r.eff(t).hp*.5?.15:0);r.shieldValue(u,t,(.2*c.def+500)*mult,2,a,r.shieldKey(u)+':Skill');r.allySkill(u,t,a);}if(a.ability==='Ult'){for(const t of r.allies()){const old=lucanKit.skillLayer(r,u,t);if(old){old.value*=1.2;old.initial=Math.max(old.initial||0,old.value);old.duration=2;if(r.vm(u,6))r.buff(u,t,'VM6',{elementDamage:.2},2);}r.shieldValue(u,t,.24*c.def+750,2,a,r.shieldKey(u)+':Ult');}if(r.asc(u)){const t=r.allies().sort((a,b)=>Math.max(0,...a.shields)-Math.max(0,...b.shields))[0];if(t)r.shieldValue(u,t,.05*c.hp,2,a,r.shieldKey(u)+':A3');}}},
+ event(r,u,type,e){if(type!=='shieldAttack'||!e.layers.some(l=>l.key===r.shieldKey(u)+':Skill'&&l.value>0))return;const s=r.state(u);let extra=0;if(r.vm(u,2)&&s.limits?.extra!==u.turn&&r.ctx.random()<.5){r.once(u,'extra');extra=1;}s.fortify=(s.fortify||0)+1+extra;if(s.fortify>=3){s.fortify=0;r.buff(u,u,'Cố Thủ',{def:.2},2);if(r.asc(u))for(const t of r.allies())if(lucanKit.skillLayer(r,u,t))r.buff(u,t,'A2',{def:.1},2);}}
+};

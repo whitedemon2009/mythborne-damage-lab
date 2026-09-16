@@ -1,0 +1,21 @@
+const {chromium}=require('/Users/ducbom/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict'),path=require('node:path');
+(async()=>{const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});try{
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(process.env.MYTHBORNE_TEST_URL||'file://'+path.resolve(__dirname,'Mythborne-Damage-Lab.html'));await page.getByLabel('Veyr 1',{exact:true}).waitFor();
+ const snapshot=()=>page.evaluate(()=>{const detail={};document.dispatchEvent(new CustomEvent('mythborne-build-snapshot',{detail}));return detail.build;});
+ const card=page.locator('.member').first(),suggestions=card.locator('.gear-suggestions');await suggestions.locator(':scope>summary').click();
+ assert.match(await suggestions.innerText(),/400 Năng Lượng/);assert.match(await suggestions.innerText(),/ít nhất 4 mục tiêu/);
+ await suggestions.getByRole('button',{name:'Trang bị Mảnh Ký Ức',exact:true}).first().click();await card.getByLabel('Tinh luyện',{exact:true}).selectOption('5');
+ await suggestions.getByRole('button',{name:'Áp dụng bộ cho 6 món',exact:true}).first().click();
+ await card.getByText('6 món Thần Vật',{exact:true}).click();const piece=card.locator('.piece-editor').first();await piece.locator('summary').first().click();await piece.getByRole('button',{name:'Nảy dòng 1',exact:true}).click();await piece.getByRole('button',{name:'Max +3.2',exact:true}).click();
+ const equipped=await snapshot();assert.ok(equipped.states[0].memory);assert.ok(equipped.states[0].artifacts.every(p=>p.set));assert.ok(equipped.states[0].artifacts[0].rolls.some(Boolean));
+ await page.locator('#teamSnapshotName').fill('Apollo trang bị kiểm tra');await page.locator('#saveReportTeam').click();
+ await page.getByLabel('Veyr 1',{exact:true}).selectOption('Hades');const cleared=await snapshot();assert.equal(cleared.states[0].memory,'');assert.equal(cleared.states[0].refine,1);assert.ok(cleared.states[0].artifacts.every(p=>!p.set&&p.rolls.every(r=>r===null)));assert.deepEqual(cleared.states.slice(1),equipped.states.slice(1));
+ assert.match(await suggestions.textContent(),/Chết Chóc/);assert.match(await suggestions.textContent(),/NHẬT QUỸ/);
+ await page.getByRole('button',{name:'Nạp đội Apollo trang bị kiểm tra',exact:true}).click();assert.deepEqual((await snapshot()).states,equipped.states);
+ await page.getByLabel('Vận Mệnh 3',{exact:true}).selectOption('4');const third=page.locator('.member').nth(2),thirdSuggestions=third.locator('.gear-suggestions');if(!(await thirdSuggestions.getAttribute('open')))await thirdSuggestions.locator(':scope>summary').click();
+ assert.match(await thirdSuggestions.innerText(),/VM4.*150/);await thirdSuggestions.getByRole('button',{name:'Áp dụng phối bộ 4+2',exact:true}).click();const split=(await snapshot()).states[2].artifacts;assert.equal(new Set(split.slice(0,4).map(p=>p.set)).size,1);assert.equal(split[4].set,split[5].set);assert.notEqual(split[0].set,split[4].set);
+ await page.setViewportSize({width:390,height:844});if(!(await suggestions.getAttribute('open')))await suggestions.locator(':scope>summary').click();await suggestions.scrollIntoViewIfNeeded();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:'/private/tmp/mythborne-reviewed-recommendations.png'});
+ assert.deepEqual(errors,[]);console.log('PASS Chrome: reviewed Apollo/Hades gear, full equipment reset without affecting allies, saved build restoration, Astraeus VM4 split sets, mobile width');
+ }finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});

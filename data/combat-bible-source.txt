@@ -1,0 +1,2292 @@
+Được. Mình sẽ gom lại thành một **Combat/System Bible dạng công thức + rule engine** để sau này dùng trực tiếp cho Excel, simulator hoặc cân bằng nhân vật. Mình chỉ liệt kê những gì hiện đã được chốt; phần nào chưa khóa mình để riêng ở cuối.
+
+# MYTHBORNE — TOÀN BỘ CÔNG THỨC & CƠ CHẾ HIỆN TẠI
+
+---
+
+## 1. Action Value — thứ tự hành động
+
+### Base Action Value
+
+$$
+\boxed{BaseAV=\frac{10000}{SPD}}
+$$
+
+Tốc Độ càng cao → AV càng thấp → hành động càng sớm và càng nhiều lần.
+
+### Độ dài Cycle
+
+* **Cycle 0:** 150 AV
+* **Cycle 1 trở đi:** 100 AV / Cycle
+
+---
+
+## 2. Tốc Độ
+
+Tốc Độ cuối:
+
+$$
+\boxed{
+SPD_{final}
+=
+BaseSPD\times(1+\Sigma SPD\%)
++
+\Sigma FlatSPD
+}
+$$
+
+Sau khi tính toàn bộ nguồn SPD:
+
+$$
+\boxed{SPD_{display}=\text{round}(SPD_{final})}
+$$
+
+Tức là giữ số thập phân trong quá trình tính rồi **chỉ làm tròn SPD cuối cùng đến hàng đơn vị**.
+
+Sau đó:
+
+$$
+BaseAV=\frac{10000}{SPD_{final}}
+$$
+
+---
+
+# 3. Action Advance
+
+Nếu nhân vật được Đẩy Lượt:
+
+$$
+\boxed{
+AV_{new}
+=
+AV_{current}
+-
+BaseAV\times AA\%
+}
+$$
+
+Nếu:
+
+$$
+AV_{new}\le0
+$$
+
+thì:
+
+$$
+\boxed{AV_{new}=0}
+$$
+
+Quan trọng: **Action Advance tính từ BaseAV**, không tính từ lượng AV còn lại.
+
+Ví dụ:
+
+$$
+BaseAV=100
+$$
+
+Được AA 30%:
+
+$$
+100\times30\%=30
+$$
+
+Dù nhân vật hiện còn 80 AV hay 20 AV thì đều giảm **30 AV**.
+
+### Nhiều Action Advance cùng lúc
+
+$$
+\boxed{
+AA_{total}=AA_1+AA_2+\dots
+}
+$$
+
+Ví dụ:
+
+20% + 25% = 45%.
+
+---
+
+# 4. Thứ tự khi nhiều đơn vị cùng AV = 0
+
+Ưu tiên:
+
+1. Hành động hoặc Interrupt đang resolve.
+2. FIFO — ai vào hàng đợi trước xử lý trước.
+3. Nếu thực sự đồng thời:
+
+   * phe ta trước;
+   * trong phe ta: SPD hiện tại cao hơn;
+   * nếu vẫn bằng: vị trí đội hình từ trái sang phải.
+
+---
+
+# 5. Extra Action / Insert Action / Extra Turn
+
+Đây là ba khái niệm khác nhau.
+
+### Extra Action / Insert Action
+
+Ví dụ:
+
+* Đòn Đánh Theo Sau;
+* hành động chen ngang;
+* chiêu kích hoạt tự động.
+
+Không được tính là **Turn thực sự**.
+
+Do đó:
+
+* không giảm thời hạn Buff;
+* không giảm thời hạn Debuff;
+* vẫn có thể kích hoạt những trigger kiểu “sau khi tấn công”.
+
+### Extra Turn — Lượt Cộng Thêm
+
+Là **một Turn thật**.
+
+Do đó:
+
+* Buff giảm duration;
+* Debuff trên đơn vị đó cũng xử lý duration theo lượt;
+* các cơ chế “mỗi lượt” được tính.
+
+---
+
+# 6. Công thức sát thương trực tiếp
+
+Công thức tổng:
+
+$$
+\boxed{
+DMG=
+BaseDMG
+\times DMGMultiplier
+\times CritMultiplier
+\times VulnerabilityMultiplier
+\times DEFMultiplier
+\times RESMultiplier
+\times ToughnessMultiplier
+}
+$$
+
+Trong đó:
+
+$$
+\boxed{
+BaseDMG
+=
+(SkillRatio+ExtraRatio)\times ScalingStat+FlatDMG
+}
+$$
+
+ScalingStat có thể là:
+
+* Tấn Công;
+* HP;
+* Phòng Thủ;
+* Tốc Độ;
+
+tùy kỹ năng.
+
+---
+
+# 7. DMG% Multiplier
+
+$$
+\boxed{
+DMGMultiplier=
+1+\Sigma ElementDMG+\Sigma AllDMG+\Sigma SkillTypeDMG
+}
+$$
+
+Ba loại này nằm **cùng một bucket cộng**.
+
+Ví dụ:
+
+* +30% Hỏa
+* +20% All DMG
+* +25% Chiến Kỹ
+
+thì:
+
+$$
+1+0.30+0.20+0.25=1.75
+$$
+
+Không nhân:
+
+$$
+1.3\times1.2\times1.25
+$$
+
+---
+
+# 8. Chí Mạng
+
+Mặc định:
+
+* %Chí Mạng = **5%**
+* Sát Thương Chí Mạng = **50%**
+
+Nếu đòn chí mạng:
+
+$$
+\boxed{
+CritMultiplier=1+CritDMG
+}
+$$
+
+Ví dụ CD = 150%:
+
+$$
+CritMultiplier=2.5
+$$
+
+Không crit:
+
+$$
+CritMultiplier=1
+$$
+
+### Expected Damage
+
+Nếu cần tính trung bình:
+
+$$
+\boxed{
+CritAverage
+=
+1+CritRate\times CritDMG
+}
+$$
+
+---
+
+# 9. Vulnerability / Sát thương phải nhận
+
+$$
+\boxed{
+VulnerabilityMultiplier
+=
+1+\Sigma DamageTakenIncrease
+}
+$$
+
+Ví dụ địch:
+
+* +15% sát thương phải nhận;
+* +20% sát thương phải nhận;
+
+thì:
+
+$$
+1+0.15+0.20=1.35
+$$
+
+---
+
+# 10. Phòng Thủ
+
+$$
+\boxed{
+DEFMultiplier=
+\frac{CharLv+20}
+{(CharLv+20)+(EnemyLv+20)(1-DEFReduction-DEFPen)}
+}
+$$
+
+Trong Mythborne:
+
+$$
+\boxed{\%XuyênGiáp=DEF Pen}
+$$
+
+DEF Reduction và Xuyên Giáp nằm cùng bucket:
+
+$$
+\boxed{
+EffectiveDEFIgnore
+=
+DEFReduction+XuyênGiáp
+}
+$$
+
+Cap:
+
+$$
+\boxed{100\%}
+$$
+
+---
+
+# 11. Kháng Nguyên Tố
+
+$$
+\boxed{
+RESMultiplier
+=
+1-(TargetRES-RESPen)
+}
+$$
+
+### RES mặc định của Myrk
+
+Nếu Myrk:
+
+* yếu nguyên tố đó → **0% RES**
+* trung tính → **20% RES**
+* kháng chuyên biệt → **40% RES**
+
+Ví dụ:
+
+Địch có 20% RES, nhân vật có 10% Xuyên Kháng:
+
+$$
+RESMultiplier=1-(0.20-0.10)=0.90
+$$
+
+RES có thể xuống âm.
+
+Ví dụ:
+
+$$
+RES=-10\%
+$$
+
+thì:
+
+$$
+RESMultiplier=1.10
+$$
+
+---
+
+# 12. Toughness Damage Modifier đối với HP Damage
+
+Khi địch còn Sức Bền:
+
+$$
+\boxed{ToughnessMultiplier=0.9}
+$$
+
+Khi địch đang **Weakness Broken**:
+
+$$
+\boxed{ToughnessMultiplier=1.0}
+$$
+
+Tức là địch chưa vỡ khiên mặc định giảm 10% damage nhận vào.
+
+---
+
+# 13. Hệ Điểm Yếu của Myrk
+
+Mỗi Myrk mặc định có:
+
+$$
+\boxed{2-3\ Điểm\ Yếu}
+$$
+
+tương ứng với các nguyên tố.
+
+Chỉ nhân vật có nguyên tố nằm trong Điểm Yếu của Myrk mới được bào Sức Bền.
+
+Điều kiện:
+
+$$
+\boxed{
+Element_{attacker}\in Weakness_{enemy}
+}
+$$
+
+Nếu đúng:
+
+$$
+ToughnessDMG>0
+$$
+
+Nếu sai:
+
+$$
+\boxed{ToughnessDMG=0}
+$$
+
+Nhân vật vẫn gây **HP Damage bình thường**.
+
+---
+
+# 14. Gắn Điểm Yếu
+
+Nếu một kỹ năng như Tuyệt Kĩ của Janus gắn Điểm Yếu Hỏa lên kẻ địch:
+
+Mục tiêu được xem như có:
+
+$$
+\boxed{Weakness_{Hỏa}=True}
+$$
+
+trong duration của hiệu ứng.
+
+Nhân vật Hỏa sau đó có thể:
+
+* bào Sức Bền;
+* gây Break;
+* kích hoạt Break Hỏa.
+
+---
+
+# 15. Sức Bền cơ bản của Myrk
+
+### Myrk thường
+
+$$
+\boxed{140}
+$$
+
+### Myrk tinh anh
+
+$$
+\boxed{400}
+$$
+
+### Boss
+
+$$
+\boxed{720}
+$$
+
+Đây là Max Toughness mặc định.
+
+---
+
+# 16. Toughness Damage cơ bản của kỹ năng
+
+### Tấn Công Thường đơn mục tiêu
+
+$$
+\boxed{30}
+$$
+
+### Chiến Kỹ đơn mục tiêu
+
+$$
+\boxed{60}
+$$
+
+### Tuyệt Kĩ đơn mục tiêu
+
+Thường:
+
+$$
+\boxed{90-120}
+$$
+
+### Blast Skill
+
+* mục tiêu chính: 60
+* hai mục tiêu bên cạnh: 30 mỗi mục tiêu
+
+### AoE Skill
+
+$$
+\boxed{30/mục\ tiêu}
+$$
+
+### AoE Ultimate
+
+$$
+\boxed{60/mục\ tiêu}
+$$
+
+### Bounce
+
+$$
+\boxed{15/hit}
+$$
+
+### FUA
+
+Thông thường:
+
+$$
+\boxed{15-30/hit}
+$$
+
+Nếu kit ghi giá trị cụ thể thì **kit override hệ thống mặc định**.
+
+---
+
+# 17. Hiệu Suất Phá Vỡ
+
+$$
+\boxed{
+ToughnessDMG_{final}
+=
+BaseToughnessDMG
+\times
+(1+BreakEfficiency)
+}
+$$
+
+Ví dụ:
+
+Base = 60
+
+BE = +50%
+
+$$
+60\times1.5=90
+$$
+
+Các nguồn Hiệu Suất Phá Vỡ:
+
+$$
+\boxed{cộng\ dồn}
+$$
+
+Hiện không có hard cap.
+
+---
+
+# 18. Weakness Break
+
+Khi:
+
+$$
+Toughness\le0
+$$
+
+mục tiêu lập tức bị:
+
+$$
+\boxed{Weakness\ Broken}
+$$
+
+Trình tự:
+
+1. gây Break Damage;
+2. áp dụng Break Effect của nguyên tố;
+3. Action Delay mặc định;
+4. áp dụng các delay/control bổ sung;
+5. mục tiêu ở trạng thái Broken.
+
+---
+
+# 19. Action Delay khi Break
+
+Tất cả Break đều có:
+
+$$
+\boxed{25\%\ Action\ Delay}
+$$
+
+Đây là baseline chung trước các hiệu ứng nguyên tố/control khác.
+
+---
+
+# 20. Thời gian Weakness Broken
+
+Sau khi bị Break:
+
+* kẻ địch giữ trạng thái Broken;
+* các hiệu ứng delay tiếp tục ảnh hưởng thứ tự hành động;
+* khi kẻ địch cuối cùng thực hiện **lượt thật tiếp theo**:
+
+sau khi hoàn thành hành động:
+
+$$
+\boxed{Toughness=100\%}
+$$
+
+Ngay lập tức hồi toàn bộ Sức Bền.
+
+Không có hồi từng phần mặc định.
+
+---
+
+# 21. Break Damage
+
+$$
+\boxed{
+BreakDMG=
+BaseBreakDMG
+\times ElementCoeff
+\times EnemyToughnessCoeff
+\times(1+\%DiệtPhá)
+\times DEF
+\times RES
+\times Vulnerability
+}
+$$
+
+---
+
+# 22. Hệ số Sức Bền kẻ địch trong Break Damage
+
+$$
+\boxed{
+EnemyToughnessCoeff
+=
+0.5+\frac{EnemyMaxToughness}{120}
+}
+$$
+
+Ví dụ Myrk thường 140:
+
+$$
+0.5+\frac{140}{120}
+\approx1.667
+$$
+
+Elite 400:
+
+$$
+0.5+\frac{400}{120}
+\approx3.833
+$$
+
+Boss 720:
+
+$$
+0.5+\frac{720}{120}=6.5
+$$
+
+---
+
+# 23. Element Coefficient của Break Damage
+
+| Nguyên tố  | Coefficient |
+| ---------- | ----------: |
+| Nham       |         2.0 |
+| Hỏa        |         2.0 |
+| Phong      |         1.5 |
+| Băng       |         1.0 |
+| Lôi        |         1.0 |
+| Thuỷ       |         0.5 |
+| Thuỷ Triều |         0.5 |
+| Ám         |         0.5 |
+
+Thuỷ Triều sử dụng coefficient của Thuỷ.
+
+---
+
+# 24. %Diệt Phá
+
+$$
+\boxed{
+BreakEffectMultiplier
+=
+1+\%DiệtPhá
+}
+$$
+
+Ví dụ 120% Diệt Phá:
+
+$$
+1+1.2=2.2
+$$
+
+Áp dụng cho:
+
+* Break Damage;
+* Diệt Kích;
+
+nếu mechanic đó dùng %Diệt Phá.
+
+---
+
+# 25. Diệt Kích
+
+Công thức hiện tại:
+
+$$
+\boxed{
+DiệtKích=
+BaseBreakDMG
+\times
+\left(\frac{SkillBaseToughnessDMG}{30}\right)
+\times
+(1+BreakEfficiency)
+\times
+(1+\%DiệtPhá)
+\times DEF
+\times RES
+\times Vulnerability
+}
+$$
+
+Điểm quan trọng:
+
+### SkillBaseToughnessDMG
+
+Lấy **Toughness Damage gốc trước Break Efficiency**.
+
+Ví dụ Skill:
+
+$$
+BaseToughness=60
+$$
+
+BE=50%.
+
+Trong formula vẫn dùng:
+
+$$
+\frac{60}{30}
+$$
+
+không dùng:
+
+$$
+\frac{90}{30}
+$$
+
+vì BE đã được nhân riêng.
+
+### Diệt Kích không dùng ElementCoeff
+
+Khác Break Damage:
+
+$$
+\boxed{DiệtKích\ không\ nhân\ ElementCoeff}
+$$
+
+### Diệt Kích mặc định
+
+* không chí mạng;
+* không hưởng Element DMG%;
+* vẫn có nguyên tố;
+* vẫn chịu RES và RES Pen;
+* mặc định tối đa 1 Diệt Kích / action / target nếu kit không ghi ngoại lệ.
+
+---
+
+# 26. Break Effect Hỏa
+
+Break Hỏa:
+
+### Thiêu Đốt
+
+$$
+\boxed{
+DoT_{ThiêuĐốt}=100\%\ ATK_{Breaker}
+}
+$$
+
+Đây là DoT.
+
+---
+
+# 27. Break Effect Lôi
+
+### Tê Liệt
+
+$$
+\boxed{
+DoT_{TêLiệt}=100\%\ ATK_{Breaker}
+}
+$$
+
+Cũng là DoT.
+
+---
+
+# 28. Break Effect Phong
+
+Gắn:
+
+$$
+\boxed{Hất\ Tung}
+$$
+
+Chi tiết số học của Hất Tung hiện chưa khóa.
+
+---
+
+# 29. Break Effect Nham
+
+Gắn:
+
+$$
+\boxed{Đầm\ Lầy}
+$$
+
+Chi tiết số học chưa khóa.
+
+---
+
+# 30. Break Effect Băng
+
+Gắn:
+
+$$
+\boxed{Đóng\ Băng}
+$$
+
+Chi tiết số học chưa khóa.
+
+---
+
+# 31. Break Effect Thuỷ
+
+Gắn:
+
+$$
+\boxed{Chết\ Đuối}
+$$
+
+Chi tiết số học chưa khóa.
+
+---
+
+# 32. Break Effect Ám
+
+Khi Break Ám:
+
+$$
+\boxed{
+Trigger\ ngay\ tất\ cả\ DoT
++
+damage\ debuff
+}
+$$
+
+đang tồn tại trên mục tiêu.
+
+Điều này bao gồm các debuff có component gây damage.
+
+Không mặc định xóa debuff sau khi trigger.
+
+---
+
+# 33. Break Effect Thuỷ Triều
+
+Nếu mục tiêu đang:
+
+$$
+Nước\ Rút
+$$
+
+thì:
+
+$$
+\boxed{thoát\ Nước\ Rút\ ngay}
+$$
+
+Nếu không ở Nước Rút:
+
+$$
+\boxed{
+BonusDMG
+=
+50\%\times
+Damage_{ngay\ trước\ Break}
+}
+$$
+
+Tức là lấy instance damage của nhân vật gây ra ngay trước khi Break.
+
+---
+
+# 34. DoT
+
+DoT được tính là:
+
+$$
+\boxed{Debuff}
+$$
+
+Khi kẻ địch thực hiện Turn thật:
+
+1. DoT gây damage;
+2. sau đó duration -1;
+3. nếu duration = 0 → mất.
+
+---
+
+# 35. Skill DoT Damage
+
+$$
+\boxed{
+SkillDoT
+=
+ATK
+\times DoTRatio
+\times
+(1+DoTDMG+ElementDMG+AllDMG)
+\times Vulnerability
+\times DEF
+\times RES
+\times Toughness
+}
+$$
+
+DoT mặc định:
+
+$$
+\boxed{không\ Crit}
+$$
+
+trừ khi kit quy định ngoại lệ.
+
+All DMG có tác dụng lên DoT.
+
+---
+
+# 36. Cộng dồn Debuff
+
+### Cùng một Debuff
+
+Mặc định:
+
+$$
+\boxed{không\ stack}
+$$
+
+Reapply:
+
+$$
+\boxed{refresh\ duration}
+$$
+
+### Hai Debuff khác nhau
+
+Có thể tồn tại đồng thời.
+
+---
+
+# 37. Same-name effect rule
+
+Buff/Debuff cùng tên:
+
+$$
+\boxed{không\ stack\ mặc\ định}
+$$
+
+trừ khi kit nói rõ:
+
+> Có thể cộng dồn X tầng.
+
+---
+
+# 38. Buff cùng stat nhưng khác tên
+
+Nếu khác tên nhưng cùng tăng một chỉ số:
+
+có thể stack theo bucket.
+
+Ví dụ:
+
+Buff A:
+
+$$
+ATK+20\%
+$$
+
+Buff B:
+
+$$
+ATK+30\%
+$$
+
+thì:
+
+$$
+ATK\%=50\%
+$$
+
+---
+
+# 39. Quy tắc bucket
+
+### Cùng bucket
+
+Cộng trước.
+
+### Khác bucket
+
+Nhân với nhau.
+
+Ví dụ:
+
+$$
+DMG\%
+$$
+
+và
+
+$$
+Vulnerability
+$$
+
+là hai bucket riêng:
+
+$$
+1.5\times1.2
+$$
+
+chứ không phải:
+
+$$
+1+0.5+0.2
+$$
+
+---
+
+# 40. Energy
+
+### Basic Attack chuẩn
+
+$$
+\boxed{+20\ Energy}
+$$
+
+### Skill chuẩn
+
+$$
+\boxed{+30\ Energy}
+$$
+
+Kit có thể override.
+
+---
+
+# 41. Energy khi bị đánh
+
+Thông thường:
+
+### ST / nhẹ
+
+$$
+5-10
+$$
+
+### AoE / heavy
+
+$$
+15-25
+$$
+
+### Special/Boss
+
+có thể lên:
+
+$$
+30
+$$
+
+---
+
+# 42. Kill Energy
+
+Mặc định:
+
+$$
+\boxed{+10\ Energy}
+$$
+
+---
+
+# 43. %Hồi Năng Lượng
+
+$$
+\boxed{
+Energy_{actual}
+=
+Energy_{base}
+\times
+(1+\%ER)
+}
+$$
+
+Áp dụng cho các nguồn **Energy số cố định**:
+
+* Basic;
+* Skill;
+* FUA;
+* bị đánh;
+* kill;
+* Talent;
+* Đột Phá;
+* Mảnh Ký Ức;
+* Thần Vật;
+* refund cố định.
+
+---
+
+# 44. %Max Energy effect
+
+Nếu effect ghi:
+
+> hồi 3% Max Energy
+
+và Max Energy = 200:
+
+$$
+200\times3\%=6
+$$
+
+%ER **không nhân tiếp**.
+
+---
+
+# 45. Effect Hit Rate
+
+$$
+\boxed{
+P_{actual}
+=
+P_{base}
+\times
+(1+EHR)
+\times
+(1-EffectRES_{effective})
+}
+$$
+
+Cap:
+
+$$
+0\%\le P\le100\%
+$$
+
+---
+
+# 46. Effect RES mặc định
+
+Normal / Elite:
+
+$$
+\boxed{10-20\%}
+$$
+
+Boss cấp khoảng Lv60–75:
+
+$$
+\boxed{30\%}
+$$
+
+---
+
+# 47. Guaranteed Debuff
+
+Nếu wording là:
+
+* “Cố định gắn…”
+* “Chắc chắn khiến…”
+
+thì bỏ qua:
+
+* EHR;
+* Effect RES;
+* Debuff RES;
+
+trừ khi mục tiêu có **miễn nhiễm tuyệt đối**.
+
+---
+
+# 48. Effect RES floor
+
+Khác Element RES:
+
+$$
+\boxed{EffectRES\ge0}
+$$
+
+Không xuống âm.
+
+---
+
+# 49. Shield
+
+## Khiên cùng nguồn
+
+Nếu cùng nhân vật tạo lại cùng một Shield:
+
+mặc định không cộng giá trị.
+
+$$
+\boxed{
+Shield_{after}
+=
+\max(Shield_{old},Shield_{new})
+}
+$$
+
+và:
+
+$$
+\boxed{refresh\ duration}
+$$
+
+Nếu kit nói Shield tự stack thì mới cộng.
+
+---
+
+# 50. Shield khác nguồn
+
+Có thể cùng tồn tại.
+
+Ví dụ:
+
+* Shield Hera;
+* Shield Lucan;
+
+có thể cùng active.
+
+---
+
+# 51. Multi-Shield Damage
+
+Khi unit có nhiều Shield:
+
+**tất cả Shield chịu cùng một lượng incoming damage sau mitigation đồng thời.**
+
+Ví dụ:
+
+* Shield A = 1000
+* Shield B = 600
+* Damage = 400
+
+sau hit:
+
+* A = 600
+* B = 200
+
+Không xử lý A trước rồi B sau.
+
+---
+
+# 52. Damage → Shield → HP
+
+Với một Shield:
+
+$$
+\boxed{
+HPDamage
+=
+\max(0,Damage-Shield)
+}
+$$
+
+Normal:
+
+* Direct Damage;
+* DoT;
+* Break Damage;
+
+đều đánh Shield trước.
+
+Một số HP drain đặc biệt có thể bypass nếu kit ghi rõ.
+
+---
+
+# 53. Shield sử dụng mitigation của ai?
+
+Dùng:
+
+$$
+\boxed{DEF/RES\ của\ người\ được\ bảo\ vệ}
+$$
+
+không dùng DEF/RES của người tạo Shield.
+
+---
+
+# 54. Healing
+
+$$
+\boxed{
+HealingActual
+=
+HealingBase
+\times
+(1+OutgoingHealing)
+\times
+(1+HealingReceived)
+}
+$$
+
+Trong đó:
+
+$$
+\boxed{
+HealingBase
+=
+SkillRatio\times ScalingStat+FlatHealing
+}
+$$
+
+Scaling có thể dựa trên:
+
+* HP;
+* ATK;
+* DEF.
+
+---
+
+# 55. Overheal
+
+Mặc định:
+
+$$
+\boxed{Overheal=Lost}
+$$
+
+Không có cơ chế toàn hệ thống:
+
+$$
+Overheal\rightarrow Shield
+$$
+
+trừ khi kit nói rõ.
+
+---
+
+# 56. Healing Crit
+
+Mặc định:
+
+$$
+\boxed{Healing\ không\ Crit}
+$$
+
+Crit Rate / Crit DMG không ảnh hưởng.
+
+---
+
+# 57. Buff Duration
+
+Nếu Buff được gắn trong **Turn thật hiện tại của chính người nhận**:
+
+turn đó được tính là lượt đầu.
+
+Cuối action:
+
+$$
+Duration-1
+$$
+
+---
+
+# 58. Buff ngoài lượt
+
+Nếu Buff được gắn qua:
+
+* Ultimate chen ngang;
+* FUA;
+* Insert Action;
+
+khi người nhận chưa ở Turn thật:
+
+$$
+\boxed{không\ giảm\ duration\ ngay}
+$$
+
+Chỉ giảm ở Turn thật kế tiếp.
+
+---
+
+# 59. Buff gắn giữa Turn
+
+Nếu Buff được gắn khi người nhận **đang trong Turn thật của chính mình**:
+
+current Turn vẫn được tính.
+
+---
+
+# 60. Debuff Duration
+
+Debuff hoàn toàn tính theo:
+
+$$
+\boxed{Turn\ thật\ của\ target}
+$$
+
+Mỗi khi target hoàn thành Turn thật:
+
+$$
+Duration-1
+$$
+
+---
+
+# 61. FUA — Đòn Đánh Theo Sau
+
+FUA là:
+
+$$
+\boxed{Insert\ Action}
+$$
+
+không phải Turn.
+
+Do đó:
+
+* không giảm Buff duration;
+* không giảm Debuff duration;
+* có thể gây damage;
+* có thể bào Sức Bền;
+* có thể Break;
+* có thể kích trigger “khi tấn công”.
+
+---
+
+# 62. Energy của FUA
+
+Phần lớn FUA:
+
+$$
+\boxed{5-10\ Energy}
+$$
+
+và chịu %ER.
+
+---
+
+# 63. Planck từ FUA
+
+Mặc định:
+
+$$
+\boxed{FUA\ không\ tạo\ Planck}
+$$
+
+trừ khi kit quy định.
+
+---
+
+# 64. FUA chain
+
+FUA của A có thể trigger FUA của B.
+
+Nhưng có anti-loop.
+
+### Quy tắc anti-recursion
+
+Một FUA không được tự kích lại **chính nó**.
+
+Ngoài ra kit thường phải có giới hạn như:
+
+* tối đa X lần mỗi lượt;
+* 1 lần giữa hai lượt;
+* 1 lần mỗi action.
+
+---
+
+# 65. Điểm Planck
+
+Tài nguyên dùng chung toàn team.
+
+Cap:
+
+$$
+\boxed{5}
+$$
+
+Mặc định bắt đầu:
+
+$$
+\boxed{3}
+$$
+
+---
+
+# 66. Basic và Planck
+
+Tấn Công Thường chuẩn:
+
+$$
+\boxed{+1\ Planck}
+$$
+
+---
+
+# 67. Skill và Planck
+
+Chiến Kỹ chuẩn:
+
+$$
+\boxed{-1\ Planck}
+$$
+
+trừ kit có cost đặc biệt.
+
+---
+
+# 68. Planck Overflow
+
+Nếu team đã 5/5:
+
+Planck thông thường được tạo thêm:
+
+$$
+\boxed{mất}
+$$
+
+trừ khi kit có overflow conversion.
+
+---
+
+# 69. Skill cost 0
+
+Nếu Skill có cost 0:
+
+$$
+\boxed{không\ được\ tính\ là\ đã\ tiêu\ Planck}
+$$
+
+Do đó trigger:
+
+> sau khi tiêu hao Điểm Planck
+
+không kích hoạt.
+
+---
+
+# 70. Thứ tự Consume → Refund Planck
+
+Khi cast Skill:
+
+### Bước 1
+
+Kiểm tra đủ Planck.
+
+Nếu thiếu:
+
+$$
+\boxed{không\ cast}
+$$
+
+### Bước 2
+
+Trừ cost ngay.
+
+### Bước 3
+
+Skill resolve.
+
+### Bước 4
+
+Refund / recovery resolve.
+
+Ví dụ:
+
+$$
+5/5
+$$
+
+cost 1:
+
+$$
+5\rightarrow4
+$$
+
+refund 1:
+
+$$
+4\rightarrow5
+$$
+
+---
+
+# 71. Refund khác Gain
+
+### Refund
+
+> hoàn trả 1 Điểm Planck đã tiêu
+
+gắn với cost vừa trả.
+
+### Gain
+
+> nhận 1 Điểm Planck
+
+là generation bình thường và chịu cap 5.
+
+---
+
+# 72. Death
+
+Khi HP:
+
+$$
+\boxed{HP\le0}
+$$
+
+đơn vị chết.
+
+Ngay lập tức:
+
+$$
+\boxed{clear\ toàn\ bộ\ Buff/Debuff}
+$$
+
+---
+
+# 73. Energy khi chết
+
+Khi chết:
+
+$$
+\boxed{Energy=0}
+$$
+
+---
+
+# 74. Revive
+
+Nếu hồi sinh:
+
+đơn vị trở lại **không giữ Buff/Debuff cũ**.
+
+Energy:
+
+$$
+\boxed{0}
+$$
+
+trừ khi Revive effect ghi rõ một lượng Energy khác.
+
+---
+
+# 75. AV khi Revive tức thời
+
+Nếu chết và hồi sinh ngay:
+
+$$
+\boxed{giữ\ CurrentAV\ tại\ thời\ điểm\ chết}
+$$
+
+Không bị đưa xuống cuối Action Order.
+
+---
+
+# 76. Nhiều nguồn Revive
+
+Không trigger tất cả cùng lúc.
+
+Mỗi cái chết dùng **một nguồn Revive**.
+
+Priority:
+
+1. Self-owned:
+
+   * Talent;
+   * Đột Phá;
+   * Skill;
+   * Vận Mệnh.
+2. Ally Revive.
+3. Environment/external.
+
+Nguồn còn lại giữ cho lần chết sau.
+
+---
+
+# 77. Multi-hit khi mục tiêu chết
+
+Nếu target chết giữa chuỗi hit:
+
+$$
+\boxed{các\ hit\ còn\ lại\ không\ mất}
+$$
+
+chúng chuyển sang mục tiêu hợp lệ còn sống.
+
+---
+
+# 78. Bounce
+
+Mỗi Bounce:
+
+$$
+\boxed{random\ target\ hợp\ lệ\ còn\ sống}
+$$
+
+---
+
+# 79. Athena Overkill
+
+Sát Thương Dư sau khi giết target:
+
+chuyển sang:
+
+$$
+\boxed{kẻ\ địch\ còn\ sống\ có\ HP\ hiện\ tại\ cao\ nhất}
+$$
+
+Nếu tiếp tục giết:
+
+damage dư tiếp tục chuyển.
+
+---
+
+# 80. Sát Thương Chuẩn
+
+True Damage:
+
+$$
+\boxed{
+bỏ\ qua\ DEF
+}
+$$
+
+$$
+\boxed{
+bỏ\ qua\ ElementRES
+}
+$$
+
+$$
+\boxed{
+bỏ\ qua\ ToughnessModifier
+}
+$$
+
+$$
+\boxed{
+bỏ\ qua\ enemy\ damage\ reduction
+}
+$$
+
+Nếu:
+
+> True Damage = X% của damage vừa gây
+
+thì:
+
+1. tính damage nguồn hoàn chỉnh;
+2. lấy X%;
+3. không đưa phần True Damage qua DEF/RES lần nữa.
+
+---
+
+# 81. Tấn Công / HP / DEF %
+
+Các stat dạng phần trăm:
+
+$$
+\boxed{
+FinalStat
+=
+BaseStat\times(1+\Sigma Stat\%)
++\Sigma FlatStat
+}
+$$
+
+Ví dụ:
+
+Base ATK 700
+
++80% ATK
+
++350 flat:
+
+$$
+700(1+0.8)+350=1610
+$$
+
+---
+
+# 82. Aspect
+
+Các Aspect hiện tại:
+
+| Aspect                | Vai trò           |
+| --------------------- | ----------------- |
+| Thiên Xuyên / Gungnir | DPS đơn mục tiêu  |
+| Tuyệt Diệt / Trishula | DPS 2–3 mục tiêu  |
+| Quảng Phạt / Mjolnir  | AoE               |
+| U Minh / Pandora      | Debuff            |
+| Thiên Ân / Keraunos   | Buff              |
+| Thần Hộ / Aegis       | Shield            |
+| Sinh Mạch / Caduceus  | Healing           |
+| Vajra                 | Break / Diệt Kích |
+
+---
+
+# 83. Aggro / chọn mục tiêu của Myrk
+
+Đối với đòn đơn mục tiêu:
+
+mức bị chọn phụ thuộc Aspect.
+
+Ưu tiên cơ bản:
+
+### Cao nhất
+
+* Sinh Mạch
+* Thần Hộ
+
+### Trung bình
+
+* Thiên Ân
+* U Minh
+
+### Thấp hơn
+
+* các DPS Aspect khác.
+
+Đây là **trọng số chọn mục tiêu**, không đồng nghĩa target cố định.
+
+---
+
+# 84. Enemy AI
+
+AI Myrk gồm ba tầng.
+
+### 1. Fixed Rotation
+
+Nếu Myrk có rotation:
+
+$$
+Skill1\rightarrow Skill2\rightarrow Skill3\rightarrow repeat
+$$
+
+hoặc rotation riêng đã định nghĩa.
+
+Không tự bịa nếu database không có.
+
+### 2. Condition-Based AI
+
+Condition có priority cao hơn rotation.
+
+Ví dụ:
+
+* HP threshold;
+* phase;
+* summon;
+* charge;
+* shield condition.
+
+Chỉ sử dụng nếu Myrk đó được định nghĩa.
+
+### 3. Target Selection
+
+Nếu skill cần target, chọn dựa trên Aggro / rule của skill.
+
+---
+
+# 85. Số mục tiêu trên sân
+
+Tối đa:
+
+$$
+\boxed{5\ đồng\ minh}
+$$
+
+và:
+
+$$
+\boxed{5\ kẻ\ địch}
+$$
+
+---
+
+# 86. Thần Vật — 6 slot
+
+## Slot 1
+
+$$
+\boxed{707\ HP}
+$$
+
+Lv15.
+
+## Slot 2
+
+$$
+\boxed{590\ DEF}
+$$
+
+## Slot 3
+
+$$
+\boxed{350\ ATK}
+$$
+
+---
+
+# 87. Slot 4 main stat Lv15
+
+* ATK% 43.2%
+* HP% 43.2%
+* DEF% 54%
+* SPD 25
+* %Diệt Phá 64.8%
+
+---
+
+# 88. Slot 5 main stat Lv15
+
+* Crit Rate 32.4%
+* Crit DMG 64.8%
+* ATK% 43.2%
+* HP% 43.2%
+* DEF% 54%
+* %Diệt Phá 32.8%
+* EHR 43.2%
+* Effect RES 43.2%
+
+---
+
+# 89. Slot 6 main stat Lv15
+
+* %Hồi Năng Lượng 19.2%
+* %Xuyên Giáp 32.8%
+* Element DMG 38.9%
+* ATK% 43.2%
+* HP% 43.2%
+* DEF% 54%
+
+Slot 6:
+
+$$
+\boxed{không\ có\ \%DiệtPhá}
+$$
+
+---
+
+# 90. Main Stat scaling Thần Vật
+
+Hiện dùng quy ước tuyến tính:
+
+$$
+\boxed{
+MainStat(Lv)
+=
+MainStat(Lv15)\times\frac{Lv}{15}
+}
+$$
+
+và khóa chính xác endpoint Lv15.
+
+---
+
+# 91. Substat roll Thần Vật
+
+Thứ tự:
+
+$$
+Min-Mid-Max
+$$
+
+| Stat       |  Min |  Mid |  Max |
+| ---------- | ---: | ---: | ---: |
+| Crit Rate  | 2.5% | 2.8% | 3.2% |
+| Crit DMG   | 5.5% | 5.8% | 6.5% |
+| SPD        |  2.2 |  2.5 |  2.8 |
+| %Diệt Phá  | 5.1% | 5.5% | 6.5% |
+| EHR        | 3.9% | 4.2% |   5% |
+| Effect RES | 3.9% | 4.2% |   5% |
+| ATK%       | 3.9% | 4.2% |   5% |
+| HP%        | 3.9% | 4.2% |   5% |
+| DEF%       | 3.9% | 4.2% |   5% |
+| ATK flat   |   17 |   19 |   21 |
+| HP flat    |   33 |   38 |   42 |
+| DEF flat   |   17 |   19 |   21 |
+
+---
+
+# 92. Stat không được làm Substat
+
+Không có:
+
+* %Hồi Năng Lượng
+* %Xuyên Giáp
+* Element DMG%
+
+Ngoài ra:
+
+$$
+\boxed{Hiệu\ Suất\ Phá\ Vỡ}
+$$
+
+không xuất hiện trên Thần Vật dưới bất kỳ dạng nào.
+
+---
+
+# 93. Upgrade Thần Vật 5★
+
+Max:
+
+$$
+\boxed{Lv15}
+$$
+
+Upgrade milestone:
+
+$$
+\boxed{Lv3,\ Lv6,\ Lv9,\ Lv12,\ Lv15}
+$$
+
+---
+
+# 94. Thần Vật khởi đầu 3 sub
+
+Lv3:
+
+$$
+\boxed{mở\ substat\ thứ\ 4}
+$$
+
+Sau đó:
+
+* Lv6
+* Lv9
+* Lv12
+* Lv15
+
+mỗi mốc tăng ngẫu nhiên một substat hiện có.
+
+---
+
+# 95. Thần Vật khởi đầu 4 sub
+
+Cả 5 mốc:
+
+* Lv3
+* Lv6
+* Lv9
+* Lv12
+* Lv15
+
+đều tăng ngẫu nhiên một substat.
+
+Do đó loại 4-sub-start có:
+
+$$
+\boxed{+1\ upgrade\ roll}
+$$
+
+so với 3-sub-start.
+
+---
+
+# 96. Set Thần Vật
+
+### 2 món
+
+$$
+\boxed{Stat\ buff}
+$$
+
+Không mở mechanic mới.
+
+### 4 món
+
+$$
+\boxed{Core\ gameplay\ mechanic}
+$$
+
+### 5 món
+
+$$
+\boxed{Strengthen/Specialize\ 4pc}
+$$
+
+Không nên tạo mechanic hoàn toàn không liên quan.
+
+Logic:
+
+$$
+\boxed{
+2pc=Stat
+\rightarrow
+4pc=Gameplay
+\rightarrow
+5pc=Specialization
+}
+$$
+
+---
+
+# 97. Các tổ hợp set hợp lệ
+
+Vì có 6 slot nhưng set full chỉ cần 5:
+
+* 5 + 1
+* 4 + 2
+* 2 + 2 + 2
+
+đều hợp lệ.
+
+---
+
+# 98. Mảnh Ký Ức — Tinh Luyện
+
+Tinh Luyện không tăng Base Stat.
+
+Nó chỉ tăng effect/passive.
+
+Nếu TL1 và TL5 đã biết:
+
+$$
+\boxed{
+Step
+=
+\frac{TL5-TL1}{4}
+}
+$$
+
+Do đó:
+
+$$
+TL2=TL1+Step
+$$
+
+$$
+TL3=TL1+2Step
+$$
+
+$$
+TL4=TL1+3Step
+$$
+
+$$
+TL5=TL1+4Step
+$$
+
+---
+
+# 99. Break Through của nhân vật
+
+Các mốc:
+
+$$
+\boxed{Lv20,\ Lv40,\ Lv60}
+$$
+
+Ngoài ra có các Mốc phụ stat.
+
+---
+
+# 100. Vận Mệnh
+
+Đối với nhân vật 4★, duplicate cho:
+
+$$
+\boxed{Mảnh\ Vỡ\ Câu\ Chuyện}
+$$
+
+và tăng 1 tầng Vận Mệnh.
+
+Pattern thiết kế:
+
+* VM1: buff mechanic/kỹ năng
+* VM2: buff mechanic/kỹ năng
+* VM3: tăng cấp kỹ năng
+* VM4: buff/self-buff thuần
+* VM5: tăng cấp kỹ năng
+* VM6: nâng cấp mechanic lớn
+
+---
+
+# 101. Quy tắc “kit override”
+
+Một trong những luật quan trọng nhất của toàn hệ thống:
+
+$$
+\boxed{
+Explicit\ Character/Enemy\ Rule
+>
+Default\ System\ Rule
+}
+$$
+
+Ví dụ:
+
+* mặc định Skill cost 1 Planck;
+* Ares có Skill cost đặc biệt → dùng Ares.
+
+Hay:
+
+* DoT mặc định không Crit;
+* nếu một nhân vật nói DoT có thể Crit → kit đó là ngoại lệ.
+
+---
+
+# 102. Janus — cơ chế vừa chốt
+
+Janus:
+
+* 5★ giới hạn;
+* Pandora / U Minh;
+* Hỏa;
+* nữ;
+* một sừng;
+* tóc đen-trắng;
+* vũ khí: ma pháp ngọc;
+* motif dê lửa.
+
+### Chiến Kỹ
+
+Vai trò:
+
+$$
+\boxed{buff\ \%DiệtPhá\ toàn\ đội}
+$$
+
+### Tuyệt Kĩ
+
+Gắn:
+
+$$
+\boxed{Điểm\ Yếu\ Hỏa}
+$$
+
+lên địch.
+
+Nhờ đó nhân vật Hỏa có thể bào Toughness ngay cả nếu Myrk vốn không yếu Hỏa.
+
+### Thiên Phú
+
+Nếu tồn tại ít nhất một kẻ địch đang:
+
+$$
+\boxed{Weakness\ Broken}
+$$
+
+Janus chuyển dạng.
+
+Dạng này:
+
+* biến Janus thành sub-DPS thực thụ;
+* tồn tại **2 lượt**;
+* không biến mất ngay chỉ vì kẻ địch hồi khiên.
+
+Chi tiết ratio, tên dạng, FUA/Extra Action và signature Memory của Janus vẫn cần khóa khi hoàn thiện kit.
+
+---
+
+# Những phần **chưa khóa hoàn toàn**
+
+Hiện còn một số edge case cần chốt trước khi simulator đạt mức tuyệt đối:
+
+1. Số cụ thể của:
+
+   * Hất Tung;
+   * Đầm Lầy;
+   * Đóng Băng;
+   * Chết Đuối.
+2. Duration chuẩn của Thiêu Đốt/Tê Liệt từ Break.
+3. Break Ám trigger DoT có chính thức không tiêu duration hay không.
+4. Hai nhân vật khác nhau áp cùng một named debuff xử lý source-stack chính xác thế nào.
+5. Logic chọn mục tiêu khi multi-hit chuyển hit sau khi target chết.
+6. Giá trị chính xác:
+
+   $$
+   BaseBreakDMG_{Lv60}
+   $$
+7. HP overflow với nhiều Shield có độ lớn khác nhau.
+8. Thứ tự nhiều refund/gain Planck xảy ra cùng lúc.
+9. Refund lớn hơn Planck vừa tiêu xử lý ra sao.
+10. Tie-break của nhiều Revive cùng priority.
+11. Một Thần Vật có được phép có main stat và substat cùng loại hay không.
+12. Xác suất Min/Mid/Max roll.
+13. Probability distribution của main stat/substat.
+14. Main Stat exact table từng Lv0–Lv14 nếu không dùng scaling tuyến tính.
+15. Chi tiết đầy đủ bộ kit Janus và Mảnh Ký Ức trấn của cô ấy.
+
+Nếu lấy bộ trên làm **Combat Engine Specification**, thì phần lõi damage, Break, action order, Energy, Planck, shield, heal, DoT, FUA, death/revive và artifact hiện đã đủ để xây simulator thực tế rồi.

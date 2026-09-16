@@ -1,0 +1,21 @@
+const {chromium}=require('/Users/ducbom/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const path=require('node:path'),assert=require('node:assert/strict');
+(async()=>{const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});try{
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
+ await page.goto(process.env.MYTHBORNE_TEST_URL||'file://'+path.resolve(__dirname,'Mythborne-Damage-Lab.html'));await page.getByLabel('Mảnh Ký Ức 1',{exact:true}).waitFor();
+ await page.locator('.battle-settings>summary').click();await page.locator('.advanced-sequence>summary').click();
+ await page.locator('#cycles').fill('2');await page.locator('#enemyCount').fill('3');await page.locator('#enemyHP').fill('1000000');await page.locator('#enemyAttack').fill('0');await page.locator('#critMode').selectOption('sampled');await page.locator('#generateKit').click();
+ assert.equal(await page.locator('#reportSummary tbody tr').count(),5);assert.ok(await page.locator('#reportGroups tbody tr').count()>5);
+ await page.locator('#reportHits summary').first().click();assert.match(await page.locator('#reportHits details').first().innerText(),/Tích các thành phần/);assert.match(await page.locator('#reportHits details').first().innerText(),/Hệ số DEF/);
+ await page.getByLabel('Lọc báo cáo theo Veyr',{exact:true}).selectOption('0');assert.ok((await page.locator('#reportGroups tbody tr').allTextContents()).every(t=>t.startsWith('Apollo')));await page.getByLabel('Lọc báo cáo theo Veyr',{exact:true}).selectOption('all');
+ await page.getByLabel('Mảnh Ký Ức 1',{exact:true}).selectOption({label:'Khi Mặt Trời Hạ Thấp Hơn Mọi Vương Miện'});await page.locator('.member').first().getByText('Chỉ số Lv60 trước trang bị',{exact:true}).click();await page.getByLabel('Apollo Tấn Công',{exact:true}).fill('999');
+ await page.locator('#teamSnapshotName').fill('Apollo có trấn');await page.locator('#saveReportTeam').click();assert.match(await page.locator('#teamReportMessage').innerText(),/Đã lưu/);
+ for(const [i,name] of ['Hades','Prometheus','Anubis','Hephaestus','Hestia'].entries())await page.getByLabel('Veyr '+(i+1),{exact:true}).selectOption(name);await page.locator('#generateKit').click();await page.getByLabel('Mảnh Ký Ức 1',{exact:true}).selectOption('');await page.locator('#teamSnapshotName').fill('Hades thử nghiệm');await page.locator('#saveReportTeam').click();
+ await page.locator('#compareReportTeams').click();assert.equal(await page.locator('#teamReportResults tbody tr').count(),2);assert.doesNotMatch(await page.locator('#teamReportResults').innerText(),/Không so sánh/);
+ const before=await page.locator('#teamReportResults').innerText();await page.locator('#compareReportTeams').click();assert.equal(await page.locator('#teamReportResults').innerText(),before);
+ await page.getByRole('button',{name:'Nạp đội Apollo có trấn',exact:true}).click();assert.equal(await page.getByLabel('Veyr 1',{exact:true}).inputValue(),'Apollo');assert.equal(await page.getByLabel('Apollo Tấn Công',{exact:true}).inputValue(),'999');assert.equal(await page.getByLabel('Mảnh Ký Ức 1',{exact:true}).inputValue(),'Khi Mặt Trời Hạ Thấp Hơn Mọi Vương Miện');
+ await page.locator('#enemyMaxToughness').fill('900');assert.equal(await page.locator('#teamReportResults tbody tr').count(),0);await page.locator('#compareReportTeams').click();assert.equal(await page.locator('#teamReportResults tbody tr').count(),2);
+ await page.locator('#teamComparison').scrollIntoViewIfNeeded();await page.screenshot({path:'/private/tmp/mythborne-step6.png'});
+ await page.reload();await page.getByLabel('Mảnh Ký Ức 1',{exact:true}).waitFor();await page.getByRole('button',{name:'Nạp đội Hades thử nghiệm',exact:true}).click();assert.equal(await page.getByLabel('Veyr 1',{exact:true}).inputValue(),'Hades');assert.notEqual(await page.locator('#totalDamage').innerText(),'—');
+ assert.deepEqual(errors,[]);console.log('PASS Chrome hit explanations, source filters, two different team snapshots, saved gear/stats restoration, common-scenario comparison, cache clearing and reload');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});

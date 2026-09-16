@@ -1,0 +1,25 @@
+const {chromium}=require('/Users/ducbom/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const path=require('node:path'),assert=require('node:assert/strict');
+(async()=>{const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});try{
+ const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
+ await page.goto(process.env.MYTHBORNE_TEST_URL||'file://'+path.resolve(__dirname,'Mythborne-Damage-Lab.html'));await page.getByLabel('Mảnh Ký Ức 1',{exact:true}).waitFor();
+ await page.locator('.battle-settings>summary').click();await page.locator('.turn-editor>summary').click();
+ await page.locator('#cycles').fill('3');await page.locator('#enemyCount').fill('3');await page.locator('#enemyHP').fill('1000000');await page.locator('#enemyAttack').fill('0');await page.locator('#critMode').selectOption('sampled');
+ await page.locator('#prepareRotation').click();await page.locator('#rotationTurns tbody tr').first().waitFor({timeout:5000}).catch(async e=>{throw Error(e.message+'\n'+JSON.stringify(errors)+'\n'+await page.locator('#rotationMessage').innerText()+'\n'+(await page.locator('#combatLog').innerText()).slice(0,2000));});
+ assert.ok(await page.locator('#rotationTurns tbody tr').count()>10);assert.match(await page.locator('#rotationSummary').innerText(),/Agni: \d+ lượt/);
+ await page.locator('#rotationName').fill('Ban đầu');await page.locator('#saveRotation').click();
+ await page.getByLabel('Đồng minh · Agni · lượt 1',{exact:true}).selectOption('2');
+ await page.getByLabel('Kỹ năng · Apollo · lượt 1',{exact:true}).selectOption('Wait');
+ await page.getByLabel('Tuyệt Kĩ · Apollo',{exact:true}).selectOption('beforeAlly');
+ await page.getByLabel('Veyr cần chờ · Apollo',{exact:true}).selectOption('2');await page.getByLabel('Từ lượt số · Apollo',{exact:true}).fill('2');await page.getByLabel('Từ lượt số · Apollo',{exact:true}).press('Tab');
+ await page.locator('#rotationName').fill('Chờ Astraeus');await page.locator('#saveRotation').click();await page.locator('#compareRotations').click();
+ assert.equal(await page.locator('#rotationComparison tbody tr').count(),2);assert.doesNotMatch(await page.locator('#rotationComparison').innerText(),/Không so sánh/);
+ await page.getByRole('button',{name:'Nạp Ban đầu',exact:true}).click();assert.notEqual(await page.getByLabel('Kỹ năng · Apollo · lượt 1',{exact:true}).inputValue(),'Wait');assert.equal(await page.getByLabel('Đồng minh · Agni · lượt 1',{exact:true}).inputValue(),'0');
+ await page.locator('#compareRotations').click();const before=await page.locator('#rotationComparison').innerText();await page.locator('#compareRotations').click();assert.equal(await page.locator('#rotationComparison').innerText(),before);
+ await page.locator('#enemyMaxToughness').fill('900');assert.equal(await page.locator('#rotationComparison tbody tr').count(),0);await page.locator('#compareRotations').click();assert.equal(await page.locator('#rotationComparison tbody tr').count(),2);
+ await page.locator('#rotationTimeline summary').click();assert.ok(await page.locator('#rotationTimeline tbody tr').count()>await page.locator('#rotationTurns tbody tr').count());
+ await page.setViewportSize({width:1440,height:1000});await page.locator('#rotationPlanner').scrollIntoViewIfNeeded();await page.screenshot({path:'/private/tmp/mythborne-rotation.png'});
+ await page.reload();await page.getByLabel('Mảnh Ký Ức 1',{exact:true}).waitFor();await page.locator('.turn-editor>summary').click();assert.ok(await page.getByRole('button',{name:'Nạp Ban đầu',exact:true}).count());await page.getByRole('button',{name:'Nạp Ban đầu',exact:true}).click();assert.notEqual(await page.locator('#totalDamage').innerText(),'—');assert.ok(await page.locator('#rotationTurns tbody tr').count()>0);
+ await page.getByLabel('Veyr 1',{exact:true}).selectOption({label:'Athena'});assert.equal(await page.getByRole('button',{name:'Nạp Ban đầu',exact:true}).isDisabled(),true);
+ assert.deepEqual(errors,[]);console.log('PASS Chrome per-turn edits, recipient switching, conditional Ult, save/load/reload, deterministic comparison, stale-result clearing and team guard');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});

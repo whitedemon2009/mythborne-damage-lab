@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mythborne Damage Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <p class="eyebrow">MYTHBORNE // COMBAT ANALYSIS</p>
+        <h1>Damage Lab</h1>
+        <p class="lede">Năm Veyr. Một chiến thuật. Khám phá sức mạnh đội hình qua từng cycle.</p>
+      </div>
+    </header>
+
+    <section class="toolbar panel">
+      <h2 class="myrk-heading">01 / Thiết lập Myrk</h2>
+      <label>Số mục tiêu
+        <input id="enemyCount" type="number" min="1" max="5" value="1" />
+      </label>
+      <label>Phòng Thủ Myrk
+        <input id="enemyDefense" type="number" min="0" value="1000" />
+      </label>
+      <label>Kháng Nguyên Tố
+        <div class="suffix"><input id="enemyResistance" type="number" min="-100" max="100" value="20" /><span>%</span></div>
+      </label>
+      <label>Chế độ Chí Mạng
+        <select id="critMode">
+          <option value="expected">Kỳ vọng trung bình</option>
+          <option value="crit">Luôn Chí Mạng</option>
+          <option value="normal">Không Chí Mạng</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <div class="section-title"><h2>02 / Đội hình & trang bị</h2><span id="teamRule"></span></div>
+      <p class="status-note">Chọn 5 Veyr tùy ý. Mở Thần Vật để chọn chỉ số và nảy dòng; dùng đề cử trang bị làm điểm bắt đầu trước khi so sánh sát thương. VM3/VM5 tạm chưa tăng cấp kỹ năng.</p><div id="team" class="team-grid"></div>
+    </section>
+
+    <section class="workspace">
+      <details class="panel advanced-sequence">
+        <summary>Chuỗi kỹ năng nâng cao</summary>
+        <div class="section-title"><h2>Chuỗi lặp của Veyr</h2><button id="addAction" class="ghost">+ Hành động</button></div>
+        <div id="rotation" class="rotation"></div>
+      </details>
+
+      <aside class="panel results">
+        <p class="eyebrow">KẾT QUẢ</p>
+        <strong id="totalDamage">0</strong>
+        <span>Tổng sát thương</span>
+        <div class="metric-grid">
+          <div><b id="singleDamage">0</b><small>Mục tiêu chính</small></div>
+          <div><b id="damagePerAction">0</b><small>Mỗi hành động</small></div>
+        </div>
+        <div id="breakdown" class="breakdown"></div>
+      </aside>
+    </section>
+
+    <section class="panel formula-note">
+      <h2>Công thức đang dùng</h2>
+      <code>Sát thương = Tấn Công × Hệ số × Tăng sát thương × Chí mạng × Phòng thủ × Kháng × Sát thương phải nhận × số mục tiêu</code>
+      <p>DEF = (cấp Veyr + 20) / [(cấp Veyr + 20) + (cấp Myrk + 20) × (1 − giảm DEF − xuyên giáp)]. Hit phá Sức Bền vẫn nhân 0,9; hit sau nhân 1,0. BaseBreak = 1691 × cấp/60. Diệt Kích không chí mạng, không hưởng ST nguyên tố.</p>
+    </section>
+  </main>
+  <template id="actionTemplate">
+    <article class="action-row">
+      <span class="step"></span>
+      <select class="actor"></select>
+      <select class="source">
+        <option>Tấn Công Thường</option><option>Chiến Kỹ</option><option>Tuyệt Kỹ</option>
+        <option>Đòn Đánh Theo Sau</option><option>Phản Kích</option><option>Sát Thương Duy Trì</option><option>Diệt Kích</option>
+      </select>
+      <label>Hệ số %<input class="multiplier" type="number" min="0" value="100" /></label>
+      <label>Mục tiêu<input class="targets" type="number" min="1" max="5" value="1" /></label>
+      <label>Tăng ST %<input class="damageBonus" type="number" value="0" /></label>
+      <label>Xuyên PT %<input class="defIgnore" type="number" min="0" max="100" value="0" /></label>
+      <label>ST nhận %<input class="vulnerability" type="number" value="0" /></label>
+      <button class="remove" aria-label="Xóa hành động">×</button>
+      <output class="actionDamage">0</output>
+    </article>
+  </template>
+  <script src="bundle.js?v=2c74ddb75c3f"></script>
+</body>
+</html>
