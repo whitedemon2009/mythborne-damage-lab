@@ -1,0 +1,11 @@
+{
+  "name": "mythborne-damage-lab",
+  "private": true,
+  "scripts": {
+    "test": "node test-all.mjs",
+    "test:browser": "node browser-smoke.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

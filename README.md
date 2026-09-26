@@ -25,7 +25,7 @@ Bước 6 thêm **Báo cáo sát thương** và **So sánh đội hình**: công
 
 ## Kiểm tra
 
-Chạy `node test-all.mjs` để kiểm tra toàn bộ dữ liệu nhân vật, công thức, trang bị, rotation và tương tác đội hình. Trước mỗi lần xuất bản, GitHub Pages tự chạy `validate_data.py`, bộ kiểm tra này, đóng gói trang và xác minh `public/index.html`; bản mới chỉ được triển khai khi tất cả đều vượt qua.
+Chạy `node test-all.mjs` để kiểm tra toàn bộ dữ liệu nhân vật, công thức, trang bị, rotation và tương tác đội hình. Chạy `npm run test:browser` để mở bản đóng gói bằng Chromium và kiểm tra chọn roster, đội VM6, HP vô cực, trang bị riêng từng Veyr và giao diện di động. Trước mỗi lần xuất bản, GitHub Pages tự chạy toàn bộ các bước này; bản mới chỉ được triển khai khi tất cả đều vượt qua.
 
 HP Myrk: ô nhập hỗ trợ 10 triệu và các giá trị đến `Number.MAX_SAFE_INTEGER`, bỏ giới hạn cũ 1 triệu. Trong thiết lập Myrk, chọn **Chế độ HP Myrk → HP vô cực** để ghi toàn bộ sát thương mà không giảm HP hoặc hạ địch. Myrk vẫn hành động, nhận hiệu ứng và phá/hồi Sức Bền. HP nhập là HP tham chiếu hữu hạn cho cơ chế theo HP; Myrk luôn đầy HP, do đó không có hiệu ứng hạ địch, sát thương dư khi chết hoặc giảm HP. Báo cáo mỗi mục tiêu và mỗi cycle lấy sát thương đã ghi thay vì lấy HP ban đầu trừ HP còn lại. Đây là chế độ dummy kiểm thử, không thay đổi canon chiến đấu.
 
