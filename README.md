@@ -23,6 +23,8 @@ Bước 5 đã thêm phần **Lập kế hoạch từng lượt**: tính lịch,
 
 Bước 6 thêm **Báo cáo sát thương** và **So sánh đội hình**: công thức từng hit, đóng góp theo nguồn, chẩn đoán tài nguyên, lưu/nạp riêng trang bị và rotation của mỗi đội để so sánh trên cùng Myrk. Xem `REPORTS.md`.
 
+Trong **So sánh đội hình**, dùng **Xuất đội đã lưu** để tải tối đa 10 cấu hình thành tệp JSON và **Nhập cấu hình** để chuyển chúng sang trình duyệt hoặc máy khác. Bản lưu gồm đội hình, Vận Mệnh, trang bị, rotation, Myrk và thiết lập cycle; dữ liệu có nguồn kit hoặc trang bị đã thay đổi sẽ bị từ chối để tránh kết quả cũ sai lệch.
+
 ## Kiểm tra
 
 Chạy `node test-all.mjs` để kiểm tra toàn bộ dữ liệu nhân vật, công thức, trang bị, rotation và tương tác đội hình. Chạy `npm run test:browser` để mở bản đóng gói bằng Chromium và kiểm tra chọn roster, đội VM6, HP vô cực, trang bị riêng từng Veyr và giao diện di động. Trước mỗi lần xuất bản, GitHub Pages tự chạy toàn bộ các bước này; bản mới chỉ được triển khai khi tất cả đều vượt qua.

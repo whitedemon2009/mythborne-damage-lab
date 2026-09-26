@@ -35,6 +35,18 @@ const { chromium } = require('playwright');
     assert.doesNotMatch(await page.locator('#totalDamage').innerText(), /^(0|—)$|NaN|Infinity/);
     assert.match(await page.locator('#combatLog').innerText(), /HP ∞/);
 
+    await page.locator('#teamSnapshotName').fill('Đội kiểm tra');
+    await page.locator('#saveReportTeam').click();
+    const downloadPromise = page.waitForEvent('download');
+    await page.locator('#exportReportTeams').click();
+    const download = await downloadPromise;
+    const archivePath = await download.path();
+    assert.ok(archivePath);
+    await page.getByRole('button', { name: 'Xóa đội Đội kiểm tra', exact: true }).click();
+    await page.locator('#importTeamFile').setInputFiles(archivePath);
+    await page.getByRole('button', { name: 'Nạp đội Đội kiểm tra', exact: true }).waitFor();
+    assert.match(await page.locator('#teamReportMessage').innerText(), /Đã nhập 1 đội hình/);
+
     await firstRoster.selectOption({ label: 'Skadi' });
     const firstMemory = page.getByLabel('Mảnh Ký Ức 1', { exact: true });
     await firstMemory.selectOption({ label: 'Mười Hai Vỏ Đạn Dưới Cực Quang' });

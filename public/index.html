@@ -3109,7 +3109,7 @@ function runCombat(config,roster,actions){
 const cloneTeamData=x=>JSON.parse(JSON.stringify(x));
 function teamSnapshot(name,input,build){
  const stamps={...build?.stamps};for(const u of input.roster){if(u.gear?.memory){const id=u.gear.memory.id;stamps[id]=memoryRules[id]?.sourceHash;}for(const key of Object.keys(u.gear?.sets||{})){const entry=Object.entries(setRules).find(([,v])=>String(v.key)===key);if(entry)stamps[entry[0]]=entry[1].sourceHash;}}
- return cloneTeamData({id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),name,roster:input.roster,actions:input.actions,rotation:input.config.rotation,dynamic:input.config.dynamic,build,stamps});
+ return cloneTeamData({id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),name,roster:input.roster,actions:input.actions,rotation:input.config.rotation,dynamic:input.config.dynamic,config:input.config,build,stamps});
 }
 function validateTeamSnapshot(saved){
  if(!saved||!Array.isArray(saved.roster)||saved.roster.length!==5||!Array.isArray(saved.actions))throw Error('Bản đội hình đã lưu không hợp lệ.');
@@ -3122,6 +3122,20 @@ function compareTeamSnapshot(saved,commonConfig){
  if(!result.complete)throw Error(result.error);
  const summary=summarizeReport(result),windowAV=150+100*(commonConfig.cycles-1);
  return {saved,result,summary,windowAV,damagePer100AV:summary.total/windowAV*100,cleared:result.enemies.every(e=>e.hp<=0),survivors:result.units.filter(u=>u.currentHP>0).length,kitCount:saved.roster.filter(u=>u.kitEnabled).length};
+}
+const teamArchiveFormat='mythborne-damage-lab-teams';
+function exportTeamArchive(saved){
+ if(!Array.isArray(saved)||!saved.length)throw Error('Chưa có đội hình đã lưu để xuất.');
+ if(saved.length>10)throw Error('Mỗi tệp chỉ hỗ trợ tối đa 10 đội hình.');
+ for(const team of saved){validateTeamSnapshot(team);if(!team.build||!Array.isArray(team.seeds))throw Error(`“${team.name}” chưa có đủ trang bị hoặc rotation để xuất.`);}
+ return JSON.stringify({format:teamArchiveFormat,version:1,teams:cloneTeamData(saved)},null,2);
+}
+function importTeamArchive(text){
+ let archive;try{archive=JSON.parse(text);}catch{throw Error('Tệp cấu hình không phải JSON hợp lệ.');}
+ if(archive?.format!==teamArchiveFormat||archive?.version!==1)throw Error('Tệp không đúng định dạng Mythborne Damage Lab.');
+ if(!Array.isArray(archive.teams)||!archive.teams.length||archive.teams.length>10)throw Error('Tệp phải chứa từ 1 đến 10 đội hình.');
+ for(const team of archive.teams){validateTeamSnapshot(team);if(!team.build||!Array.isArray(team.seeds))throw Error(`“${team.name||'Đội không tên'}” thiếu trang bị hoặc rotation.`);}
+ return cloneTeamData(archive.teams);
 }
 
 function refreshCharacterRows(){
@@ -3354,7 +3368,9 @@ function setupReportUI(){
  const panel=rotationNode('section');panel.id='combatReport';panel.className='panel rotation-planner';panel.append(rotationNode('h2','Báo cáo sát thương'),rotationNode('p','Số liệu lấy tại từng hit. Sát thương thực tế được giới hạn bởi HP còn lại của Myrk; phần vượt HP được ghi riêng, kể cả khi cơ chế chuyển tiếp có thể sử dụng nó.'));
  for(const id of ['reportSummary','reportFilters','reportGroups','reportHits','reportDiagnostics']){const n=rotationNode('div');n.id=id;panel.append(n);}document.querySelector('#rotationPlanner').after(panel);
  const compare=rotationNode('section');compare.id='teamComparison';compare.className='panel rotation-planner';compare.append(rotationNode('h2','So sánh đội hình'),rotationNode('p','Lưu riêng 5 Veyr, trang bị, chỉ số và rotation của mỗi phương án. Tất cả đội đã lưu sẽ chạy lại trên cấu hình Myrk, số cycle và seed hiện tại.'));
- const controls=rotationNode('div');controls.className='rotation-controls';const name=rotationNode('input');name.id='teamSnapshotName';name.placeholder='Tên phương án đội hình';name.setAttribute('aria-label','Tên phương án đội hình');controls.append(name,rotationButton('Lưu đội & rotation',saveReportTeam,'saveReportTeam'),rotationButton('So sánh các đội đã lưu',compareReportTeams,'compareReportTeams'));compare.append(controls);
+ const controls=rotationNode('div');controls.className='rotation-controls';const name=rotationNode('input');name.id='teamSnapshotName';name.placeholder='Tên phương án đội hình';name.setAttribute('aria-label','Tên phương án đội hình');
+ const file=rotationNode('input');file.id='importTeamFile';file.type='file';file.accept='application/json,.json';file.hidden=true;file.setAttribute('aria-label','Nhập tệp cấu hình đội hình');file.addEventListener('change',importReportTeams);
+ controls.append(name,rotationButton('Lưu đội & rotation',saveReportTeam,'saveReportTeam'),rotationButton('So sánh các đội đã lưu',compareReportTeams,'compareReportTeams'),rotationButton('Xuất đội đã lưu',()=>downloadReportTeams(reportUI.saved),'exportReportTeams'),rotationButton('Nhập cấu hình',()=>file.click(),'importReportTeams'),file);compare.append(controls);
  for(const id of ['teamReportMessage','savedReportTeams','teamReportResults']){const n=rotationNode(id==='teamReportMessage'?'p':'div');n.id=id;compare.append(n);}panel.after(compare);
  try{const saved=JSON.parse(localStorage.getItem('mythborne-teams-v1')||'[]');reportUI.saved=Array.isArray(saved)?saved.filter(s=>typeof s?.name==='string'&&Array.isArray(s.roster)).slice(0,10):[];}catch{teamReportMessage('Không đọc được các đội đã lưu trong trình duyệt này.');}renderReportTeams();
 }
@@ -3390,14 +3406,24 @@ function renderCombatReport(){
 }
 function teamReportMessage(message){document.querySelector('#teamReportMessage').textContent=message;}
 function persistReportTeams(){try{localStorage.setItem('mythborne-teams-v1',JSON.stringify(reportUI.saved));return true;}catch{teamReportMessage('Không lưu được lâu dài; các đội hiện chỉ được giữ trong phiên này.');return false;}}
+function downloadReportTeams(teams){
+ try{const blob=new Blob([exportTeamArchive(teams)],{type:'application/json'}),url=URL.createObjectURL(blob),a=rotationNode('a');a.href=url;a.download=`mythborne-doi-hinh-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),0);teamReportMessage(`Đã xuất ${teams.length} đội hình.`);}catch(e){teamReportMessage(e.message);}
+}
+async function importReportTeams(event){
+ const file=event.target.files?.[0];event.target.value='';if(!file)return;if(file.size>5_000_000){teamReportMessage('Tệp cấu hình vượt quá 5 MB.');return;}
+ try{const incoming=importTeamArchive(await file.text()),merged=new Map(reportUI.saved.map(team=>[team.id,team]));for(const team of incoming)merged.set(team.id,team);reportUI.saved=[...merged.values()].slice(-10);persistReportTeams();renderReportTeams();document.querySelector('#teamReportResults').replaceChildren();teamReportMessage(`Đã nhập ${incoming.length} đội hình; hiện có ${reportUI.saved.length}/10 bản lưu.`);}catch(e){teamReportMessage(e.message);}
+}
+function restoreReportConfig(config){
+ if(!config)return;const values={enemyCount:config.count,enemyLevel:config.level,enemyHP:config.hp,enemyMaxToughness:config.maxToughness,enemyToughness:config.toughness,enemySpeed:config.speed,enemyAttack:config.attack,hitEnergy:config.hitEnergy,cycles:config.cycles,seed:config.seed,enemyResistance:config.res*100,enemyReduction:config.reduction*100,allyReduction:config.allyReduction*100,allyRes:config.allyRes*100,effectRes:(config.effectRes||0)*100,enemyHits:config.enemyHits,enemyTargets:config.enemyTargets};for(const [id,value] of Object.entries(values)){const node=document.getElementById(id);if(node&&Number.isFinite(value))node.value=value;}document.querySelector('#enemyHPMode').value=config.infiniteHP?'infinite':'finite';document.querySelector('#critMode').value=config.critMode||'expected';document.querySelector('#timelineMode').value=config.dynamic===false?'manual':'dynamic';for(const box of document.querySelectorAll('.weakness'))box.checked=(config.weaknesses||[]).includes(box.value);
+}
 function saveReportTeam(){
  if(!reportUI.result?.complete){teamReportMessage('Chạy mô phỏng hợp lệ trước khi lưu đội.');return;}const name=document.querySelector('#teamSnapshotName').value.trim();if(!name){teamReportMessage('Nhập tên phương án đội hình.');return;}if(reportUI.saved.length>=10){teamReportMessage('Đã lưu 10 đội; xóa một bản cũ để lưu thêm.');return;}
  const data={};document.dispatchEvent(new CustomEvent('mythborne-build-snapshot',{detail:data}));if(!data.build){teamReportMessage('Chưa lấy được cấu hình trang bị; thử lại khi bộ chọn tải xong.');return;}
  const saved=teamSnapshot(name,reportUI.input,data.build);saved.seeds=[...document.querySelectorAll('.action-row')].map(row=>Object.fromEntries([...row.querySelectorAll('input,select')].map(e=>[e.className,e.value])));reportUI.saved.push(saved);const persisted=persistReportTeams();renderReportTeams();if(persisted)teamReportMessage('Đã lưu “'+name+'”, gồm trang bị, chỉ số, Vận Mệnh và rotation.');document.querySelector('#teamReportResults').replaceChildren();
 }
 function renderReportTeams(){const host=document.querySelector('#savedReportTeams');host.replaceChildren();for(const s of reportUI.saved){const line=rotationNode('div');line.className='rotation-controls';line.append(rotationNode('span',s.name+' · '+s.roster.map(u=>u.name).join(' / ')),rotationButton('Nạp đội '+s.name,()=>{
- try{validateTeamSnapshot(s);if(!s.build||!s.seeds)throw Error('Bản lưu chưa có cấu hình để nạp.');rotationUI.busy=true;document.dispatchEvent(new CustomEvent('mythborne-build-restore',{detail:{build:s.build}}));rotationUI.plan=JSON.parse(JSON.stringify(s.rotation||null));document.querySelector('#timelineMode').value=s.dynamic?'dynamic':'manual';document.querySelector('#rotation').replaceChildren();for(const seed of s.seeds)addAction(seed);}catch(e){teamReportMessage(e.message);}finally{rotationUI.busy=false;}simulate();
- }),rotationButton('Xóa đội '+s.name,()=>{reportUI.saved=reportUI.saved.filter(x=>x.id!==s.id);persistReportTeams();renderReportTeams();document.querySelector('#teamReportResults').replaceChildren();}));host.append(line);}}
+ try{validateTeamSnapshot(s);if(!s.build||!s.seeds)throw Error('Bản lưu chưa có cấu hình để nạp.');rotationUI.busy=true;restoreReportConfig(s.config);document.dispatchEvent(new CustomEvent('mythborne-build-restore',{detail:{build:s.build}}));rotationUI.plan=JSON.parse(JSON.stringify(s.rotation||null));document.querySelector('#timelineMode').value=s.dynamic?'dynamic':'manual';document.querySelector('#rotation').replaceChildren();for(const seed of s.seeds)addAction(seed);}catch(e){teamReportMessage(e.message);}finally{rotationUI.busy=false;}simulate();
+ }),rotationButton('Tải đội '+s.name,()=>downloadReportTeams([s])),rotationButton('Xóa đội '+s.name,()=>{reportUI.saved=reportUI.saved.filter(x=>x.id!==s.id);persistReportTeams();renderReportTeams();document.querySelector('#teamReportResults').replaceChildren();}));host.append(line);}}
 function compareReportTeams(){
  if(!reportUI.result?.complete){teamReportMessage('Sửa cấu hình hiện tại để mô phỏng được trước khi so sánh.');return;}if(!reportUI.saved.length){teamReportMessage('Lưu ít nhất một phương án đội hình.');return;}const host=document.querySelector('#teamReportResults');host.replaceChildren();const common=reportUI.input.config,rows=[];
  for(const saved of reportUI.saved){try{const r=compareTeamSnapshot(saved,common);rows.push([saved.name,reportFmt(r.summary.total),reportFmt(r.damagePer100AV),r.cleared?`Dọn xong tại AV ${r.result.elapsedAV.toFixed(2)}`:`Còn ${r.result.enemies.filter(e=>e.hp>0).length} Myrk`,saved.roster.map(u=>`${u.name}: ${reportFmt(r.result.totals[u.name]||0)}`).join(' · '),`${r.survivors}/5 sống · ${r.kitCount}/5 kit tự động`,`${r.result.planck} Planck · ${r.result.units.map(u=>`${u.name}: ${reportFmt(u.currentEnergy)} NL / ${u.turn} lượt`).join(' · ')}`,`${r.summary.diagnostics.filter(d=>['planck','energy','control','target','hp'].includes(d.type)).length} đòn bị chặn · ${r.summary.diagnostics.filter(d=>d.type==='fallback').length} lần đổi BA`]);}catch(e){rows.push([saved.name,'Không so sánh',e.message,'—','—','—','—','—']);}}

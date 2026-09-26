@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runCombat} from './combat.mjs';
 import {summarizeReport} from './report.mjs';
-import {teamSnapshot,compareTeamSnapshot} from './team-comparison.mjs';
+import {teamSnapshot,compareTeamSnapshot,exportTeamArchive,importTeamArchive} from './team-comparison.mjs';
 import {composeGear} from './gear.mjs';
 import {newPiece} from './artifacts.mjs';
 import {characterRegistry} from './character-data.mjs';
@@ -21,6 +21,7 @@ for(const c of implemented){
 }
 const roster=['Apollo','Agni','Astraeus','Nemesis','Durga'].map(n=>unit(n)),actions=scripts(roster);
 const saved=teamSnapshot('Original',{roster,actions,config},{}),oldAtk=saved.roster[0].atk;roster[0].atk*=3;assert.equal(saved.roster[0].atk,oldAtk);
+saved.build={team:roster.map(u=>u.name),states:[],stamps:{},bases:{}};saved.seeds=[];const archive=exportTeamArchive([saved]),imported=importTeamArchive(archive);assert.equal(imported.length,1);assert.equal(imported[0].name,'Original');assert.deepEqual(imported[0].config,config);assert.throws(()=>importTeamArchive('{}'),/định dạng/);assert.throws(()=>importTeamArchive('{'),/JSON/);
 const a=compareTeamSnapshot(saved,{...config,count:1,cycles:1}),b=compareTeamSnapshot(saved,{...config,count:1,cycles:1});assert.equal(a.result.enemies.length,1);assert.equal(a.windowAV,150);assert.deepEqual(a.result.totals,b.result.totals);near(a.damagePer100AV,a.summary.total/150*100);
 const stale=structuredClone(saved);stale.roster[0].characterHash='stale';assert.throws(()=>compareTeamSnapshot(stale,config),/nguồn kit/);
 // A blocked manual Ult, a fallback Skill and an expired effect must be distinguishable.
