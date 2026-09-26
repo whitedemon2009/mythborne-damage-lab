@@ -64,7 +64,7 @@ export const characterRegistry = {
   },
   "veyr:tomas": {
     "name": "Tomas",
-    "hash": "59aae550e06e29c84a95de5b229918fadb8e359c3cb4a921cd03d73aabeb76ff",
+    "hash": "c54859c1f5f9f284cc9342d3ecc23c4ff762808ee33869a4378f98797ce9c16e",
     "actionLabels": {
       "Basic": "Soft Passage",
       "Skill": "Keep Breathing",
@@ -82,7 +82,7 @@ export const characterRegistry = {
   },
   "veyr:kael": {
     "name": "Kael",
-    "hash": "89f998a1da18f2d71e6386a380ced558797cb3a75a2b3a01f3d6a31254c2a83a",
+    "hash": "58c442898702cc4113de3a18bd0b32e1c65a86a406f06fb2e9b7e05aa48aea6b",
     "actionLabels": {
       "Basic": "Zeroing Shot",
       "Skill": "Target Lock",
@@ -118,7 +118,7 @@ export const characterRegistry = {
   },
   "veyr:rowan": {
     "name": "Rowan",
-    "hash": "f6490c397f28965c7e1c473b73aeb1df7fed0b29585b406ca0885c1bba3c9300",
+    "hash": "46524f25f8ad1a8899ea52c7a3ac3ea241574d02d3349022a8b667143ad74d9a",
     "actionLabels": {
       "Basic": "Open Current",
       "Skill": "Wide Arc",
@@ -181,7 +181,7 @@ export const characterRegistry = {
   },
   "veyr:nadia": {
     "name": "Nadia",
-    "hash": "8e22ecb03367974e5259b3e44719176b4d71145594ab3acf8a1ba04782aa6746",
+    "hash": "c196da3e000f1394ed60e04aae9a5f2711c0f5afbc4a09a7c1a3530929284adb",
     "actionLabels": {
       "Basic": "Small Kindling",
       "Skill": "Lingering Mark",
@@ -208,7 +208,7 @@ export const characterRegistry = {
   },
   "veyr:seraphine": {
     "name": "Seraphine",
-    "hash": "aacbfbdb6a578c0012fb427de4d0fdd3f77fc895f336614fa9b083e0d8080e3a",
+    "hash": "d9c2c95e4dfb5b893f52826a9bba9a2abf54bb9e203d4c44a6d7caf48ed951f6",
     "actionLabels": {
       "Basic": "Thin Line",
       "Skill": "Threefold Cue",
@@ -226,7 +226,7 @@ export const characterRegistry = {
   },
   "veyr:veylen": {
     "name": "Veylen",
-    "hash": "93011b7cd6b9ba549f7100c042d0820b23c6eac42b880f72bc6a58c27af31d38",
+    "hash": "2a7badded61a8bc97c0ac65f5592986fe3e878a83b635fc09afb0f20b5ab7493",
     "actionLabels": {
       "Basic": "Return Stroke",
       "Skill": "Chain Vector",
@@ -298,7 +298,7 @@ export const characterRegistry = {
   },
   "veyr:alecto": {
     "name": "Alecto",
-    "hash": "dc9e8472c8cb31920015ef4c577d18585d523b29beef5440df2f1a4222bba648",
+    "hash": "3822ad629bef1cd3e9a17f4981fb37cc347cbdae8fd1fb02dae622acc813ccbe",
     "actionLabels": {
       "Basic": "Ash on the Testimony",
       "Skill": "Name the Crime",
@@ -417,7 +417,7 @@ export const characterRegistry = {
   },
   "veyr:lugh": {
     "name": "Lugh",
-    "hash": "5904f9b6b9c80e51478487147c22147a5826f3479c483a82b1f2af383276dedc",
+    "hash": "6ca6fc414b25f70d3a2234d6fc3a211764a7aec85cf4d5c8575b8824e8728ec5",
     "actionLabels": {
       "Basic": "Edge Before Winter",
       "Skill": "Let the First Blade Choose",
@@ -489,7 +489,7 @@ export const characterRegistry = {
   },
   "veyr:thanatos": {
     "name": "Thanatos",
-    "hash": "9b5cdc0e653e28e9e25f857fa4e11a51edd1e4c4feaa813ac331a90832d03ca6",
+    "hash": "51a3b9f568dae391923e7bc375357b2ca6b9163fb7c63026ee61b1ac6feb2786",
     "actionLabels": {
       "Basic": "Before the Bell",
       "Skill": "Borrowed Second",
@@ -508,7 +508,7 @@ export const characterRegistry = {
   },
   "veyr:hou-yi": {
     "name": "Hou Yi",
-    "hash": "d9d9503e4bb539853026d7e1a831b0d1b67fbb306d4a8fc9f96881689a70b9fa",
+    "hash": "f34dd7630a3f52e27c9ce2ad7f1dcc3fc0215c70102f2f657f292400f710cdfb",
     "actionLabels": {
       "Basic": "Trace the Falling Sun",
       "Skill": "Pin the Horizon",
@@ -550,5 +550,50 @@ export const characterRegistry = {
       "Skill": "Feed the Last Furnace",
       "Ult": "Two Steps Until the World Ends"
     }
-  }
+  },
+  "veyr:heimdall": {
+    "name": "Heimdall",
+    "hash": "30983bc62a6f36af680d85ae1a23e12b6110b3348f45d00e9c38c351e3820cf9",
+    "actionLabels": {
+      "Basic": "First Watch at Dawn",
+      "Skill": "The Gate Knows Its Guardian",
+      "Ult": "The Horn Before the Last Dawn"
+    }
+  },
+  "veyr:nephele": {
+    "name": "Nephele",
+    "hash": "964f406bf7a4bb9e408374447891d899a5274e9e1b7172f5b34762b477c7129f",
+    "actionLabels": {
+      "Basic": "Cloudline Etude",
+      "Skill": "A Sky Woven for the Living",
+      "Ult": "When Every Cloud Becomes a Grave"
+    }
+  },
+  "veyr:tyr": {
+    "name": "Týr",
+    "hash": "2ab0b9ea304a76078c6e04c4d49e00f3ff24c44ca55085cfb121c694eccf61f6",
+    "actionLabels": {
+      "Basic": "Weight of the Empty Hand",
+      "Skill": "Stand Behind My Verdict",
+      "Ult": "A Kingdom Is Smaller Than Its Oath"
+    }
+  },
+  "veyr:nezha": {
+    "name": "Nezha",
+    "hash": "068c4901e41cc80582b8888c686e2eff228fe6237e892e62b2cb47832e5f9d07",
+    "actionLabels": {
+      "Basic": "Cinder Draws the First Line",
+      "Skill": "Ring the Spear Before the Drum",
+      "Ult": "Heaven Has No Road Ahead"
+    }
+  },
+  "veyr:change": {"name":"Chang’e","hash":"a5954c1f3629b39b5b612b6969d2608aeb5e7b3614c937120baa57e0897fb82d","actionLabels":{"Basic":"Silver Dust on an Empty Sleeve","Skill":"A Face the Moon Cannot Forget","Ult":"Tonight, the Moon Casts Two Shadows"}},
+  "veyr:ishtar": {"name":"Ishtar","hash":"9a603a3dba12733e773f76467f0f7010ba11683d3271c0cea9f071dc4e46164f","actionLabels":{"Basic":"A Star Above the Lion Gate","Skill":"The Lion Changes Its Gate","Ult":"Seven Walls Fall in One Night"}},
+  "veyr:skadi": {"name":"Skadi","hash":"b1b93ab5ead2da7beac4459fb1d2694737bcdd7e088becece647db0ca88bafd0","actionLabels":{"Basic":"One Shell Across the White Expanse","Skill":"No Footprints Within Range","Ult":"The Winter Palace Fires Once"}},
+  "veyr:taranis": {"name":"Taranis","hash":"948585b08e7a7f8b6e088c5e8304c6b339936777d4b982f7f867619255223c93","actionLabels":{"Basic":"Backhand Through Neon","Skill":"Leave Your Mark on the Storm","Ult":"The City Answers in Thunder"}},
+  "veyr:dian-mu": {"name":"Dian Mu","hash":"62e1ae25724af6a24eaf8e64e9cb6095cfd825c082f3f6a9174d4c661b309658","actionLabels":{"Basic":"A Flash Across Closed Eyes","Skill":"Let No Thunder Reach Them","Ult":"The Sky Lowers Its Brightest Mirror"}},
+  "veyr:marek": {"name":"Marek","hash":"20cb99569bd7371df1a8dfa13fd37614dc705ece5c9fcec640c28f1daa58ca2e","actionLabels":{"Basic":"Sound the Depth Gauge","Skill":"Set the Failure Line","Ult":"Open Every Floodgate"}},
+  "veyr:marduk": {"name":"Marduk","hash":"1cf8138da690129130cd1a5dc9ea4c0b091db2f4da427289cc8d6fc2c33a38c6","actionLabels":{"Basic":"Touch Gloves, Then Step In","Skill":"Three Minutes Without a Bell","Ult":"No Tenth Count Tonight"}},
+  "veyr:freyja": {"name":"Freyja","hash":"0bfacbb36c4de1c6cab3e767f1179173eee41641fdb81729c48c7ab7e399715a","actionLabels":{"Basic":"Surface Signal","Skill":"Hold Fast to My Pulse","Ult":"No One Is Left Beneath the Tide"}},
+  "veyr:nyx": {"name":"Nyx","hash":"511e82af98918539082025d225752d55c2d73aa5083dd1e5ceb1a4081bd350b7","actionLabels":{"Basic":"Ink Bites the Hand","Skill":"Six Lines Across the Page","Ult":"Read the Sentence Aloud"}}
 };

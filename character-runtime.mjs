@@ -2,6 +2,7 @@ import {surtrKit} from './characters/surtr.mjs';
 import {supportRecipient} from './support-targeting.mjs';
 import {allowsUltimate} from './rotation.mjs';
 import {describeDamage} from './report.mjs';
+import {dotStacks} from './dot-system.mjs';
 import {janusKit} from './characters/janus.mjs';
 import {athenaKit} from './characters/athena.mjs';
 import {poseidonKit} from './characters/poseidon.mjs';
@@ -66,7 +67,20 @@ import {agniKit} from './characters/agni.mjs';
 import {astraeusKit} from './characters/astraeus.mjs';
 import {nemesisKit} from './characters/nemesis.mjs';
 import {durgaKit} from './characters/durga.mjs';
-export const characterKits={'veyr:surtr':surtrKit,'veyr:janus':janusKit,'veyr:athena':athenaKit,'veyr:poseidon':poseidonKit,'veyr:hou-yi':houYiKit,'veyr:ares':aresKit,'veyr:thanatos':thanatosKit,'veyr:nike':nikeKit,'veyr:heracles':heraclesKit,'veyr:kaien':kaienKit,'veyr:hestia':hestiaKit,'veyr:artemis':artemisKit,'veyr:hades':hadesKit,'veyr:thor':thorKit,'veyr:lugh':lughKit,'veyr:sekhmet':sekhmetKit,'veyr:amphitrite':amphitriteKit,'veyr:anubis':anubisKit,'veyr:prometheus':prometheusKit,'veyr:sicker':sickerKit,'veyr:bellona':bellonaKit,'veyr:nemty':nemtyKit,'veyr:mani':maniKit,'veyr:eos':eosKit,'veyr:hecate':hecateKit,'veyr:eris':erisKit,'veyr:asclepius':asclepiusKit,'veyr:alecto':alectoKit,'veyr:hera':heraKit,'veyr:lyra':lyraKit,'veyr:zerel':zerelKit,'veyr:floria':floriaKit,'veyr:apollo':apolloKit,'veyr:agni':agniKit,'veyr:astraeus':astraeusKit,'veyr:nemesis':nemesisKit,'veyr:durga':durgaKit,'veyr:iris':irisKit,'veyr:sol':solKit,'veyr:tomas':tomasKit,'veyr:aren':arenKit,'veyr:kael':kaelKit,'veyr:mira':miraKit,'veyr:darian':darianKit,'veyr:elia':eliaKit,'veyr:rowan':rowanKit,'veyr:selene':seleneKit,'veyr:cassian':cassianKit,'veyr:hermes':hermesKit,'veyr:avery':averyKit,'veyr:liora':lioraKit,'veyr:hephaestus':hephaestusKit,'veyr:nadia':nadiaKit,'veyr:maelis':maelisKit,'veyr:orsen':orsenKit,'veyr:seraphine':seraphineKit,'veyr:theo':theoKit,'veyr:veylen':veylenKit,'veyr:lucan':lucanKit,'veyr:seren':serenKit,'veyr:rhydan':rhydanKit};
+import {heimdallKit} from './characters/heimdall.mjs';
+import {nepheleKit} from './characters/nephele.mjs';
+import {tyrKit} from './characters/tyr.mjs';
+import {nezhaKit} from './characters/nezha.mjs';
+import {changeKit} from './characters/change.mjs';
+import {ishtarKit} from './characters/ishtar.mjs';
+import {skadiKit} from './characters/skadi.mjs';
+import {taranisKit} from './characters/taranis.mjs';
+import {dianMuKit} from './characters/dian-mu.mjs';
+import {marekKit} from './characters/marek.mjs';
+import {mardukKit} from './characters/marduk.mjs';
+import {freyjaKit} from './characters/freyja.mjs';
+import {nyxKit} from './characters/nyx.mjs';
+export const characterKits={'veyr:surtr':surtrKit,'veyr:janus':janusKit,'veyr:athena':athenaKit,'veyr:poseidon':poseidonKit,'veyr:hou-yi':houYiKit,'veyr:ares':aresKit,'veyr:thanatos':thanatosKit,'veyr:nike':nikeKit,'veyr:heracles':heraclesKit,'veyr:kaien':kaienKit,'veyr:hestia':hestiaKit,'veyr:artemis':artemisKit,'veyr:hades':hadesKit,'veyr:thor':thorKit,'veyr:lugh':lughKit,'veyr:sekhmet':sekhmetKit,'veyr:amphitrite':amphitriteKit,'veyr:anubis':anubisKit,'veyr:prometheus':prometheusKit,'veyr:sicker':sickerKit,'veyr:bellona':bellonaKit,'veyr:nemty':nemtyKit,'veyr:mani':maniKit,'veyr:eos':eosKit,'veyr:hecate':hecateKit,'veyr:eris':erisKit,'veyr:asclepius':asclepiusKit,'veyr:alecto':alectoKit,'veyr:hera':heraKit,'veyr:lyra':lyraKit,'veyr:zerel':zerelKit,'veyr:floria':floriaKit,'veyr:apollo':apolloKit,'veyr:agni':agniKit,'veyr:astraeus':astraeusKit,'veyr:nemesis':nemesisKit,'veyr:durga':durgaKit,'veyr:iris':irisKit,'veyr:sol':solKit,'veyr:tomas':tomasKit,'veyr:aren':arenKit,'veyr:kael':kaelKit,'veyr:mira':miraKit,'veyr:darian':darianKit,'veyr:elia':eliaKit,'veyr:rowan':rowanKit,'veyr:selene':seleneKit,'veyr:cassian':cassianKit,'veyr:hermes':hermesKit,'veyr:avery':averyKit,'veyr:liora':lioraKit,'veyr:hephaestus':hephaestusKit,'veyr:nadia':nadiaKit,'veyr:maelis':maelisKit,'veyr:orsen':orsenKit,'veyr:seraphine':seraphineKit,'veyr:theo':theoKit,'veyr:veylen':veylenKit,'veyr:lucan':lucanKit,'veyr:seren':serenKit,'veyr:rhydan':rhydanKit,'veyr:heimdall':heimdallKit,'veyr:nephele':nepheleKit,'veyr:tyr':tyrKit,'veyr:nezha':nezhaKit,'veyr:change':changeKit,'veyr:ishtar':ishtarKit,'veyr:skadi':skadiKit,'veyr:taranis':taranisKit,'veyr:dian-mu':dianMuKit,'veyr:marek':marekKit,'veyr:marduk':mardukKit,'veyr:freyja':freyjaKit,'veyr:nyx':nyxKit};
 export function characterBattleRules(roster,config){const rules={cap:config.planckCap??5,initial:config.initialPlanck??3};for(const u of roster)if(u.kitEnabled)characterKits[u.characterId]?.battleRules?.(u,rules);return rules;}
 export function criticalTriggerUsers(roster){return roster.filter(u=>{
  const kit=u.kitEnabled&&characterKits[u.characterId];
@@ -79,6 +93,7 @@ export class CharacterRuntime {
  state(u){return u.characterState??={};}
  alive(u){return !!u&&(u.side==='enemy'?u.hp>0:u.currentHP>0);}
  allies(){return this.ctx.units.filter(u=>this.alive(u));}
+ fallen(){return this.ctx.units.filter(u=>!this.alive(u));}
  enemies(){return this.ctx.enemies.filter(u=>this.alive(u));}
  eff(u){return effectiveStats(u);}
  asc(u){return u.kitAscensions!==false;}
@@ -91,7 +106,9 @@ export class CharacterRuntime {
   const old=this.effect(u,t,key);if(old&&duration===null&&JSON.stringify(old.mods)===JSON.stringify(mods)&&Object.entries(extra).every(([k,v])=>JSON.stringify(old[k])===JSON.stringify(v)))return old;
   this.ctx.install(t,{name:`character:${u.index}:${key}`,characterKey:key,character:true,type:'character',value:0,owner:u.index,mods,duration,...extra});
   if(duration!==null)this.log(u,`‘${key}’ → ${t.name||'Myrk '+(t.index+1)} (${duration} lượt)`);
-  return this.effect(u,t,key);
+  const effect=this.effect(u,t,key);
+  if(t.side==='ally'&&t!==u&&!extra.debuff)this.ctx.gear.dispatch('buff',{unit:u,target:t,effect});
+  return effect;
  }
  gain(u,n,percent=false){this.ctx.gain(u,n,percent);}
  planck(u,n){this.ctx.planck(u,n);}
@@ -101,11 +118,15 @@ export class CharacterRuntime {
  heal(u,t,ratio,flat=0,a={},mult=1){return this.ctx.heal(u,t,(this.eff(u).hp*ratio+flat)*mult,{action:a,delayed:!!a.delayedHeal});}
  cleanse(u,t,a,count=1){const bad=t.effects.filter(e=>e.debuff||e.type==='control'||e.value<0).slice(0,count),old=this.eff(t).speed;t.effects=t.effects.filter(e=>!bad.includes(e));this.ctx.retime(t,old);this.ctx.gear.dispatch('cleanse',{unit:u,target:t,action:a,count:bad.length});return bad.length;}
  allySkill(u,t,a){this.ctx.gear.dispatch('allySkill',{unit:u,target:t,action:a});}
- dot(u,t,key,ratio,duration,a,baseChance=1){return this.ctx.applyDebuff(t,{actor:u.index,row:a.row,source:'DoT',ability:'DoT',effectName:key,ratio,flat:0,scaling:'atk',bonus:0,toughness:0,duration,baseChance,guaranteed:false});}
+ dot(u,t,key,ratio,duration,a,baseChance=1,extra={}){return this.ctx.applyDebuff(t,{actor:u.index,row:a.row,source:'DoT',ability:'DoT',effectName:key,ratio,flat:0,scaling:'atk',bonus:0,toughness:0,duration,baseChance,guaranteed:false,...extra});}
  fixed(u,t,value,a,kind='Talent',source='Talent'){if(!this.alive(t))return 0;const action={...a,reportName:a.reportName||kind,source,storedDamage:true},amount=Math.min(t.hp,value);if(this.ctx.config.report&&!action.reportDetail)action.reportDetail=describeDamage(this.eff(u),this.eff(t),action,'stored','normal',1,value);this.ctx.gear.dispatch('hit',{unit:u,target:t,action,amount,calculated:value,crit:false,brokenBefore:t.toughness===0});const actual=this.ctx.gear.ctx.fixedDamage(t,value,u,kind,action);this.ctx.gear.dispatch('after',{unit:u,action,targets:new Set(actual>0?[t.index]:[])});return actual;}
  breakHit(u,t,a){const b={...a,source:'Break',damageSource:undefined},m=this.ctx.gear.modifiers(u,t,b,1),reportDetail=this.ctx.config.report?describeDamage(m.stats,m.enemy,{...m.action,reportName:'Phá Vỡ bổ sung'},'Break'):undefined;this.fixed(u,t,breakDamage(m.stats,m.enemy,m.action),{...a,reportDetail},'Break','Break');}
- dotValue(t,d){const u=this.ctx.units[d.owner],a={...d.action,source:'DoT',effectName:d.name,dot:true,ratio:d.action.ratio*(d.stacks||1),flat:(d.action.flat||0)*(d.stacks||1)};this.ctx.gear.dispatch('dotStart',{unit:u,target:t,dot:d,action:a});const m=this.ctx.gear.modifiers(u,t,a,1);return directDamage(m.stats,m.enemy,m.action,'expected')*(a.dotHits||1)*(a.countsAsDK?(m.action.dkMultiplier??1):1);}
+ dotValue(t,d){const u=this.ctx.units[d.owner],stacks=dotStacks(d),a={...d.action,source:'DoT',effectName:d.name,dot:true,ratio:d.action.ratio*stacks,flat:(d.action.flat||0)*stacks};if(a.maxHpRatio!==undefined)a.flat=Math.min(a.maxHpRatio*t.maxHP,(a.atkCapRatio??Infinity)*this.eff(u).atk)*stacks;this.ctx.gear.dispatch('dotStart',{unit:u,target:t,dot:d,action:a});const m=this.ctx.gear.modifiers(u,t,a,1);return directDamage(m.stats,m.enemy,m.action,'expected')*(a.dotHits||1)*(a.countsAsDK?(m.action.dkMultiplier??1):1);}
  tick(u,t,d,mult,a){this.ctx.tick(t,d,mult,true,u,a);}
+ triggerDots(u,t,options,a){return this.ctx.triggerDots(u,t,options,a);}
+ loseHP(u,t,value,a={},options={}){return this.ctx.loseHP(u,t,value,{action:a,sacrifice:true,...options});}
+ revive(u,t,options={}){return this.ctx.revive(u,t,options);}
+ forceCounter(u,target,parent,options={}){return this.kit(u)?.forceCounter?.(this,u,target,parent,options);}
  debuffs(t,u){return this.ctx.gear.debuffs(t,u);}
  shieldValue(u,t,value,duration,a,key=this.shieldKey(u)){return this.ctx.shield(u,t,0,value,duration,key,a);}
  delay(t,n){this.ctx.delay(t,n);}

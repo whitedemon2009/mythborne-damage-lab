@@ -1,0 +1,10 @@
+export const changeKit={
+ minor:{hit:.18,speed:8,elementDamage:.1},
+ mark(r,u){return r.enemies().find(t=>r.effect(u,t,'Nguyệt Kính'));},
+ apply(r,u,t,a,skill=false){for(const e of r.enemies())if(e!==t)r.remove(u,e,'Nguyệt Kính');const duration=skill&&r.vm(u,1)?3:2,old=r.effect(u,t,'Nguyệt Kính');r.buff(u,t,'Nguyệt Kính',{QuangResReduction:.12,defReduction:r.asc(u)?.12:0},duration,{incoming:{vulnerability:.2},debuff:true});if(skill&&old&&r.vm(u,1)&&r.once(u,'Chang’e VM1'))r.gain(u,8);},
+ reflection(r,u,t,parent,repeat=false){r.queue(u,{name:repeat?'The Reflection Blinks Again':'Moon in the Second Mirror',source:'FUA',ratio:repeat?.7:.9,target:t.index,toughness:20,bonus:r.asc(u)&&r.effect(u,u,'Song Ảnh')?.25:0,changeReflection:true},parent);},
+ resolve(r,u,k){return k==='Basic'?{name:'Silver Dust on an Empty Sleeve',ratio:.8,toughness:30}:k==='Skill'?{name:'A Face the Moon Cannot Forget',ratio:1.2,toughness:60}:{name:'Tonight, the Moon Casts Two Shadows',ratio:2.4,toughness:90,energyCost:130};},
+ after(r,u,a,targets){if(a.ability==='Skill'||a.ability==='Ult'){const t=r.ctx.enemies[a.primaryTarget];if(r.alive(t))changeKit.apply(r,u,t,a,a.ability==='Skill');}if(a.ability==='Ult')r.buff(u,u,'Song Ảnh',{},2);if(a.changeReflection&&r.vm(u,4))for(const i of targets)r.buff(u,r.ctx.enemies[i],'Ảnh Vỡ',{},2,{incoming:{vulnerability:.06},maxStacks:2,debuff:true});},
+ observe(r,u,{unit,action:a,targets}){if(unit===u||!['Basic','Skill','Ult'].includes(a.ability||a.source)||!targets.size)return;const t=changeKit.mark(r,u);if(!t||!targets.has(t.index))return;const values=a.damageByTarget||{},marked=values[t.index]||0;if((!r.vm(u,2)&&targets.size!==1)||(r.vm(u,2)&&Object.values(values).some(v=>v>marked)))return;const s=r.state(u);if(s.talentTurn!==u.turn){s.talentTurn=u.turn;s.talentUses=0;}if(s.talentUses>=2)return;s.talentUses++;changeKit.reflection(r,u,t,a);if(r.effect(u,u,'Song Ảnh'))for(let n=0;n<(r.vm(u,6)?2:1);n++)changeKit.reflection(r,u,t,a,true);},
+ event(r,u,type,e){if(type==='modify'&&e.unit===u&&r.asc(u))e.crit+=.75;}
+};

@@ -16,6 +16,15 @@
 - Chết xoá hiệu ứng và Năng Lượng. Hồi sinh tức thời dùng một nguồn theo thứ tự talent/ascension/skill/fate/ally/external, giữ tiến trình lượt. Cơ chế này đã được kiểm tra bằng dữ liệu thử, chưa gắn vào kit nào.
 - Vòng lặp sai hoặc vượt giới hạn kiểm tra trả `complete:false`; giao diện xoá kết quả cũ và báo lỗi, không trình bày sát thương bị cắt như kết quả hoàn chỉnh.
 
+## Cơ chế nền cho roster sau Alecto
+
+- Vật Lý không cần Điểm Yếu để bào Sức Bền, nhưng chỉ bào 50% giá trị gốc. Phá Vỡ Vật Lý dùng hệ số 1,5 và áp dụng một ‘Chảy Máu’ 2 lượt; lần áp dụng thường làm mới thay vì cộng dồn.
+- ‘Chảy Máu’ đặc thù có thể dùng nhiều tầng với thời hạn riêng. Mỗi tầng giảm thời hạn sau lần gây sát thương ở lượt Myrk; kích hoạt chủ động không giảm thời hạn.
+- Kích hoạt Sát Thương Duy Trì hỗ trợ hệ số kích hoạt, bỏ qua riêng Phòng Thủ mà vẫn chịu Kháng, và Chí Mạng khi kit cho phép.
+- Hàn Băng được tính là Băng cho tăng sát thương, Kháng và Điểm Yếu; mọi sát thương Hàn Băng bỏ qua Phòng Thủ và Phá Vỡ không áp dụng Đóng Băng.
+- ‘Siêu Dẫn’ giữ hệ số và chỉ số gốc của người gây sát thương, đồng thời đọc cả nguồn tăng sát thương và xuyên Kháng Băng/Lôi. Điểm Yếu Băng hoặc Lôi đều cho phép đòn chuyển hóa bào Sức Bền.
+- Mất HP chủ động trả về đúng lượng HP thực tế đã mất và mặc định không thể hạ người trả giá xuống dưới 1 HP. Hồi sinh trì hoãn khôi phục HP/Năng Lượng theo tham số và tạo lại lượt tự nhiên từ thời điểm hồi sinh.
+
 ## Cách dùng trên web
 
 1. Chọn “Tự sinh lượt, lặp chuỗi kỹ năng mỗi Veyr”.
@@ -26,12 +35,16 @@
 
 ## Phạm vi còn lại
 
-Bộ máy đã nối 61/61 kit Veyr, gồm Athena overkill và Hỏa Táng; xem `CHARACTERS.md`. Nội tại trang bị nằm trong `GEAR.md`. Bước 5 thêm lựa chọn theo số lượt thực tế, các mốc trước/sau lượt cho Tuyệt Kĩ, timeline và so sánh rotation (`ROTATIONS.md`). Myrk hiện dùng dummy có thể cấu hình; chưa có bộ thực thi riêng cho từng kit Myrk. VM3/VM5 vẫn tạm hoãn tăng cấp kỹ năng. Trình tự tìm rotation tối ưu chưa được triển khai.
+Nguồn live hiện có 74 Veyr và toàn bộ đã có runtime tự động với khóa hash nguồn. Chế độ thủ công vẫn đọc đúng chỉ số và nội dung nguồn. Nội tại trang bị nằm trong `GEAR.md`; 114 Mảnh Ký Ức đã có bộ thực thi qua GearEvents. Myrk hiện dùng dummy có thể cấu hình; chưa có bộ thực thi riêng cho từng kit Myrk. VM3/VM5 vẫn tạm hoãn tăng cấp kỹ năng. Trình tự tìm rotation tối ưu chưa được triển khai.
 
 ## Kiểm tra
 
 `node damage-simulator/combat.test.mjs`
 
 `node damage-simulator/engine.test.mjs`
+
+`node damage-simulator/system-foundations.test.mjs`
+
+`node damage-simulator/divinity-triumph.test.mjs`
 
 `python3 damage-simulator/validate_data.py`

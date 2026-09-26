@@ -37,7 +37,7 @@ def field(ps, label):
 def stats(ps):
     out = {}
     for p in ps:
-        m = re.search(r'Lv\s*(1|60)\s*:', p['text'], re.I)
+        m = re.search(r'(?:Lv|Cấp)\s*(1|60)\s*:', p['text'], re.I)
         if not m:
             continue
         vals = {}

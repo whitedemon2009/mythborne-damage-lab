@@ -21,4 +21,4 @@ assert.match(get('Bellona').sets[1].reason,/Myrk chọn/);
 assert.deepEqual(get('Apollo'),get('Apollo',0,{...catalog,characters:[...catalog.characters].reverse(),memories:[...catalog.memories].reverse(),artifacts:[...catalog.artifacts].reverse()}));
 const stale=structuredClone(catalog);stale.characters.find(x=>x.name==='Apollo').contentHash='changed';assert.equal(get('Apollo',0,stale).memories.length,0);
 stale.artifacts[16].contentHash='changed';assert.doesNotThrow(()=>get('Astraeus',0,stale));assert.equal(get('Astraeus',0,stale).sets.some(s=>s.pieces.some(p=>p.item.id===stale.artifacts[16].id)),false);
-console.log('PASS 61 reviewed profiles across VM0/1/4/6; Aspect, source conditions, split sets, catalog reorder and stale-source guards');
+console.log(`PASS ${catalog.characters.length} reviewed profiles across VM0/1/4/6; Aspect, source conditions, split sets, catalog reorder and stale-source guards`);

@@ -1,11 +1,11 @@
 # Kiểm kê dữ liệu Mythborne — bước 1
 
-Đọc live: 2026-09-13; 4 thẻ. Không sửa Google Doc.
+Đọc live: 2026-09-26T06:42:24.741231+00:00; 4 thẻ. Không sửa Google Doc.
 
 ## Số lượng
 
-- characters: 61
-- memories: 102
+- characters: 74
+- memories: 114
 - artifacts: 22
 - myrk: 46
 
@@ -32,6 +32,9 @@ Không nội suy cấp nhân vật/Mảnh Ký Ức khi chưa có quy tắc. TL2�
 - **Asclepius / ULT_COST_NOT_EXPLICIT**: Có giới hạn NL nhưng chưa có chi phí Tuyệt Kĩ tách riêng trong nguồn; chưa mặc định tiêu toàn bộ.
 - **Hou Yi / ULT_COST_NOT_EXPLICIT**: Có giới hạn NL nhưng chưa có chi phí Tuyệt Kĩ tách riêng trong nguồn; chưa mặc định tiêu toàn bộ.
 - **Alecto / ULT_COST_NOT_EXPLICIT**: Có giới hạn NL nhưng chưa có chi phí Tuyệt Kĩ tách riêng trong nguồn; chưa mặc định tiêu toàn bộ.
+- **Heimdall / ULT_COST_NOT_EXPLICIT**: Có giới hạn NL nhưng chưa có chi phí Tuyệt Kĩ tách riêng trong nguồn; chưa mặc định tiêu toàn bộ.
+- **Taranis / ULT_COST_NOT_EXPLICIT**: Có giới hạn NL nhưng chưa có chi phí Tuyệt Kĩ tách riêng trong nguồn; chưa mặc định tiêu toàn bộ.
+- **Dian Mu / ULT_COST_NOT_EXPLICIT**: Có giới hạn NL nhưng chưa có chi phí Tuyệt Kĩ tách riêng trong nguồn; chưa mặc định tiêu toàn bộ.
 - **Rift Hound / MYRK_STATS_NOT_DEFINED**: Nguồn có kit nhưng chưa xác định bộ HP/ATK/DEF/SPD theo cấp.
 - **Glasswing Moth / MYRK_STATS_NOT_DEFINED**: Nguồn có kit nhưng chưa xác định bộ HP/ATK/DEF/SPD theo cấp.
 - **Gravelback / MYRK_STATS_NOT_DEFINED**: Nguồn có kit nhưng chưa xác định bộ HP/ATK/DEF/SPD theo cấp.
@@ -86,12 +89,15 @@ Có thể là tương tác chủ ý hoặc trùng tên; không tự đổi tên.
 - Dư Âm: veyr:seraphine, memory:tieng-chuong-con-vang-sau-thuy-trieu
 - Truy Nguyệt: veyr:artemis, memory:soi-vang-tren-canh-cung-trang-khuyet
 - Dấu Săn: veyr:artemis, veyr:mani
-- Diệt Kích: veyr:kaien, veyr:heracles, memory:khi-ngon-nui-cuoi-cung-cung-phai-cui-dau
+- Diệt Kích: veyr:kaien, veyr:heracles, memory:muoi-hai-vet-nut-tren-can-chuy
 - Thủy Áp: veyr:amphitrite, myrk:abyssal-crown-leviathan
 - Hổ Văn: veyr:durga, veyr:apollo
 - Đồng Hỏa: veyr:agni, veyr:apollo
 - Hỏa Chủng: veyr:agni, veyr:apollo
 - Quang Tích: veyr:apollo, veyr:eos, veyr:hou-yi
+- Vạch Nhật: veyr:hou-yi, veyr:change
+- Đạn Tuyết: veyr:skadi, veyr:taranis
+- Chảy Máu: veyr:marduk, veyr:nyx
 - Nhiệt Lõi: artifact:lo-ren-dia-tam, myrk:cinderhorn-colossus
 
 ## Chỉ số gốc Veyr Lv60
@@ -159,3 +165,16 @@ Có thể là tương tác chủ ý hoặc trùng tên; không tự đổi tên.
 | Asclepius | 1441 | 500 | 603 | 108 | 160 |
 | Hou Yi | 1073 | 650 | 463 | 107 | 140 |
 | Alecto | 1022 | 559 | 507 | 108 | 110 |
+| Heimdall | 1191 | 515 | 574 | 112 | 140 |
+| Nephele | 1132 | 647 | 559 | 107 | 130 |
+| Týr | 1213 | 485 | 706 | 96 | 140 |
+| Nezha | 1066 | 698 | 485 | 111 | 130 |
+| Chang’e | 1110 | 669 | 522 | 112 | 130 |
+| Ishtar | 1058 | 720 | 471 | 110 | 130 |
+| Skadi | 1088 | 742 | 478 | 85 | 140 |
+| Taranis | 1176 | 551 | 559 | 108 | 150 |
+| Dian Mu | 1475 | 485 | 618 | 104 | 150 |
+| Marek | 1044 | 559 | 537 | 106 | 130 |
+| Marduk | 1118 | 735 | 485 | 103 | 140 |
+| Freyja | 1500 | 456 | 588 | 110 | 180 |
+| Nyx | 1162 | 662 | 529 | 106 | 160 |

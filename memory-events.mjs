@@ -110,6 +110,12 @@ function memoryFiveStar(g,u,type,e,h){
   if(k===92&&ability==='Ult'){e.efficiency+=v(1);if(e.count>=3&&a.source==='Diệt Kích')e.dkBonus+=v(2);}
   if(k===96&&ability==='Ult'&&(a.energyCost??u.energyCap)>=150){e.bonus+=v(3);e.resPen+=v(4);}
   if(k===98&&a.source==='Counter'&&s.selectedChain===a.chain)e.bonus+=v(2);
+  if(k===105&&a.source==='Counter'){
+   e.bonus+=v(1);
+   if(a.parentEnemyAction&&(a.parentEnemyAction.recipients?.size||0)===0){if(t.toughness>t.maxToughness*.5)e.efficiency+=v(2);else e.pen+=v(3);}
+  }
+  if(k===106&&a.source==='FUA'&&a.triggerActor!==undefined&&a.triggerActor!==u.index&&e.count===1)e.bonus+=v(1);
+  if(k===107&&ability==='Skill'&&a.cityChanged)e.bonus+=v(1);
  }
  if(type==='beforeDamage'&&own){
   if(k===84&&t.toughness===0&&!a.firstBroken&&g.once(u,'Núi Cúi Đầu'))a.firstBroken=true;
@@ -139,6 +145,16 @@ function memoryFiveStar(g,u,type,e,h){
   if(k===91){if(ability==='Ult'&&a.recipient!==undefined&&['Buff','Heal','Shield'].includes(a.source))g.buff(u,g.ctx.units[a.recipient],'Hải Quyền',{},2,0,{scoped:{bonus:v(1)},sources:['Skill','FUA']});if(n&&n===a.livingCount)for(const i of e.targets)g.buff(u,g.ctx.enemies[i],'Hải Quyền suy yếu',{vulnerability:v(4)},1);}
   if(k===92&&ability==='Ult'&&a.dkTargets?.size>=2)g.gain(u,v(3)*100);
   if(k===101&&n===1&&!['DoT','Diệt Kích'].includes(a.source)){const i=[...e.targets][0];s.record={target:i,hp:g.ctx.enemies[i].hp};}
+  if(k===107&&ability==='Skill'){
+   if(a.cityChanged&&n&&g.once(u,'Thành Phố đổi mục tiêu'))g.gain(u,v(2)*100);
+   s.cityTarget=a.primaryTarget;
+  }
+  if(k===109&&ability==='Basic'){
+   const record=s.latestSkillBuff,effect=record&&g.ctx.units[record.target]?.effects.find(b=>b===record.effect);
+   if(effect&&!record.extended&&g.once(u,'Thành Phố kéo dài')){effect.duration++;record.extended=true;}
+  }
+  if(k===111&&['Skill','Ult'].includes(ability))buff('Góc Đài',{BasicDamage:v(1)},3);
+  if(k===112&&ability==='Ult'&&a.freyjaRevived>0&&g.once(u,'Ca Cấp Cứu '+a.uid,1,'action'))g.gain(u,v(3)*100);
  }
  if(type==='start'&&own&&k===83&&ability==='Skill'&&g.stacks(u,u,'Dư Nhiệt')>=5)a.releaseHeat=true;
  if(type==='allySkill'&&own){
@@ -147,9 +163,12 @@ function memoryFiveStar(g,u,type,e,h){
   if(k===97&&t!==u)g.mark(u,t,'Dẫn Quỹ',2,0,{charges:1,previous:null});
   if(k===99&&t!==u)g.buff(u,t,'Lộ Ấn',{damage:v(1)});
   if(k===100)g.buff(u,t,'Tiên Dược',{damage:v(1)},2,0,{charges:1});
+  if(k===102&&t!==u)g.buff(u,t,'Vọng Gác',{},2,0,{scoped:{bonus:v(1)},sources:['Counter']});
+  if(k===109&&t!==u){const effect=[...t.effects].reverse().find(b=>b.owner===u.index&&!b.debuff&&b.duration!==null);if(effect)s.latestSkillBuff={target:t.index,effect,extended:false};}
  }
  if(type==='after'&&e.unit!==u){
   const n=e.targets.size,ally=e.unit;
+  if(k===102&&a.source==='Counter'&&n&&g.effect(ally,u,'Vọng Gác')&&g.once(u,'Vọng Gác Năng Lượng',2))g.gain(u,v(3)*100);
   if(k===68&&ability==='Ult'){const b=g.effect(ally,u,'Tinh Thời');if(b){g.gain(u,v(2)*100);if(b.charges){b.charges=0;g.gain(ally,ally.energyCap*v(3),true);}}}
   if(k===94&&n&&!['DoT','Diệt Kích'].includes(a.source))for(let i=0;i<Math.min(n,3);i++)scoped('Dư Hỏa',{bonus:v(1)},2,3,{sources:['FUA']});
   if(k===96&&n&&g.once(u,'Apollo '+ally.index))g.gain(u,v(ally.aspect===u.aspect?2:1)*100);
@@ -158,6 +177,7 @@ function memoryFiveStar(g,u,type,e,h){
  }
  if(type==='modify'){
   const ally=e.unit;
+  if(k===102&&a.source==='Counter'&&g.effect(ally,u,'Vọng Gác'))e.pen+=v(2);
   if(k===94&&own&&a.source==='FUA'&&g.stacks(u,u,'Dư Hỏa')>=3)e.critDmg+=v(2);
   if(k===97&&e.count===1&&g.effect(ally,u,'Dẫn Quỹ')){e.bonus+=v(1);if(g.state(ally).data.previousDamageTarget===t.index)e.critDmg+=v(2);}
   if(k===95&&['Basic','Skill','Ult','FUA'].includes(a.source)&&g.debuffs(t,u).length){const prev=s.sources?.[t.index];if(prev&&prev!==a.source){e.pen+=v(1);a.sekhmetChanged??=new Set();a.sekhmetChanged.add(u.index);}}
@@ -178,10 +198,12 @@ function memoryFiveStar(g,u,type,e,h){
  if(type==='break'){
   if(k===85){each(t=>g.buff(u,t,'Cánh Chiến Thắng',{break:v(1)}));if(g.once(u,'Chiến Thắng '+a.uid,1,'action'))g.gain(u,v(2)*100);}
   if(k===89&&g.once(u,'Waltz '+a.uid,1,'action')){g.gain(u,v(3)*100);const low=g.allies().sort((a,b)=>a.currentHP/g.eff(a).hp-b.currentHP/g.eff(b).hp)[0];if(low)g.heal(u,low,g.eff(u).hp*v(4)+v(5)*100);}
+  if(k===105&&own&&a.source==='Counter'&&g.once(u,'Bánh Xe phá Sức Bền'))g.advance(u,v(4));
  }
  if(type==='heal'&&own){
   if(k===70&&e.origin!=='Dư Âm')g.mark(u,t,'Dư Âm');
   if(k===74)g.buff(u,t,'Tàn Hỏa',{damage:v(2)});
+  if(k===112&&a.freyjaTransfer&&g.once(u,'Ca Cấp Cứu hồi',2))g.heal(u,u,g.eff(u).hp*v(2),{origin:'Ca Cấp Cứu'});
  }
  if(type==='turnStart'){
   const ally=e.unit;
@@ -192,13 +214,26 @@ function memoryFiveStar(g,u,type,e,h){
  if(type==='hpLost'&&!e.self&&e.amount>0&&k===100){const b=g.effect(e.unit,u,'Tiên Dược');if(b?.charges&&e.unit.currentHP>0&&e.unit.currentHP<g.eff(e.unit).hp*.8){b.charges=0;g.heal(u,e.unit,g.eff(u).hp*v(2)+v(3)*100,{delayed:true});g.next(u,e.unit,'Tiên Dược nhịp',{},{scoped:{bonus:v(1)}});}}
  if(type==='advance'&&own&&k===87)scoped('Nhịp Tim',{pen:v(2)},1,0,{sources:['Skill'],consume:'damage'});
  if(type==='select'&&t===u&&k===98){s.selectedChain=e.chain;g.buff(u,u,'Bạch Băng đón đòn',{reduction:v(1)},null,0,{enemyChain:e.chain});}
+ if(type==='select'&&k===104&&(t===u||t.effects.some(b=>b.owner===u.index&&!b.debuff))){s.handChain=e.chain;g.buff(u,u,'Bàn Tay Phản Kích',{},null,0,{scoped:{bonus:v(2)},sources:['Counter'],consume:'damage'});}
+ if(type==='beforeEnemyDamage'&&k===104&&e.unit===u&&s.handChain===e.chain)e.amount*=1-v(1);
+ if(type==='beforeEnemyDamage'&&k===102&&g.effect(e.unit,u,'Vọng Gác')&&g.once(u,'Vọng Gác giảm ST '+e.unit.index,1,e.chain))e.amount*=1-v(4);
  if(type==='select'&&k===99&&g.effect(t,u,'Lộ Ấn')&&g.once(u,'Lộ Ấn '+t.index,2)){g.buff(u,t,'Lộ Ấn đón đòn',{reduction:v(2)},null,0,{enemyChain:e.chain,afterEnemy:{bonus:v(3)}});}
  if(type==='shield'&&own&&k===93)each(t=>{if(t.shields.some(n=>n>0))g.buff(u,t,'Bạch Hổ',{damage:v(1)+(t.aspect==='Mjolnir'?v(2):0)});});
+ if(type==='shield'&&own&&k===103)buff('Mây Giữ Lại',{DoTDamage:v(1)},2);
+ if(type==='dotEnd'&&k===103&&g.once(u,'Mây vá Khiên '+t.index,3,t.turn)){
+  const choices=g.allies().flatMap(target=>target.shieldLayers.filter(layer=>layer.owner===u.index&&layer.value>0).map(layer=>({target,layer}))).sort((x,y)=>x.layer.value-y.layer.value);
+  const pick=choices[0];if(pick){const amount=g.eff(u).atk*v(2)+v(3)*100,cap=pick.layer.initial??pick.layer.value;pick.layer.value=Math.min(cap,pick.layer.value+amount);pick.target.shields=pick.target.shieldLayers.map(layer=>layer.value);}
+ }
+ if(type==='buff'&&k===108&&e.target===u&&e.unit!==u)g.buff(u,u,'Sương Giá',{SkillDamage:.12,UltDamage:.08},null,4);
  if(type==='cleanse'&&own&&k===74&&e.count&&g.once(u,'Giữ Lửa '+t.index)){g.heal(u,t,g.eff(u).hp*v(3));g.buff(u,t,'Lửa thanh tẩy',{resist:v(4)},1);}
  if(type==='debuff'&&own){
   if(k===67)g.buff(u,t,'Chú Giải',{vulnerability:v(1)},2,0,{extraVulnerability:v(2)});
   if(k===79&&e.disrupt){g.buff(u,t,'Lệch Nhịp',{resReduction:v(1)});if(g.debuffs(t,u).filter(b=>!b.gearKey?.startsWith('Lệch Nhịp')).length>=2)g.buff(u,t,'Lệch Nhịp giáp',{defReduction:v(2)});if(e.hardDisrupt&&g.once(u,'Lệch Nhịp NL'))g.gain(u,v(3)*100);}
+  if(k===110&&e.disrupt&&['speed','speedPct'].includes(a.buffType)&&g.once(u,'Mắt Khép '+t.index,1,a.uid)&&g.once(u,'Mắt Khép tổng',3))g.gain(u,v(2)*100);
+  if(k===113)g.buff(u,t,'Lề Sách',{},2,0,{incoming:{vulnerability:v(1)},sources:['DoT']});
  }
+ if(type==='beforeHeal'&&own&&k===112&&a.freyjaTransfer)e.outgoing+=v(1);
+ if(type==='start'&&own&&k===107&&ability==='Skill')a.cityChanged=s.cityTarget!==undefined&&s.cityTarget!==a.primaryTarget;
  if(type==='beforeDamage'&&own&&k===78&&['Skill','FUA'].includes(a.source)&&!g.effect(u,u,'Đại Triều')&&g.effect(u,u,'Hải Tuyến Skill')&&g.effect(u,u,'Hải Tuyến FUA')&&(a.damageTargetCount||a.targets)>=2){
   buff('Đại Triều',{crit:v(4)},2);a.greatTidePen=v(3);s.hadTide=true;
  }

@@ -1,0 +1,940 @@
+NORMAL_TEXT	1	MYTHBORNE — MẢNH KÝ ỨC 3★
+NORMAL_TEXT	28	Quy tắc: Mảnh Ký Ức chỉ có thể được trang bị bởi nhân vật có cùng Aspect. Mảnh 3★ sở hữu nội tại đơn giản, dễ kích hoạt và có tính đa dụng cao, nhưng sức mạnh tổng thể thấp hơn các Mảnh Ký Ức độ hiếm cao hơn.
+NORMAL_TEXT	238	GUNGNIR
+NORMAL_TEXT	247	1. Mũi Giáo Sứt Trên Tường Bắc
+NORMAL_TEXT	278	Độ hiếm: 3★
+NORMAL_TEXT	290	Aspect: Gungnir
+NORMAL_TEXT	306	Chỉ số Lv1: HP 36 | Tấn Công 14 | Phòng Thủ 12
+NORMAL_TEXT	353	Chỉ số Lv60: HP 635 | Tấn Công 264 | Phòng Thủ 211
+NORMAL_TEXT	404	Nội tại — Nhất Điểm: Tăng 20%-36% Tấn Công của người trang bị.
+NORMAL_TEXT	468	2. Vệt Sao Trong Khe Ngắm
+NORMAL_TEXT	494	Độ hiếm: 3★
+NORMAL_TEXT	506	Aspect: Gungnir
+NORMAL_TEXT	522	Chỉ số Lv1: HP 38 | Tấn Công 13 | Phòng Thủ 14
+NORMAL_TEXT	569	Chỉ số Lv60: HP 670 | Tấn Công 238 | Phòng Thủ 250
+NORMAL_TEXT	620	Nội tại — Tinh Chuẩn: Khi một đòn đánh chỉ gây sát thương lên một kẻ địch, sát thương của đòn đánh đó tăng 20%-30%.
+NORMAL_TEXT	737	3. Sợi Chỉ Đỏ Buộc Chuôi Thương
+NORMAL_TEXT	769	Độ hiếm: 3★
+NORMAL_TEXT	781	Aspect: Gungnir
+NORMAL_TEXT	797	Chỉ số Lv1: HP 40 | Tấn Công 13 | Phòng Thủ 13
+NORMAL_TEXT	844	Chỉ số Lv60: HP 706 | Tấn Công 238 | Phòng Thủ 232
+NORMAL_TEXT	895	Nội tại — Truy Dấu: Sau khi gây sát thương lên một kẻ địch, sát thương người trang bị gây lên chính mục tiêu đó tăng 20%-32% trong 2 lượt.
+NORMAL_TEXT	1035	TRISHULA
+NORMAL_TEXT	1045	4. Ba Vết Cắt Trên Cùng Một Tấm Giáp
+NORMAL_TEXT	1082	Độ hiếm: 3★
+NORMAL_TEXT	1094	Aspect: Trishula
+NORMAL_TEXT	1111	Chỉ số Lv1: HP 36 | Tấn Công 14 | Phòng Thủ 13
+NORMAL_TEXT	1158	Chỉ số Lv60: HP 635 | Tấn Công 232 | Phòng Thủ 232
+NORMAL_TEXT	1209	Nội tại — Phân Kích: Khi một đòn đánh gây sát thương lên ít nhất 2 kẻ địch, sát thương của đòn đánh đó tăng 15%-32%.
+NORMAL_TEXT	1327	5. Ba Lưỡi Cong Dưới Trăng Non
+NORMAL_TEXT	1358	Độ hiếm: 3★
+NORMAL_TEXT	1370	Aspect: Trishula
+NORMAL_TEXT	1387	Chỉ số Lv1: HP 39 | Tấn Công 13 | Phòng Thủ 14
+NORMAL_TEXT	1434	Chỉ số Lv60: HP 688 | Tấn Công 238 | Phòng Thủ 250
+NORMAL_TEXT	1485	Nội tại — Tam Tuần: Sau khi sử dụng Chiến Kỹ, tăng 20%-36% Tấn Công trong 1 lượt.
+NORMAL_TEXT	1568	6. Đốm Sáng Còn Lại Sau Ba Nhát Chém
+NORMAL_TEXT	1605	Độ hiếm: 3★
+NORMAL_TEXT	1617	Aspect: Trishula
+NORMAL_TEXT	1634	Chỉ số Lv1: HP 38 | Tấn Công 13 | Phòng Thủ 15
+NORMAL_TEXT	1681	Chỉ số Lv60: HP 670 | Tấn Công 238 | Phòng Thủ 270
+NORMAL_TEXT	1732	Nội tại — Liên Quang: Khi người trang bị đánh trúng từ 2 kẻ địch trở lên, hồi 3-8 Năng Lượng. 
+NORMAL_TEXT	1828	MJOLNIR
+NORMAL_TEXT	1837	7. Tiếng Rền Bị Chôn Trong Chuông Đồng
+NORMAL_TEXT	1876	Độ hiếm: 3★
+NORMAL_TEXT	1888	Aspect: Mjolnir
+NORMAL_TEXT	1904	Chỉ số Lv1: HP 38 | Tấn Công 14 | Phòng Thủ 12
+NORMAL_TEXT	1951	Chỉ số Lv60: HP 670 | Tấn Công 264 | Phòng Thủ 211
+NORMAL_TEXT	2002	Nội tại — Chấn Vực: Khi một đòn đánh trúng ít nhất 3 kẻ địch, sát thương của đòn đánh đó tăng 12%-24%.
+NORMAL_TEXT	2106	8. Nắm Tro Trong Găng Tay Đen
+NORMAL_TEXT	2136	Độ hiếm: 3★
+NORMAL_TEXT	2148	Aspect: Mjolnir
+NORMAL_TEXT	2164	Chỉ số Lv1: HP 40 | Tấn Công 13 | Phòng Thủ 14
+NORMAL_TEXT	2211	Chỉ số Lv60: HP 706 | Tấn Công 238 | Phòng Thủ 250
+NORMAL_TEXT	2262	Nội tại — Dư Chấn: Sau khi sử dụng Tuyệt Kỹ, tăng 14%-28% sát thương Chiến Kỹ trong 1 lượt.
+NORMAL_TEXT	2355	9. Bản Đồ Của Thành Phố Đã Mất
+NORMAL_TEXT	2386	Độ hiếm: 3★
+NORMAL_TEXT	2398	Aspect: Mjolnir
+NORMAL_TEXT	2414	Chỉ số Lv1: HP 37 | Tấn Công 14 | Phòng Thủ 13
+NORMAL_TEXT	2461	Chỉ số Lv60: HP 653 | Tấn Công 264 | Phòng Thủ 232
+NORMAL_TEXT	2512	Nội tại — Quần Phạt: Nếu trên sân có ít nhất 4 kẻ địch, tăng 15%-30% Tấn Công của người trang bị.
+NORMAL_TEXT	2611	PANDORA
+NORMAL_TEXT	2620	10. Mắt Xích Thứ Mười Ba
+NORMAL_TEXT	2645	Độ hiếm: 3★
+NORMAL_TEXT	2657	Aspect: Pandora
+NORMAL_TEXT	2673	Chỉ số Lv1: HP 43 | Tấn Công 12 | Phòng Thủ 15
+NORMAL_TEXT	2720	Chỉ số Lv60: HP 762 | Tấn Công 211 | Phòng Thủ 270
+NORMAL_TEXT	2771	Nội tại — Ám Ấn: Tăng 6%-30% Chính Xác Hiệu Ứng của người trang bị.
+NORMAL_TEXT	2840	11. Vết Mực Khô Trên Lá Bùa Cháy
+NORMAL_TEXT	2873	Độ hiếm: 3★
+NORMAL_TEXT	2885	Aspect: Pandora
+NORMAL_TEXT	2901	Chỉ số Lv1: HP 40 | Tấn Công 13 | Phòng Thủ 14
+NORMAL_TEXT	2948	Chỉ số Lv60: HP 706 | Tấn Công 238 | Phòng Thủ 250
+NORMAL_TEXT	2999	Nội tại — Hắc Ngôn: Sau khi áp dụng thành công một hiệu ứng bất lợi, tăng 10%-36% Tấn Công trong 2 lượt.
+NORMAL_TEXT	3105	12. Mảnh Vỡ Của Hộp Cấm
+NORMAL_TEXT	3129	Độ hiếm: 3★
+NORMAL_TEXT	3141	Aspect: Pandora
+NORMAL_TEXT	3157	Chỉ số Lv1: HP 42 | Tấn Công 12 | Phòng Thủ 16
+NORMAL_TEXT	3204	Chỉ số Lv60: HP 741 | Tấn Công 211 | Phòng Thủ 290
+NORMAL_TEXT	3255	Nội tại — Tai Ách Nhỏ: Khi người trang bị tấn công kẻ địch đang có hiệu ứng bất lợi, hồi 2-6 Năng Lượng. 
+NORMAL_TEXT	3362	KERAUNOS
+NORMAL_TEXT	3372	13. Đồng Xu Đặt Trên Bệ Thờ Cao
+NORMAL_TEXT	3404	Độ hiếm: 3★
+NORMAL_TEXT	3416	Aspect: Keraunos
+NORMAL_TEXT	3433	Chỉ số Lv1: HP 43 | Tấn Công 12 | Phòng Thủ 15
+NORMAL_TEXT	3480	Chỉ số Lv60: HP 762 | Tấn Công 211 | Phòng Thủ 270
+NORMAL_TEXT	3531	Nội tại — Ban Phúc: Sau khi sử dụng Chiến Kỹ lên đồng minh, mục tiêu tăng 8%-16% Tấn Công trong 2 lượt.
+NORMAL_TEXT	3636	14. Khúc Nhạc Viết Cho Người Dậy Sớm
+NORMAL_TEXT	3673	Độ hiếm: 3★
+NORMAL_TEXT	3685	Aspect: Keraunos
+NORMAL_TEXT	3702	Chỉ số Lv1: HP 41 | Tấn Công 13 | Phòng Thủ 14
+NORMAL_TEXT	3749	Chỉ số Lv60: HP 724 | Tấn Công 238 | Phòng Thủ 250
+NORMAL_TEXT	3800	Nội tại — Minh Ân: Khi người trang bị sử dụng Tuyệt Kỹ, toàn bộ đồng minh tăng 6%-12% Tấn Công trong 1 lượt.
+NORMAL_TEXT	3910	15. Vương Miện Không Ngai
+NORMAL_TEXT	3936	Độ hiếm: 3★
+NORMAL_TEXT	3948	Aspect: Keraunos
+NORMAL_TEXT	3965	Chỉ số Lv1: HP 42 | Tấn Công 12 | Phòng Thủ 16
+NORMAL_TEXT	4012	Chỉ số Lv60: HP 741 | Tấn Công 211 | Phòng Thủ 290
+NORMAL_TEXT	4063	Nội tại — Thần Dẫn: Tăng 3%-12% Tốc Độ của người trang bị.
+NORMAL_TEXT	4123	AEGIS
+NORMAL_TEXT	4130	16. Mảnh Khiên Gác Bên Cổng Đổ
+NORMAL_TEXT	4161	Độ hiếm: 3★
+NORMAL_TEXT	4173	Aspect: Aegis
+NORMAL_TEXT	4187	Chỉ số Lv1: HP 40 | Tấn Công 12 | Phòng Thủ 18
+NORMAL_TEXT	4234	Chỉ số Lv60: HP 706 | Tấn Công 211 | Phòng Thủ 330
+NORMAL_TEXT	4285	Nội tại — Cổ Hộ: Tăng 10%-24% Phòng Thủ của người trang bị.
+NORMAL_TEXT	4346	17. Phiến Đá Kê Dưới Gót Khổng Lồ
+NORMAL_TEXT	4380	Độ hiếm: 3★
+NORMAL_TEXT	4392	Aspect: Aegis
+NORMAL_TEXT	4406	Chỉ số Lv1: HP 43 | Tấn Công 12 | Phòng Thủ 17
+NORMAL_TEXT	4453	Chỉ số Lv60: HP 762 | Tấn Công 211 | Phòng Thủ 310
+NORMAL_TEXT	4504	Nội tại — Bất Động: Sau khi người trang bị tạo Khiên, tăng 12%-20% Phòng Thủ trong 2 lượt.
+NORMAL_TEXT	4596	18. Sáp Nến Trên Bản Thề Cũ
+NORMAL_TEXT	4624	Độ hiếm: 3★
+NORMAL_TEXT	4636	Aspect: Aegis
+NORMAL_TEXT	4650	Chỉ số Lv1: HP 42 | Tấn Công 12 | Phòng Thủ 16
+NORMAL_TEXT	4697	Chỉ số Lv60: HP 741 | Tấn Công 211 | Phòng Thủ 290
+NORMAL_TEXT	4748	Nội tại — Hộ Thệ: Đồng minh đang có Khiên do người trang bị tạo nhận thêm 6%-16% Phòng Thủ.
+NORMAL_TEXT	4841	CADUCEUS
+NORMAL_TEXT	4851	19. Giọt Nước Trong Bình Đất Nứt
+NORMAL_TEXT	4884	Độ hiếm: 3★
+NORMAL_TEXT	4896	Aspect: Caduceus
+NORMAL_TEXT	4913	Chỉ số Lv1: HP 43 | Tấn Công 12 | Phòng Thủ 14
+NORMAL_TEXT	4960	Chỉ số Lv60: HP 762 | Tấn Công 211 | Phòng Thủ 250
+NORMAL_TEXT	5011	Nội tại — Linh Tuyền: Tăng 5%-25% Lượng Trị Liệu của người trang bị.
+NORMAL_TEXT	5081	20. Cành Non Mọc Qua Xương Trắng
+NORMAL_TEXT	5114	Độ hiếm: 3★
+NORMAL_TEXT	5126	Aspect: Caduceus
+NORMAL_TEXT	5143	Chỉ số Lv1: HP 43 | Tấn Công 12 | Phòng Thủ 15
+NORMAL_TEXT	5190	Chỉ số Lv60: HP 762 | Tấn Công 211 | Phòng Thủ 270
+NORMAL_TEXT	5241	Nội tại — Sinh Tức: Tăng 6%-20% HP của người trang bị.
+NORMAL_TEXT	5297	21. Chiếc Chén Còn Giữ Hơi Ấm
+NORMAL_TEXT	5327	Độ hiếm: 3★
+NORMAL_TEXT	5339	Aspect: Caduceus
+NORMAL_TEXT	5356	Chỉ số Lv1: HP 41 | Tấn Công 12 | Phòng Thủ 16
+NORMAL_TEXT	5403	Chỉ số Lv60: HP 724 | Tấn Công 211 | Phòng Thủ 290
+NORMAL_TEXT	5454	Nội tại — Dưỡng Mệnh: Sau khi hồi HP cho một đồng minh, mục tiêu tăng 3%-8% HP trong 1 lượt.
+NORMAL_TEXT	5549	GUNGNIR
+NORMAL_TEXT	5557	22. Mũi Tên Qua Khe Cửa
+NORMAL_TEXT	5581	Độ hiếm: 3★
+NORMAL_TEXT	5593	Aspect: Gungnir
+NORMAL_TEXT	5609	Chỉ số Lv1: HP 37 | Tấn Công 14 | Phòng Thủ 12
+NORMAL_TEXT	5656	Chỉ số Lv60: HP 653 | Tấn Công 264 | Phòng Thủ 211
+NORMAL_TEXT	5707	Nội tại — Khe Ngắm: Tăng 8%-16% Tỉ Lệ Chí Mạng khi người trang bị gây sát thương lên đúng một kẻ địch.
+NORMAL_TEXT	5810	23. Vết Khắc Trên Mũi Lao
+NORMAL_TEXT	5836	Độ hiếm: 3★
+NORMAL_TEXT	5848	Aspect: Gungnir
+NORMAL_TEXT	5864	Chỉ số Lv1: HP 39 | Tấn Công 13 | Phòng Thủ 13
+NORMAL_TEXT	5911	Chỉ số Lv60: HP 688 | Tấn Công 238 | Phòng Thủ 232
+NORMAL_TEXT	5962	Nội tại — Khắc Sâu: Tăng 12%-24% sát thương Chiến Kĩ của người trang bị.
+NORMAL_TEXT	6035	TRISHULA
+NORMAL_TEXT	6044	24. Ba Bóng Trên Mặt Gương
+NORMAL_TEXT	6071	Độ hiếm: 3★
+NORMAL_TEXT	6083	Aspect: Trishula
+NORMAL_TEXT	6100	Chỉ số Lv1: HP 37 | Tấn Công 14 | Phòng Thủ 13
+NORMAL_TEXT	6147	Chỉ số Lv60: HP 653 | Tấn Công 264 | Phòng Thủ 232
+NORMAL_TEXT	6198	Nội tại — Ảnh Tam: Khi một đòn đánh gây sát thương lên đúng 3 kẻ địch, sát thương của đòn đánh đó tăng 12%-24%.
+NORMAL_TEXT	6310	25. Lưỡi Cong Chia Dòng Nước
+NORMAL_TEXT	6339	Độ hiếm: 3★
+NORMAL_TEXT	6351	Aspect: Trishula
+NORMAL_TEXT	6368	Chỉ số Lv1: HP 39 | Tấn Công 13 | Phòng Thủ 14
+NORMAL_TEXT	6415	Chỉ số Lv60: HP 688 | Tấn Công 238 | Phòng Thủ 250
+NORMAL_TEXT	6466	Nội tại — Phân Lưu: Sau khi người trang bị gây sát thương lên ít nhất 2 kẻ địch trong cùng một hành động, tăng 4-8 Tốc Độ trong 2 lượt. Hiệu ứng không cộng dồn.
+NORMAL_TEXT	6627	MJOLNIR
+NORMAL_TEXT	6635	26. Hòn Đá Rơi Giữa Quảng Trường
+NORMAL_TEXT	6668	Độ hiếm: 3★
+NORMAL_TEXT	6680	Aspect: Mjolnir
+NORMAL_TEXT	6696	Chỉ số Lv1: HP 38 | Tấn Công 14 | Phòng Thủ 12
+NORMAL_TEXT	6743	Chỉ số Lv60: HP 670 | Tấn Công 264 | Phòng Thủ 211
+NORMAL_TEXT	6794	Nội tại — Chấn Tâm: Khi một hành động gây sát thương lên toàn bộ kẻ địch đang có mặt, sát thương của hành động đó tăng 10%-20%.
+NORMAL_TEXT	6922	27. Tàn Tro Bay Qua Năm Mái Nhà
+NORMAL_TEXT	6954	Độ hiếm: 3★
+NORMAL_TEXT	6966	Aspect: Mjolnir
+NORMAL_TEXT	6982	Chỉ số Lv1: HP 40 | Tấn Công 13 | Phòng Thủ 13
+NORMAL_TEXT	7029	Chỉ số Lv60: HP 706 | Tấn Công 238 | Phòng Thủ 232
+NORMAL_TEXT	7080	Nội tại — Tro Phủ: Tăng 12%-24% sát thương Tuyệt Kĩ của người trang bị.
+NORMAL_TEXT	7152	PANDORA
+NORMAL_TEXT	7160	28. Kim Đen Trong Lọ Thủy Tinh
+NORMAL_TEXT	7191	Độ hiếm: 3★
+NORMAL_TEXT	7203	Aspect: Pandora
+NORMAL_TEXT	7219	Chỉ số Lv1: HP 42 | Tấn Công 12 | Phòng Thủ 15
+NORMAL_TEXT	7266	Chỉ số Lv60: HP 741 | Tấn Công 211 | Phòng Thủ 270
+NORMAL_TEXT	7317	Nội tại — Độc Châm: Tăng 12%-28% Chính Xác Hiệu Ứng của người trang bị.
+NORMAL_TEXT	7389	29. Trang Giấy Bị Xé Khỏi Lời Nguyền
+NORMAL_TEXT	7426	Độ hiếm: 3★
+NORMAL_TEXT	7438	Aspect: Pandora
+NORMAL_TEXT	7454	Chỉ số Lv1: HP 40 | Tấn Công 13 | Phòng Thủ 14
+NORMAL_TEXT	7501	Chỉ số Lv60: HP 706 | Tấn Công 238 | Phòng Thủ 250
+NORMAL_TEXT	7552	Nội tại — Rách Chú: Sau khi người trang bị áp dụng thành công một hiệu ứng bất lợi, mục tiêu giảm 4%-8% Phòng Thủ trong 1 lượt. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	7714	KERAUNOS
+NORMAL_TEXT	7723	30. Ngọn Đèn Đặt Sau Lưng Người Khác
+NORMAL_TEXT	7760	Độ hiếm: 3★
+NORMAL_TEXT	7772	Aspect: Keraunos
+NORMAL_TEXT	7789	Chỉ số Lv1: HP 42 | Tấn Công 12 | Phòng Thủ 16
+NORMAL_TEXT	7836	Chỉ số Lv60: HP 741 | Tấn Công 211 | Phòng Thủ 290
+NORMAL_TEXT	7887	Nội tại — Hậu Quang: Sau khi người trang bị sử dụng Chiến Kĩ lên một đồng minh, mục tiêu tăng 10%-20% Sát Thương Chí Mạng trong 2 lượt. Hiệu ứng không cộng dồn.
+NORMAL_TEXT	8048	AEGIS
+NORMAL_TEXT	8054	31. Viên Gạch Cuối Của Tường Thành
+NORMAL_TEXT	8089	Độ hiếm: 3★
+NORMAL_TEXT	8101	Aspect: Aegis
+NORMAL_TEXT	8115	Chỉ số Lv1: HP 41 | Tấn Công 12 | Phòng Thủ 18
+NORMAL_TEXT	8162	Chỉ số Lv60: HP 724 | Tấn Công 211 | Phòng Thủ 330
+NORMAL_TEXT	8213	Nội tại — Bổ Thành: Tăng 8%-16% giá trị Khiên do người trang bị tạo.
+NORMAL_TEXT	8282	CADUCEUS
+NORMAL_TEXT	8291	32. Dải Băng Chưa Từng Nhuốm Máu
+NORMAL_TEXT	8324	Độ hiếm: 3★
+NORMAL_TEXT	8336	Aspect: Caduceus
+NORMAL_TEXT	8353	Chỉ số Lv1: HP 43 | Tấn Công 12 | Phòng Thủ 15
+NORMAL_TEXT	8400	Chỉ số Lv60: HP 762 | Tấn Công 211 | Phòng Thủ 270
+NORMAL_TEXT	8451	Nội tại — Sơ Cứu: Khi người trang bị hồi HP cho đồng minh có HP hiện tại dưới 50%, lượng hồi phục của lần đó tăng 10%-20%.
+NORMAL_TEXT	8574	VAJRA
+NORMAL_TEXT	8580	33. Mảnh Đục Còn Dính Bụi Sao
+NORMAL_TEXT	8610	Độ hiếm: 3★
+NORMAL_TEXT	8622	Aspect: Vajra
+NORMAL_TEXT	8636	Chỉ số Lv1: HP 38 | Tấn Công 14 | Phòng Thủ 14
+NORMAL_TEXT	8683	Chỉ số Lv60: HP 670 | Tấn Công 264 | Phòng Thủ 250
+NORMAL_TEXT	8734	Nội tại — Tạc Khiên: Tăng 10%-18% Hiệu Suất Phá Vỡ của người trang bị.
+NORMAL_TEXT	8805	34. Tiếng Nứt Trong Lòng Bàn Tay
+NORMAL_TEXT	8838	Độ hiếm: 3★
+NORMAL_TEXT	8850	Aspect: Vajra
+NORMAL_TEXT	8864	Chỉ số Lv1: HP 40 | Tấn Công 13 | Phòng Thủ 15
+NORMAL_TEXT	8911	Chỉ số Lv60: HP 706 | Tấn Công 238 | Phòng Thủ 270
+NORMAL_TEXT	8962	Nội tại — Rạn Âm: Tăng 16%-28% %Diệt Phá của người trang bị.
+NORMAL_TEXT	9023	FRAGARACH
+NORMAL_TEXT	9033	35. Vết Xước Trên Mặt Khiên Cũ
+NORMAL_TEXT	9064	Độ hiếm: 3★
+NORMAL_TEXT	9076	Aspect: Fragarach
+NORMAL_TEXT	9094	Chỉ số Lv1: HP 41 | Tấn Công 13 | Phòng Thủ 16
+NORMAL_TEXT	9141	Chỉ số Lv60: HP 724 | Tấn Công 238 | Phòng Thủ 290
+NORMAL_TEXT	9192	Nội tại — Đỡ Trả: Tăng 12%-24% sát thương Phản Kích của người trang bị.
+NORMAL_TEXT	9264	36. Chuông Gió Treo Trước Chiến Tuyến
+NORMAL_TEXT	9302	Độ hiếm: 3★
+NORMAL_TEXT	9314	Aspect: Fragarach
+NORMAL_TEXT	9332	Chỉ số Lv1: HP 43 | Tấn Công 12 | Phòng Thủ 17
+NORMAL_TEXT	9379	Chỉ số Lv60: HP 762 | Tấn Công 211 | Phòng Thủ 310
+NORMAL_TEXT	9430	Nội tại — Báo Kích: Sau khi người trang bị bị một hành động của Myrk chọn làm mục tiêu, tăng 8%-16% Phòng Thủ trong 1 lượt. Hiệu ứng không cộng dồn.
+NORMAL_TEXT	9579	MYTHBORNE — MẢNH KÝ ỨC 4★
+NORMAL_TEXT	9605	Quy tắc thiết kế: Mảnh Ký Ức 4★ có mức độ hiệu quả không đồng đều. Một số Mảnh có nội tại rất mạnh hoặc đặc biệt phù hợp với một nhóm nhân vật, trong khi một số Mảnh chỉ hữu dụng trong tình huống hẹp hoặc có hiệu quả thấp.
+NORMAL_TEXT	9829	GUNGNIR
+NORMAL_TEXT	9837	37. Mũi Thương Không Có Lần Thứ Hai
+NORMAL_TEXT	9873	Độ hiếm: 4★
+NORMAL_TEXT	9885	Aspect: Gungnir
+NORMAL_TEXT	9901	Chỉ số Lv1: HP 45 | Tấn Công 21 | Phòng Thủ 18
+NORMAL_TEXT	9948	Chỉ số Lv60: HP 797 | Tấn Công 370 | Phòng Thủ 330
+NORMAL_TEXT	9999	Nội tại — Phá Thiên: Tăng 12%-24% sát thương Chiến Kỹ. Sau khi người trang bị sử dụng Tuyệt Kỹ, sát thương Chiến Kỹ tăng thêm 20%-36% trong 2 lượt.
+NORMAL_TEXT	10148	38. Ngọn Giáo Dựng Bên Mộ Không Tên
+NORMAL_TEXT	10184	Độ hiếm: 4★
+NORMAL_TEXT	10196	Aspect: Gungnir
+NORMAL_TEXT	10212	Chỉ số Lv1: HP 51 | Tấn Công 18 | Phòng Thủ 20
+NORMAL_TEXT	10259	Chỉ số Lv60: HP 903 | Tấn Công 317 | Phòng Thủ 370
+NORMAL_TEXT	10310	Nội tại — Bất Nhiễm: Khi HP của người trang bị đang ở mức tối đa, tăng 20%-36% Tấn Công. Hiệu ứng mất ngay khi HP không còn đầy.
+NORMAL_TEXT	10440	TRISHULA
+NORMAL_TEXT	10449	39. Ba Vầng Trăng Trong Một Vũng Máu
+NORMAL_TEXT	10486	Độ hiếm: 4★
+NORMAL_TEXT	10498	Aspect: Trishula
+NORMAL_TEXT	10515	Chỉ số Lv1: HP 44 | Tấn Công 21 | Phòng Thủ 19
+NORMAL_TEXT	10562	Chỉ số Lv60: HP 780 | Tấn Công 370 | Phòng Thủ 350
+NORMAL_TEXT	10613	Nội tại — Tam Hội: Sau khi một đòn đánh gây sát thương lên ít nhất 2 kẻ địch, tăng 12%-20% sát thương gây ra trong 2 lượt. Nếu đòn đánh trúng đủ 3 kẻ địch, hiệu ứng tăng lên 24%-36%.
+NORMAL_TEXT	10797	40. Vết Chém Còn Sáng Trên Ba Cánh Cổng
+NORMAL_TEXT	10837	Độ hiếm: 4★
+NORMAL_TEXT	10849	Aspect: Trishula
+NORMAL_TEXT	10866	Chỉ số Lv1: HP 50 | Tấn Công 17 | Phòng Thủ 22
+NORMAL_TEXT	10913	Chỉ số Lv60: HP 885 | Tấn Công 300 | Phòng Thủ 420
+NORMAL_TEXT	10964	Nội tại — Tam Tàn: Sau khi người trang bị gây sát thương lên đủ 3 kẻ địch trong cùng một đòn đánh, tăng 8%-12% Hồi Năng Lượng trong 2 lượt.
+NORMAL_TEXT	11105	MJOLNIR
+NORMAL_TEXT	11113	41. Ngày Trời Rơi Xuống
+NORMAL_TEXT	11137	Độ hiếm: 4★
+NORMAL_TEXT	11149	Aspect: Mjolnir
+NORMAL_TEXT	11165	Chỉ số Lv1: HP 45 | Tấn Công 21 | Phòng Thủ 18
+NORMAL_TEXT	11212	Chỉ số Lv60: HP 797 | Tấn Công 370 | Phòng Thủ 330
+NORMAL_TEXT	11263	Nội tại — Thiên Trụy: Tăng 12%-36% sát thương Tuyệt Kỹ. Khi Tuyệt Kỹ đánh trúng ít nhất 4 kẻ địch, người trang bị hồi 4-8 Năng Lượng.
+NORMAL_TEXT	11398	42. Quả Chuông Treo Trên Thành Phố Cuối
+NORMAL_TEXT	11438	Độ hiếm: 4★
+NORMAL_TEXT	11450	Aspect: Mjolnir
+NORMAL_TEXT	11466	Chỉ số Lv1: HP 48 | Tấn Công 19 | Phòng Thủ 21
+NORMAL_TEXT	11513	Chỉ số Lv60: HP 850 | Tấn Công 335 | Phòng Thủ 396
+NORMAL_TEXT	11564	Nội tại — Chung Mạt: Khi trên sân tồn tại đủ 5 kẻ địch, tăng 20%-36% Tấn Công của người trang bị. Hiệu ứng kết thúc sau 3 lượt khi số lượng kẻ địch thấp hơn 5.
+NORMAL_TEXT	11725	PANDORA
+NORMAL_TEXT	11733	43. Kinh Văn Của Kẻ Không Tên
+NORMAL_TEXT	11763	Độ hiếm: 4★
+NORMAL_TEXT	11775	Aspect: Pandora
+NORMAL_TEXT	11791	Chỉ số Lv1: HP 52 | Tấn Công 17 | Phòng Thủ 21
+NORMAL_TEXT	11838	Chỉ số Lv60: HP 920 | Tấn Công 300 | Phòng Thủ 396
+NORMAL_TEXT	11889	Nội tại — Vô Danh Chú: Tăng 12%-40% Chính Xác Hiệu Ứng. Sau khi người trang bị áp dụng thành công một hiệu ứng bất lợi lên kẻ địch, mục tiêu đó tăng 5%-12% sát thương phải nhận trong 1 lượt. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	12115	44. Chữ Ký Không Thuộc Về Người Sống
+NORMAL_TEXT	12152	Độ hiếm: 4★
+NORMAL_TEXT	12164	Aspect: Pandora
+NORMAL_TEXT	12180	Chỉ số Lv1: HP 55 | Tấn Công 16 | Phòng Thủ 22
+NORMAL_TEXT	12227	Chỉ số Lv60: HP 974 | Tấn Công 291 | Phòng Thủ 420
+NORMAL_TEXT	12278	Nội tại — Hắc Khế: Tăng 8%-24% Phòng Thủ. Khi người trang bị tấn công kẻ địch đang có ít nhất 3 hiệu ứng bất lợi, hồi 4-8 Năng Lượng. 
+NORMAL_TEXT	12414	KERAUNOS
+NORMAL_TEXT	12423	45. Lời Sấm Khắc Sau Mí Mắt
+NORMAL_TEXT	12451	Độ hiếm: 4★
+NORMAL_TEXT	12463	Aspect: Keraunos
+NORMAL_TEXT	12480	Chỉ số Lv1: HP 53 | Tấn Công 17 | Phòng Thủ 20
+NORMAL_TEXT	12527	Chỉ số Lv60: HP 939 | Tấn Công 300 | Phòng Thủ 370
+NORMAL_TEXT	12578	Nội tại — Khải Ân: Sau khi người trang bị sử dụng Chiến Kỹ lên một đồng minh, mục tiêu tăng 8%-24% sát thương gây ra trong 2 lượt và người trang bị tăng 4-8 Tốc Độ trong 2 lượt.
+NORMAL_TEXT	12757	46. Vương Miện Của Kẻ Phụng Sự
+NORMAL_TEXT	12788	Độ hiếm: 4★
+NORMAL_TEXT	12800	Aspect: Keraunos
+NORMAL_TEXT	12817	Chỉ số Lv1: HP 57 | Tấn Công 16 | Phòng Thủ 21
+NORMAL_TEXT	12864	Chỉ số Lv60: HP 1058 | Tấn Công 291 | Phòng Thủ 396
+NORMAL_TEXT	12916	Nội tại — Phụng Mệnh: Sau khi người trang bị sử dụng Tuyệt Kỹ, đồng minh cùng nguyên tố với người trang bị tăng 10%-24% sát thương nguyên tố trong 2 lượt.
+NORMAL_TEXT	13072	AEGIS
+NORMAL_TEXT	13078	47. Cánh Cửa Chỉ Mở Về Phía Sau
+NORMAL_TEXT	13110	Độ hiếm: 4★
+NORMAL_TEXT	13122	Aspect: Aegis
+NORMAL_TEXT	13136	Chỉ số Lv1: HP 53 | Tấn Công 16 | Phòng Thủ 24
+NORMAL_TEXT	13183	Chỉ số Lv60: HP 939 | Tấn Công 291 | Phòng Thủ 463
+NORMAL_TEXT	13234	Nội tại — Thiên Môn Hộ: Tăng 10%-20% giá trị Khiên do người trang bị tạo. Sau khi người trang bị sử dụng Tuyệt Kỹ, toàn bộ đồng minh đang có Khiên giảm 5%-8% sát thương phải chịu trong 1 lượt.
+NORMAL_TEXT	13428	48. Khớp Xương Không Chịu Quỳ
+NORMAL_TEXT	13458	Độ hiếm: 4★
+NORMAL_TEXT	13470	Aspect: Aegis
+NORMAL_TEXT	13484	Chỉ số Lv1: HP 48 | Tấn Công 17 | Phòng Thủ 23
+NORMAL_TEXT	13531	Chỉ số Lv60: HP 850 | Tấn Công 300 | Phòng Thủ 445
+NORMAL_TEXT	13582	Nội tại — Tàn Thân: Khi HP của người trang bị thấp hơn 50%, tăng 12%-24% Phòng Thủ. Hiệu ứng kết thúc khi HP trở lại từ 50% trở lên.
+NORMAL_TEXT	13716	CADUCEUS
+NORMAL_TEXT	13725	49. Chiếc Bình Không Bao Giờ Cạn
+NORMAL_TEXT	13758	Độ hiếm: 4★
+NORMAL_TEXT	13770	Aspect: Caduceus
+NORMAL_TEXT	13787	Chỉ số Lv1: HP 57 | Tấn Công 16 | Phòng Thủ 20
+NORMAL_TEXT	13834	Chỉ số Lv60: HP 1058 | Tấn Công 291 | Phòng Thủ 370
+NORMAL_TEXT	13886	Nội tại — Bất Tận Sinh Tuyền: Tăng 8%-16% Lượng Trị Liệu. Khi người trang bị hồi HP cho một đồng minh đang dưới 50% HP, mục tiêu hồi 3%-8% Năng Lượng. Mỗi đồng minh chỉ có thể nhận hiệu ứng hồi Năng Lượng này 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	14136	50. Bài Ca Chừa Lại Một Chỗ Trống
+NORMAL_TEXT	14170	Độ hiếm: 4★
+NORMAL_TEXT	14182	Aspect: Caduceus
+NORMAL_TEXT	14199	Chỉ số Lv1: HP 54 | Tấn Công 16 | Phòng Thủ 22
+NORMAL_TEXT	14246	Chỉ số Lv60: HP 956 | Tấn Công 291 | Phòng Thủ 420
+NORMAL_TEXT	14297	Nội tại — Hồi Ca: Sau khi người trang bị hồi HP cho một đồng minh, mục tiêu tăng 4%-12% Tấn Công trong 2 lượt. Hiệu ứng không cộng dồn.
+NORMAL_TEXT	14434	51. Mưa Đêm Trên Dây Dẫn Gãy
+NORMAL_TEXT	14463	Độ hiếm: 4★
+NORMAL_TEXT	14475	Aspect: Pandora
+NORMAL_TEXT	14491	Chỉ số Lv1: HP 48 | Tấn Công 20 | Phòng Thủ 18
+NORMAL_TEXT	14538	Chỉ số Lv60: HP 850 | Tấn Công 353 | Phòng Thủ 330
+NORMAL_TEXT	14589	Nội tại — Dư Điện Trong Mưa: Tăng 12%-24% sát thương Sát Thương Duy Trì do người trang bị gây ra. Sau khi Sát Thương Duy Trì của người trang bị gây sát thương, người trang bị hồi 2-4 Năng Lượng; hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	14866	VAJRA
+NORMAL_TEXT	14872	52. Vết Nứt Dưới Chân Thành
+NORMAL_TEXT	14900	Độ hiếm: 4★
+NORMAL_TEXT	14912	Aspect: Vajra
+NORMAL_TEXT	14926	Chỉ số Lv1: HP 48 | Tấn Công 20 | Phòng Thủ 20
+NORMAL_TEXT	14973	Chỉ số Lv60: HP 850 | Tấn Công 353 | Phòng Thủ 370
+NORMAL_TEXT	15024	Nội tại — Điểm Gãy Đầu Tiên: Tăng 16%-32% %Diệt Phá của người trang bị. Khi người trang bị gây sát thương lên kẻ địch còn Khiên, Hiệu Suất Phá Vỡ của hành động đó tăng 12%-20%.
+NORMAL_TEXT	15202	53. Tiếng Búa Sau Tầng Đá Vỡ
+NORMAL_TEXT	15231	Độ hiếm: 4★
+NORMAL_TEXT	15243	Aspect: Vajra
+NORMAL_TEXT	15257	Chỉ số Lv1: HP 52 | Tấn Công 18 | Phòng Thủ 22
+NORMAL_TEXT	15304	Chỉ số Lv60: HP 920 | Tấn Công 317 | Phòng Thủ 420
+NORMAL_TEXT	15355	Nội tại — Chấn Sau Vết Vỡ: Tăng 20%-36% %Diệt Phá của người trang bị. Sau khi người trang bị trực tiếp phá Khiên hoặc gây sát thương lên kẻ địch đang trong trạng thái Vỡ Khiên, sát thương Diệt Kích của người trang bị tăng 12%-24% trong 2 lượt. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	15634	54. Đường Rạn Hắt Lên Ánh Đồng
+NORMAL_TEXT	15665	Độ hiếm: 4★
+NORMAL_TEXT	15677	Aspect: Vajra
+NORMAL_TEXT	15691	Chỉ số Lv1: HP 50 | Tấn Công 19 | Phòng Thủ 21
+NORMAL_TEXT	15738	Chỉ số Lv60: HP 885 | Tấn Công 335 | Phòng Thủ 396
+NORMAL_TEXT	15789	Nội tại — Rạn Tuyến: Khi người trang bị gây Diệt Kích, nhận 1 tầng “Rạn Tuyến” trong 2 lượt, cộng dồn tối đa 3 tầng. Mỗi tầng tăng 6%-10% sát thương Diệt Kích. Khi đạt đủ 3 tầng, lần Diệt Kích kế tiếp bỏ qua 6%-12% Phòng Thủ của mục tiêu; sau khi gây sát thương, xóa toàn bộ “Rạn Tuyến”.
+NORMAL_TEXT	16078	GUNGNIR
+NORMAL_TEXT	16086	55. Mũi Tên Chờ Sau Nhịp Thở
+NORMAL_TEXT	16115	Độ hiếm: 4★
+NORMAL_TEXT	16127	Aspect: Gungnir
+NORMAL_TEXT	16143	Chỉ số Lv1: HP 46 | Tấn Công 21 | Phòng Thủ 18
+NORMAL_TEXT	16190	Chỉ số Lv60: HP 815 | Tấn Công 370 | Phòng Thủ 330
+NORMAL_TEXT	16241	Nội tại — Truy Nhịp: Tăng 12%-20% Tỉ Lệ Chí Mạng. Khi người trang bị gây sát thương lên cùng một kẻ địch trong hai hành động liên tiếp, sát thương của hành động thứ hai tăng 12%-24%. Đổi mục tiêu sẽ đặt lại điều kiện.
+NORMAL_TEXT	16459	TRISHULA
+NORMAL_TEXT	16468	56. Ba Lưỡi Kiếm Dùng Chung Một Bóng
+NORMAL_TEXT	16505	Độ hiếm: 4★
+NORMAL_TEXT	16517	Aspect: Trishula
+NORMAL_TEXT	16534	Chỉ số Lv1: HP 45 | Tấn Công 21 | Phòng Thủ 19
+NORMAL_TEXT	16581	Chỉ số Lv60: HP 797 | Tấn Công 370 | Phòng Thủ 350
+NORMAL_TEXT	16632	Nội tại — Đồng Ảnh: Tăng 16%-28% Sát Thương Chí Mạng. Khi một hành động gây sát thương lên đúng 2 hoặc 3 kẻ địch, sát thương của hành động đó tăng 12%-24%; nếu đánh trúng đúng 3 kẻ địch, người trang bị hồi 4-8 Năng Lượng. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	16935	MJOLNIR
+NORMAL_TEXT	16943	57. Ngọn Tháp Đếm Mỗi Tiếng Nổ
+NORMAL_TEXT	16974	Độ hiếm: 4★
+NORMAL_TEXT	16986	Aspect: Mjolnir
+NORMAL_TEXT	17002	Chỉ số Lv1: HP 47 | Tấn Công 20 | Phòng Thủ 19
+NORMAL_TEXT	17049	Chỉ số Lv60: HP 832 | Tấn Công 353 | Phòng Thủ 350
+NORMAL_TEXT	17100	Nội tại — Cộng Chấn: Tăng 12%-24% Tấn Công. Với mỗi kẻ địch khác nhau thực sự nhận sát thương trong một hành động, sát thương của hành động đó tăng 2%-4%, tối đa tính 5 kẻ địch.
+NORMAL_TEXT	17278	PANDORA
+NORMAL_TEXT	17286	58. Con Dấu Nóng Trên Lá Đơn Cuối
+NORMAL_TEXT	17320	Độ hiếm: 4★
+NORMAL_TEXT	17332	Aspect: Pandora
+NORMAL_TEXT	17348	Chỉ số Lv1: HP 52 | Tấn Công 17 | Phòng Thủ 21
+NORMAL_TEXT	17395	Chỉ số Lv60: HP 920 | Tấn Công 300 | Phòng Thủ 396
+NORMAL_TEXT	17446	Nội tại — Nhiệt Ấn: Tăng 16%-32% Chính Xác Hiệu Ứng. Sau khi một kẻ địch có hiệu ứng bất lợi do người trang bị áp dụng hoàn tất hành động, mục tiêu tăng 6%-12% sát thương phải nhận trong 1 lượt. Mỗi hành động của mục tiêu chỉ có thể kích hoạt hiệu ứng này một lần; hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	17745	KERAUNOS
+NORMAL_TEXT	17754	59. Chiếc Ghế Trống Bên Bàn Tiệc
+NORMAL_TEXT	17787	Độ hiếm: 4★
+NORMAL_TEXT	17799	Aspect: Keraunos
+NORMAL_TEXT	17816	Chỉ số Lv1: HP 55 | Tấn Công 16 | Phòng Thủ 21
+NORMAL_TEXT	17863	Chỉ số Lv60: HP 974 | Tấn Công 291 | Phòng Thủ 396
+NORMAL_TEXT	17914	Nội tại — Phần Dành Lại: Tăng 8%-16% Hồi Năng Lượng. Sau khi người trang bị sử dụng Chiến Kĩ lên một đồng minh khác, mục tiêu tăng 12%-20% Sát Thương Chí Mạng trong 2 lượt. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	18121	AEGIS
+NORMAL_TEXT	18127	60. Cánh Cổng Khép Sau Người Cuối Cùng
+NORMAL_TEXT	18166	Độ hiếm: 4★
+NORMAL_TEXT	18178	Aspect: Aegis
+NORMAL_TEXT	18192	Chỉ số Lv1: HP 52 | Tấn Công 16 | Phòng Thủ 24
+NORMAL_TEXT	18239	Chỉ số Lv60: HP 920 | Tấn Công 291 | Phòng Thủ 463
+NORMAL_TEXT	18290	Nội tại — Hồi Môn: Tăng 16%-28% Phòng Thủ. Khi Khiên do người trang bị tạo trên một đồng minh bị phá, phục hồi Khiên cho mục tiêu bằng 4%-8% Phòng Thủ của người trang bị +80-160. Mỗi đồng minh tối đa nhận hiệu ứng này 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	18548	CADUCEUS
+NORMAL_TEXT	18557	61. Bình Thuốc Đặt Cạnh Ngọn Đèn Khuya
+NORMAL_TEXT	18596	Độ hiếm: 4★
+NORMAL_TEXT	18608	Aspect: Caduceus
+NORMAL_TEXT	18625	Chỉ số Lv1: HP 57 | Tấn Công 16 | Phòng Thủ 20
+NORMAL_TEXT	18672	Chỉ số Lv60: HP 1058 | Tấn Công 291 | Phòng Thủ 370
+NORMAL_TEXT	18724	Nội tại — Canh Đèn: Tăng 12%-24% HP. Sau khi người trang bị hồi HP cho một đồng minh, nếu HP hiện tại của mục tiêu từ 80% trở lên, mục tiêu tăng 8%-16% sát thương gây ra trong 2 lượt. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	18942	VAJRA
+NORMAL_TEXT	18948	62. Chiếc Nêm Chờ Dưới Vết Rạn
+NORMAL_TEXT	18979	Độ hiếm: 4★
+NORMAL_TEXT	18991	Aspect: Vajra
+NORMAL_TEXT	19005	Chỉ số Lv1: HP 49 | Tấn Công 20 | Phòng Thủ 20
+NORMAL_TEXT	19052	Chỉ số Lv60: HP 868 | Tấn Công 353 | Phòng Thủ 370
+NORMAL_TEXT	19103	Nội tại — Nêm Sâu: Tăng 24%-40% %Diệt Phá. Lần đầu người trang bị gây Lượng Bào Khiên lên mỗi kẻ địch khi Khiên của mục tiêu đang ở mức tối đa, Hiệu Suất Phá Vỡ của hành động đó tăng 16%-28%. Điều kiện được làm mới khi mục tiêu hồi đầy Khiên.
+NORMAL_TEXT	19346	FRAGARACH
+NORMAL_TEXT	19356	63. Dấu Răng Trên Vành Khiên
+NORMAL_TEXT	19385	Độ hiếm: 4★
+NORMAL_TEXT	19397	Aspect: Fragarach
+NORMAL_TEXT	19415	Chỉ số Lv1: HP 52 | Tấn Công 17 | Phòng Thủ 23
+NORMAL_TEXT	19462	Chỉ số Lv60: HP 920 | Tấn Công 300 | Phòng Thủ 445
+NORMAL_TEXT	19513	Nội tại — Cắn Trả: Tăng 12%-24% Phòng Thủ và 16%-28% sát thương Phản Kích. Sau khi người trang bị thực hiện Phản Kích, hồi HP bằng 2%-4% HP tối đa; hiệu ứng hồi HP tối đa kích hoạt 1 lần giữa hai lượt thực tế liên tiếp của người trang bị.
+NORMAL_TEXT	19752	64. Lá Cờ Không Quay Lưng Với Mũi Tên
+NORMAL_TEXT	19790	Độ hiếm: 4★
+NORMAL_TEXT	19802	Aspect: Fragarach
+NORMAL_TEXT	19820	Chỉ số Lv1: HP 55 | Tấn Công 17 | Phòng Thủ 21
+NORMAL_TEXT	19867	Chỉ số Lv60: HP 974 | Tấn Công 300 | Phòng Thủ 396
+NORMAL_TEXT	19918	Nội tại — Nghênh Kích: Tăng 12%-24% HP. Sau khi người trang bị bị một hành động của Myrk chọn làm mục tiêu, Phản Kích kế tiếp tăng 16%-32% Sát Thương Chí Mạng. Hiệu ứng tồn tại đến khi lượt thực tế kế tiếp của người trang bị kết thúc và bị tiêu hao sau khi Phản Kích gây sát thương.
+NORMAL_TEXT	20201	MYTHBORNE — MẢNH KÝ ỨC 5★
+NORMAL_TEXT	20227	Quy tắc thiết kế: Mảnh Ký Ức 5★ của nhân vật banner thường được thiết kế để tương thích cao nhất với chủ nhân đại diện nhưng vẫn phải có tính đa dụng tốt trong cùng Aspect. Nội tại có thể hỗ trợ trực tiếp hướng vận hành đặc trưng của nhân vật mà không khóa hiệu ứng bằng tên trạng thái riêng của một kit.
+NORMAL_TEXT	20533	GUNGNIR
+NORMAL_TEXT	20541	65. Vòng Sét Khóa Chặt Tên Người
+NORMAL_TEXT	20574	Độ hiếm: 5★
+NORMAL_TEXT	20586	Aspect: Gungnir
+NORMAL_TEXT	20602	Nhân vật đại diện: Veylen
+NORMAL_TEXT	20628	Chỉ số Lv1: HP 50 | Tấn Công 26 | Phòng Thủ 22
+NORMAL_TEXT	20675	Chỉ số Lv60: HP 882 | Tấn Công 582 | Phòng Thủ 405
+NORMAL_TEXT	20726	Nội tại — Hồi Quy Bất Tận: Tăng 18%-30% Sát Thương Chí Mạng của người trang bị. Mỗi lần người trang bị sử dụng Chiến Kỹ, nhận 1 tầng “Hồi Quy” trong 2 lượt, cộng dồn tối đa 3 tầng; mỗi tầng tăng 6%-10% sát thương Chiến Kỹ. Khi sử dụng Tuyệt Kỹ, lập tức nhận 2 tầng “Hồi Quy”. Nếu một Chiến Kỹ tiêu hao, xóa hoặc chuyển hóa một trạng thái có thể cộng dồn do chính người trang bị sở hữu, Chiến Kỹ đó nhận thêm 8%-16% %Xuyên Giáp. Hiệu ứng này chỉ áp dụng cho lần gây sát thương của Chiến Kỹ đó và không yêu cầu trạng thái được tiêu hao phải đến từ Mảnh Ký Ức.
+NORMAL_TEXT	21285	TRISHULA
+NORMAL_TEXT	21294	66. Vũ Khúc Sau Tấm Màn Băng
+NORMAL_TEXT	21323	Độ hiếm: 5★
+NORMAL_TEXT	21335	Aspect: Trishula
+NORMAL_TEXT	21352	Nhân vật đại diện: Seraphine
+NORMAL_TEXT	21381	Chỉ số Lv1: HP 48 | Tấn Công 26 | Phòng Thủ 21
+NORMAL_TEXT	21428	Chỉ số Lv60: HP 846 | Tấn Công 582 | Phòng Thủ 396
+NORMAL_TEXT	21479	Nội tại — Hồi Đáp Cuối Màn: Tăng 12%-24% %Chí Mạng của người trang bị. Khi người trang bị gây sát thương bằng Đòn Đánh Theo Sau, sát thương của đòn đó tăng 20%-36%. Sau khi một đồng minh khác gây sát thương lên kẻ địch, nếu hành động đó khiến người trang bị thực hiện Đòn Đánh Theo Sau trong cùng chuỗi hành động, người trang bị nhận “Dư Vũ” trong 2 lượt; khi có “Dư Vũ”, mỗi Đòn Đánh Theo Sau gây sát thương lên từ 2 mục tiêu trở lên tăng thêm 8%-16% sát thương và hồi 2-4 Năng Lượng. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	22047	MJOLNIR
+NORMAL_TEXT	22055	67. Pháo Đài Dưới Ngày Trời Cháy
+NORMAL_TEXT	22088	Độ hiếm: 5★
+NORMAL_TEXT	22100	Aspect: Mjolnir
+NORMAL_TEXT	22116	Nhân vật đại diện: Orsen
+NORMAL_TEXT	22141	Chỉ số Lv1: HP 52 | Tấn Công 26 | Phòng Thủ 23
+NORMAL_TEXT	22188	Chỉ số Lv60: HP 917 | Tấn Công 582 | Phòng Thủ 420
+NORMAL_TEXT	22239	Nội tại — Đại Pháo Khải Hỏa: Tăng 20%-36% sát thương Tuyệt Kỹ của người trang bị. Mỗi lần sử dụng Chiến Kỹ, nhận 1 tầng “Chuẩn Bị” trong 3 lượt, cộng dồn tối đa 3 tầng; mỗi tầng “Chuẩn Bị” tăng 4%-8% Tấn Công. Khi sử dụng Tuyệt Kỹ, nếu đang có ít nhất 2 tầng “Chuẩn Bị”, Tuyệt Kỹ đó tăng thêm 10%-20% %Chí Mạng và sau khi gây sát thương hồi 5-9 Năng Lượng. Sau khi Tuyệt Kỹ kết thúc, xóa toàn bộ “Chuẩn Bị”. Nếu cơ chế của người trang bị đã tự xóa một trạng thái cộng dồn trong cùng lần sử dụng Tuyệt Kỹ, “Chuẩn Bị” vẫn được tính trước khi bị xóa.
+NORMAL_TEXT	22788	PANDORA
+NORMAL_TEXT	22796	68. Điều Khoản Viết Bên Lề Vận Mệnh
+NORMAL_TEXT	22832	Độ hiếm: 5★
+NORMAL_TEXT	22844	Aspect: Pandora
+NORMAL_TEXT	22860	Nhân vật đại diện: Maelis
+NORMAL_TEXT	22886	Chỉ số Lv1: HP 61 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	22933	Chỉ số Lv60: HP 1199 | Tấn Công 370 | Phòng Thủ 500
+NORMAL_TEXT	22985	Nội tại — Chú Giải Cấm: Tăng 24%-40% Chính Xác Hiệu Ứng của người trang bị. Khi người trang bị áp dụng thành công một hiệu ứng bất lợi lên kẻ địch, mục tiêu nhận “Chú Giải” trong 2 lượt. Kẻ địch có “Chú Giải” tăng 8%-14% sát thương phải nhận; hiệu ứng cùng tên không cộng dồn. Nếu mục tiêu đang đồng thời có từ 2 hiệu ứng bất lợi trở lên do người trang bị áp dụng, hiệu quả tăng sát thương phải nhận của “Chú Giải” tăng thêm 4%-8%. Khi một đồng minh gây sát thương lên mục tiêu có “Chú Giải”, người trang bị hồi 1 Năng Lượng; tối đa hồi 4-6 Năng Lượng theo cách này giữa hai lượt của người trang bị.
+NORMAL_TEXT	23586	KERAUNOS
+NORMAL_TEXT	23595	69. Chiếc Đồng Hồ Nuốt Mất Một Vì Sao
+NORMAL_TEXT	23633	Độ hiếm: 5★
+NORMAL_TEXT	23645	Aspect: Keraunos
+NORMAL_TEXT	23662	Nhân vật đại diện: Sol
+NORMAL_TEXT	23685	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 27
+NORMAL_TEXT	23732	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 485
+NORMAL_TEXT	23784	Nội tại — Thời Khắc Ban Cho: Tăng 8%-16% %Hồi Năng Lượng của người trang bị. Sau khi người trang bị sử dụng Chiến Kỹ lên một đồng minh, mục tiêu nhận “Tinh Thời” trong 2 lượt, tăng 12%-24% sát thương gây ra. Khi đồng minh có “Tinh Thời” sử dụng Tuyệt Kỹ, người trang bị hồi 5-9 Năng Lượng và mục tiêu được hồi thêm 3%-7% giới hạn Năng Lượng của chính họ; hiệu ứng hồi Năng Lượng cho mục tiêu tối đa kích hoạt 1 lần cho mỗi lần “Tinh Thời” được áp dụng. Sau khi người trang bị sử dụng Tuyệt Kỹ, toàn bộ đồng minh khác tăng 8%-16% Tấn Công trong 2 lượt; hiệu ứng này có thể cùng tồn tại với “Tinh Thời”.
+NORMAL_TEXT	24387	AEGIS
+NORMAL_TEXT	24393	70. Thành Tuyến Chặn Đứng Mùa Đông
+NORMAL_TEXT	24428	Độ hiếm: 5★
+NORMAL_TEXT	24440	Aspect: Aegis
+NORMAL_TEXT	24454	Nhân vật đại diện: Rhydan
+NORMAL_TEXT	24480	Chỉ số Lv1: HP 62 | Tấn Công 21 | Phòng Thủ 30
+NORMAL_TEXT	24527	Chỉ số Lv60: HP 1217 | Tấn Công 370 | Phòng Thủ 529
+NORMAL_TEXT	24579	Nội tại — Không Một Bước Qua: Tăng 20%-36% Phòng Thủ của người trang bị và tăng 12%-24% giá trị Khiên do người trang bị tạo. Khi một đồng minh có Khiên do người trang bị tạo bị kẻ địch gây sát thương, người trang bị nhận 1 tầng “Trấn Tuyến”, cộng dồn tối đa 5 tầng. Khi đạt 5 tầng, xóa toàn bộ “Trấn Tuyến”, phục hồi Khiên cho toàn bộ đồng minh đang có Khiên do người trang bị tạo bằng 4%-8% Phòng Thủ của người trang bị + 100-220, đồng thời khiến các đồng minh đó giảm 6%-10% sát thương phải chịu trong 1 lượt. Hiệu ứng phục hồi Khiên tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	25173	CADUCEUS
+NORMAL_TEXT	25182	71. Tiếng Chuông Còn Vang Sau Thủy Triều
+NORMAL_TEXT	25223	Độ hiếm: 5★
+NORMAL_TEXT	25235	Aspect: Caduceus
+NORMAL_TEXT	25252	Nhân vật đại diện: Liora
+NORMAL_TEXT	25277	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 27
+NORMAL_TEXT	25324	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 485
+NORMAL_TEXT	25376	Nội tại — Dư Âm Sinh Mệnh: Tăng 16%-28% HP và 10%-18% Lượng Trị Liệu của người trang bị. Sau khi người trang bị hồi HP cho một đồng minh, mục tiêu nhận “Dư Âm” trong 2 lượt. Khi đồng minh có “Dư Âm” bắt đầu lượt, hồi HP bằng 2%-4% HP tối đa của người trang bị; hiệu ứng này không cộng dồn và việc làm mới “Dư Âm” chỉ làm mới thời gian tồn tại. Khi người trang bị hồi HP cho một đồng minh có HP dưới 50%, lượng hồi phục của lần đó tăng thêm 12%-24% và mục tiêu tăng 6%-12% Phòng Thủ trong 1 lượt. Mỗi đồng minh chỉ có thể nhận phần tăng lượng hồi phục này 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	25972	MYTHBORNE — MẢNH KÝ ỨC 5★ GIỚI HẠN
+NORMAL_TEXT	26007	GUNGNIR
+NORMAL_TEXT	26015	72. Đôi Cánh Đỏ Trên Bầu Trời Không Khuất
+NORMAL_TEXT	26057	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	26078	Aspect: Gungnir
+NORMAL_TEXT	26094	Nhân vật đại diện: Athena
+NORMAL_TEXT	26120	Chỉ số Lv1: HP 50 | Tấn Công 26 | Phòng Thủ 21
+NORMAL_TEXT	26167	Chỉ số Lv60: HP 882 | Tấn Công 582 | Phòng Thủ 396
+NORMAL_TEXT	26218	Nội tại — Ba Lời Thề Trước Khải Hoàn: Tăng 12%-24% %Chí Mạng và 18%-30% Sát Thương Chí Mạng của người trang bị. Khi người trang bị gây sát thương bằng Tấn Công Thường, Chiến Kỹ hoặc Tuyệt Kỹ, nhận một “Thệ Ấn” tương ứng với loại kỹ năng vừa sử dụng trong 3 lượt. Mỗi loại “Thệ Ấn” chỉ tồn tại 1 lần; mỗi loại đang sở hữu tăng 6%-10% sát thương gây ra của người trang bị. Khi đồng thời có đủ ba loại “Thệ Ấn”, xóa toàn bộ chúng và nhận “Khải Hoàn Đỏ” trong 2 lượt. Khi có “Khải Hoàn Đỏ”, người trang bị tăng 12%-20% %Xuyên Giáp, đồng thời Tấn Công Thường, Chiến Kỹ và Tuyệt Kỹ tăng thêm 20%-36% sát thương.
+NORMAL_TEXT	26824	Khi người trang bị gây sát thương Chí Mạng sẽ lập tức hồi cố định 5 năng lượng
+NORMAL_TEXT	26903	MJOLNIR
+NORMAL_TEXT	26911	73. Bạch Giáp Dừng Lại Trước Bàn Cân Vỡ
+NORMAL_TEXT	26951	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	26972	Aspect: Mjolnir
+NORMAL_TEXT	26988	Nhân vật đại diện: Nemesis
+NORMAL_TEXT	27015	Chỉ số Lv1: HP 56 | Tấn Công 26 | Phòng Thủ 29
+NORMAL_TEXT	27062	Chỉ số Lv60: HP 1096 | Tấn Công 582 | Phòng Thủ 529
+NORMAL_TEXT	27114	Nội tại — Dư Chấn Của Phán Quyết: Tăng 36%-60% %Sát Thương Chí Mạng của người trang bị. Sau khi người trang bị sử dụng Chiến Kỹ hoặc Tuyệt Kỹ gây sát thương lên từ 2 kẻ địch trở lên, nhận 1 tầng “Phán Tích” trong 2 lượt, cộng dồn tối đa 3 tầng. Mỗi tầng “Phán Tích” tăng 8%-16% sát thương Chiến Kỹ và 8%-16% sát thương Tuyệt Kỹ.
+NORMAL_TEXT	27443	Khi người trang bị gây sát thương lên mục tiêu đang chịu hiệu ứng bất lợi, dấu ấn hoặc trạng thái riêng do kỹ năng của người trang bị tạo ra, tiêu hao 1 tầng “Phán Tích” để gây thêm Sát Thương Nham bằng 35%-70% Tấn Công của người trang bị lên toàn bộ kẻ địch. Hiệu ứng gây sát thương thêm này tối đa kích hoạt 1 lần trong mỗi hành động.
+NORMAL_TEXT	27780	Nếu lần tiêu hao trên xóa tầng “Phán Tích” cuối cùng, toàn bộ kẻ địch bị trúng đòn nhận “Lệch Cân” trong 2 lượt, khiến sát thương chúng phải nhận từ người trang bị tăng 8%-16%. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	27992	KERAUNOS
+NORMAL_TEXT	28001	74. Bức Thư Đến Trước Cả Bình Minh
+NORMAL_TEXT	28036	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	28057	Aspect: Keraunos
+NORMAL_TEXT	28074	Nhân vật đại diện: Hermes
+NORMAL_TEXT	28100	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	28147	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	28199	Nội tại — Đường Bay Không Chờ Đợi: Tăng 8%-16% %Hồi Năng Lượng của người trang bị. Sau khi người trang bị sử dụng Chiến Kỹ lên một đồng minh, mục tiêu tăng 12%-24% sát thương gây ra trong 2 lượt. Nếu Chiến Kỹ đó khiến thứ tự hành động của mục tiêu được đẩy lên hoặc áp dụng Ưu Tiên Hành Động, mục tiêu đồng thời tăng 18%-30% Sát Thương Chí Mạng trong 1 lượt. Sau khi người trang bị sử dụng Tuyệt Kỹ, ban cho toàn bộ đồng minh Ưu Tiên Hành Động 10% cùng với hồi 1 điểm Planck, làm mới sau mỗi 2 lần sử dụng Tuyệt Kĩ
+NORMAL_TEXT	28714	CADUCEUS
+NORMAL_TEXT	28723	75. Ngọn Lửa Không Tắt Ở Ngã Ba Cuối
+NORMAL_TEXT	28760	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	28781	Aspect: Caduceus
+NORMAL_TEXT	28798	Nhân vật đại diện: Hecate
+NORMAL_TEXT	28824	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 29
+NORMAL_TEXT	28871	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 520
+NORMAL_TEXT	28923	Nội tại — Người Giữ Lửa Sau Cùng: Tăng 18%-30% HP và 10%-18% Lượng Trị Liệu của người trang bị. Sau khi người trang bị hồi HP cho một đồng minh, mục tiêu nhận “Tàn Hỏa” trong 2 lượt, tăng 8%-16% sát thương gây ra; hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	29171	Khi người trang bị giải thành công ít nhất 1 hiệu ứng xấu cho đồng minh, mục tiêu được hồi thêm HP bằng 2%-4% HP tối đa của người trang bị và tăng 10%-18% Kháng Hiệu Ứng trong 1 lượt. Hiệu ứng hồi thêm tối đa kích hoạt 1 lần trên mỗi mục tiêu giữa hai lượt của người trang bị.
+NORMAL_TEXT	29448	Sau khi người trang bị sử dụng Tuyệt Kỹ, nếu Tuyệt Kỹ đó ban hiệu ứng tăng cường cho đồng minh, tăng 60% Sát Thương gây ra của người trang bị trong 2 lượt và hồi cố định năng lượng bằng 5% giới hạn năng lượng người trang bị
+HEADING_2	29672	GUNGNIR
+HEADING_2	29680	76. Sợi Vàng Trên Cánh Cung Trăng Khuyết
+NORMAL_TEXT	29721	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	29742	Aspect: Gungnir
+NORMAL_TEXT	29758	Nhân vật đại diện: Artemis
+NORMAL_TEXT	29785	Chỉ số Lv1: HP 50 | Tấn Công 26 | Phòng Thủ 21
+NORMAL_TEXT	29832	Chỉ số Lv60: HP 882 | Tấn Công 582 | Phòng Thủ 396
+NORMAL_TEXT	29883	Nội tại — Dây Cung Không Chùng: Tăng 12%-24% %Chí Mạng của người trang bị. Sau khi người trang bị sử dụng Chiến Kỹ không gây sát thương hoặc Chiến Kỹ có hiệu ứng cường hóa Tấn Công Thường, sát thương Tấn Công Thường tăng 24%-40% trong 2 lượt. Khi người trang bị liên tiếp gây sát thương bằng Tấn Công Thường lên cùng một kẻ địch, nhận 1 tầng “Truy Nguyệt” trong 2 lượt, cộng dồn tối đa 3 tầng; mỗi tầng khiến sát thương Tấn Công Thường bỏ qua 4%-8% Phòng Thủ của mục tiêu đó. Nếu Tấn Công Thường chuyển sang mục tiêu khác, toàn bộ “Truy Nguyệt” bị xóa. Khi đạt đủ 3 tầng “Truy Nguyệt”, người trang bị hồi 4-8 Năng Lượng; hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	30585	ị
+HEADING_2	30587	PANDORA
+HEADING_2	30595	77. Trái Tim Đặt Sai Bên Cán Cân
+NORMAL_TEXT	30628	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	30649	Aspect: Pandora
+NORMAL_TEXT	30665	Nhân vật đại diện: Anubis
+NORMAL_TEXT	30691	Chỉ số Lv1: HP 52 | Tấn Công 26 | Phòng Thủ 24
+NORMAL_TEXT	30738	Chỉ số Lv60: HP 917 | Tấn Công 582 | Phòng Thủ 440
+NORMAL_TEXT	30789	Nội tại — Phán Xét Sau Cùng: Tăng 24%-40% %Chính Xác Hiệu Ứng và 20%-36% sát thương Sát Thương Duy Trì của người trang bị. Mỗi khi một kẻ địch chịu Sát Thương Duy Trì, người trang bị nhận 1 tầng “Cân Đen”, cộng dồn tối đa 4 tầng; trong cùng một hành động hoặc cùng một lần bắt đầu lượt của một kẻ địch, tối đa nhận 1 tầng “Cân Đen” từ mục tiêu đó. Khi đạt đủ 4 tầng, lần tiếp theo người trang bị trực tiếp gây sát thương lên một kẻ địch đang có Sát Thương Duy Trì sẽ xóa toàn bộ “Cân Đen”, sẽ hồi 1 điểm Planck
+NORMAL_TEXT	31300	TRISHULA
+HEADING_2	31309	78. Ngọn Giáo Cắm Trên Cánh Đồng Không Người
+NORMAL_TEXT	31354	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	31375	Aspect: Trishula
+NORMAL_TEXT	31392	Nhân vật đại diện: Ares
+NORMAL_TEXT	31416	Chỉ số Lv1: HP 48 | Tấn Công 26 | Phòng Thủ 23
+NORMAL_TEXT	31463	Chỉ số Lv60: HP 846 | Tấn Công 582 | Phòng Thủ 420
+NORMAL_TEXT	31514	Nội tại — Kẻ Thắng Trả Giá Sau Cùng: Tăng 24%-40% Sát Thương Chí Mạng và 18%-30% sát thương Chiến Kỹ của người trang bị. Khi người trang bị sử dụng Chiến Kỹ có tiêu hao Điểm Planck, với mỗi Điểm Planck thực tế đã tiêu hao trong cùng hành động, Chiến Kỹ đó nhận 1 tầng “Chiến Phí” cho đến khi hành động kết thúc, tối đa 2 tầng; mỗi tầng khiến sát thương Chiến Kỹ bỏ qua 4%-8% Phòng Thủ của mục tiêu. Khi HP người trang bị giảm, tăng cố định 10% %Hồi Năng Lượng trong 2 lượt.
+NORMAL_TEXT	31989	TRISHULA
+HEADING_2	31998	79. Ngai Vàng Trôi Sau Đại Hồng Thủy
+NORMAL_TEXT	32035	Độ hiếm: 5★ Xron giới hạn
+NORMAL_TEXT	32061	Aspect: Trishula
+NORMAL_TEXT	32078	Nhân vật đại diện: Poseidon
+NORMAL_TEXT	32106	Chỉ số Lv1: HP 54 | Tấn Công 28 | Phòng Thủ 24
+NORMAL_TEXT	32153	Chỉ số Lv60: HP 953 | Tấn Công 658 | Phòng Thủ 440
+NORMAL_TEXT	32204	Nội tại — Biển Không Trả Lại Ngai Vàng: Tăng 24%-40% Sát Thương Chí Mạng của người trang bị. Sát thương Chiến Kỹ và Đòn Đánh Theo Sau tăng 20%-36%.
+NORMAL_TEXT	32352	Khi người trang bị gây sát thương bằng Chiến Kỹ, nhận 1 tầng “Hải Tuyến” trong 2 lượt; khi gây sát thương bằng Đòn Đánh Theo Sau, nhận thêm 1 tầng “Hải Tuyến” khác trong 2 lượt. Hai nguồn có thể cùng tồn tại, mỗi loại chỉ có tối đa 1 tầng. Mỗi tầng “Hải Tuyến” tăng 8%-14% sát thương gây ra.
+NORMAL_TEXT	32644	Khi đồng thời sở hữu đủ 2 tầng “Hải Tuyến”, lần Chiến Kỹ hoặc Đòn Đánh Theo Sau kế tiếp gây sát thương lên từ 2 kẻ địch trở lên nhận “Đại Triều”: đòn đánh đó bỏ qua 12%-20% Phòng Thủ của mục tiêu và tăng thêm 15%-27% %Chí Mạng kéo dài 2 lượt. Sau khi kết thúc “Đại Triều” Ưu Tiên Hành Động 25% đồng thời hồi 5-10 năng lượng
+NORMAL_TEXT	32968	PANDORA
+HEADING_2	32976	80. Dòng Chú Thích Làm Nghiêng Thế Giới
+NORMAL_TEXT	33016	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	33037	Aspect: Pandora
+NORMAL_TEXT	33053	Nhân vật đại diện: Eris
+NORMAL_TEXT	33077	Chỉ số Lv1: HP 61 | Tấn Công 21 | Phòng Thủ 29
+NORMAL_TEXT	33124	Chỉ số Lv60: HP 1199 | Tấn Công 370 | Phòng Thủ 520
+NORMAL_TEXT	33176	Nội tại — Chữ Viết Không Chịu Đứng Yên: Tăng 24%-40% %Chính Xác Hiệu Ứng của người trang bị.
+NORMAL_TEXT	33269	Khi người trang bị áp dụng thành công hiệu ứng giảm Tốc Độ, giảm tiến trình hành động hoặc hiệu ứng khống chế lên kẻ địch, mục tiêu nhận “Lệch Nhịp” trong 2 lượt. Kẻ địch có “Lệch Nhịp” giảm 6%-10% Kháng Nguyên Tố; hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	33518	Khi một mục tiêu đang có “Lệch Nhịp” đồng thời sở hữu ít nhất 2 hiệu ứng bất lợi khác nhau do người trang bị áp dụng, mục tiêu giảm thêm 6%-12% Phòng Thủ trong 2 lượt. Hiệu ứng giảm Phòng Thủ này chỉ được làm mới khi người trang bị áp dụng thành công một hiệu ứng bất lợi mới lên mục tiêu.
+NORMAL_TEXT	33808	Mỗi khi người trang bị khiến tiến trình hành động của ít nhất một kẻ địch bị đẩy lùi hoặc áp dụng thành công một hiệu ứng khống chế, hồi 4-8 Năng Lượng. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	34043	AEGIS
+HEADING_2	34049	81. Những Con Mắt Trên Mặt Hồ Không Nhắm Lại
+NORMAL_TEXT	34094	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	34115	Aspect: Aegis
+NORMAL_TEXT	34129	Nhân vật đại diện: Hera
+NORMAL_TEXT	34153	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 30
+NORMAL_TEXT	34200	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 529
+NORMAL_TEXT	34252	Nội tại — Vương Quyền Nhìn Thấy Tất Cả: Tăng 20%-36% Phòng Thủ và 16%-28% %Chính Xác Hiệu Ứng của người trang bị.
+NORMAL_TEXT	34366	Sau khi người trang bị tạo Khiên cho đồng minh, nhận “Quan Sát” trong 2 lượt. Khi có “Quan Sát”, mỗi khi một kẻ địch gây sát thương lên đồng minh đang có Khiên do người trang bị tạo, kẻ địch đó nhận “Phản Ảnh” trong 2 lượt. Kẻ địch có “Phản Ảnh” giảm 5%-9% Kháng Nguyên Tố tương ứng với nguyên tố của người trang bị; hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	34717	Khi người trang bị áp dụng thành công hiệu ứng giảm Tốc Độ, giảm tiến trình hành động hoặc hiệu ứng khống chế lên kẻ địch đang có “Phản Ảnh”, mục tiêu giảm thêm 6%-12% Phòng Thủ trong 2 lượt. Hiệu ứng giảm Phòng Thủ cùng tên không cộng dồn.
+NORMAL_TEXT	34958	Mỗi khi người trang bị áp dụng thành công hiệu ứng khống chế hoặc khiến tiến trình hành động của ít nhất một kẻ địch bị đẩy lùi, phục hồi Khiên cho đồng minh đang có Khiên thấp nhất do người trang bị tạo bằng 4%-8% Phòng Thủ của người trang bị + 100-180. Hiệu ứng phục hồi Khiên tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+HEADING_2	35294	KERAUNOS
+HEADING_2	35303	82. Lò Rèn Còn Sáng Sau Khi Các Thần Rời Đi
+NORMAL_TEXT	35347	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	35368	Aspect: Keraunos
+NORMAL_TEXT	35385	Nhân vật đại diện: Hephaestus
+NORMAL_TEXT	35415	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 29
+NORMAL_TEXT	35462	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 520
+NORMAL_TEXT	35514	Nội tại — Than Hồng Không Tắt: Tăng 8%-16% %Hồi Năng Lượng của người trang bị. Sau khi người trang bị sử dụng Chiến Kỹ hoặc Tuyệt Kỹ, toàn bộ đồng minh tăng 10%-18% %Chí Mạng trong 2 lượt; hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	35737	Mỗi khi một đồng minh tiêu hao Điểm Planck để sử dụng Chiến Kỹ, người trang bị nhận 1 tầng “Tàn Nhiệt” trong 2 lượt, cộng dồn tối đa 3 tầng. Trong cùng một hành động, bất kể Chiến Kỹ tiêu hao bao nhiêu Điểm Planck, chỉ nhận tối đa 1 tầng “Tàn Nhiệt”. Khi đạt 3 tầng, xóa toàn bộ “Tàn Nhiệt” và hồi 1 Điểm Planck cho đội; hiệu ứng hồi Planck tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	36135	Sau khi người trang bị hồi Điểm Planck cho đội bằng bất kỳ hiệu ứng nào của bản thân, toàn bộ đồng minh tăng 12%-24% sát thương Chiến Kỹ trong 1 lượt. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	36322	PANDORA
+HEADING_2	36330	83. Nửa Mặt Nạ Bỏ Lại Bên Kia Cánh Cửa
+NORMAL_TEXT	36369	Độ hiếm: 5★ Xron giới hạn
+NORMAL_TEXT	36395	Aspect: Pandora
+NORMAL_TEXT	36411	Nhân vật đại diện: Hades
+NORMAL_TEXT	36436	Chỉ số Lv1: HP 54 | Tấn Công 28 | Phòng Thủ 26
+NORMAL_TEXT	36483	Chỉ số Lv60: HP 953 | Tấn Công 658 | Phòng Thủ 475
+NORMAL_TEXT	36534	Nội tại — Người Chết Không Giữ Tên: Tăng 24%-40% %Chính Xác Hiệu Ứng và 20%-36% sát thương Sát Thương Duy Trì của người trang bị.
+NORMAL_TEXT	36664	Khi người trang bị khiến một Sát Thương Duy Trì trên kẻ địch kích hoạt ngoài thời điểm bắt đầu lượt thông thường của mục tiêu, kẻ địch đó nhận “Tận Kỳ” trong 2 lượt. Kẻ địch có “Tận Kỳ” tăng 12%-20% Sát Thương Duy Trì phải nhận; hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	36927	Khi người trang bị trực tiếp gây sát thương lên kẻ địch đang có từ 2 Sát Thương Duy Trì trở lên, sát thương do các lần kích hoạt Sát Thương Duy Trì ngoài lượt của mục tiêu gây ra bỏ qua 8%-16% Phòng Thủ trong 2 lượt. Hiệu ứng cùng tên không cộng dồn.
+NORMAL_TEXT	37178	Sau khi người trang bị sử dụng Tuyệt Kỹ, hai lần đầu trong 2 lượt tiếp theo mà người trang bị khiến Sát Thương Duy Trì kích hoạt ngoài lượt của mục tiêu sẽ hồi 4-8 Năng Lượng cho người trang bị; mỗi hành động tối đa hồi Năng Lượng 1 lần.
+NORMAL_TEXT	37417	PANDORA
+NORMAL_TEXT	37425	84. Xiềng Xích Chỉ Giữ Lại Tro Nóng
+NORMAL_TEXT	37461	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	37482	Aspect: Pandora
+NORMAL_TEXT	37498	Nhân vật đại diện: Prometheus
+NORMAL_TEXT	37528	Chỉ số Lv1: HP 50 | Tấn Công 26 | Phòng Thủ 23
+NORMAL_TEXT	37575	Chỉ số Lv60: HP 882 | Tấn Công 582 | Phòng Thủ 420
+NORMAL_TEXT	37626	Nội tại — Lửa Không Chấp Nhận Giam Cầm: Tăng 24%-40% %Chính Xác Hiệu Ứng và 20%-36% sát thương Sát Thương Duy Trì của người trang bị.
+NORMAL_TEXT	37760	Sau khi người trang bị sử dụng Chiến Kỹ, nhận 1 tầng “Dư Nhiệt” trong 3 lượt, cộng dồn tối đa 5 tầng. Nếu Chiến Kỹ đó đánh trúng ít nhất một kẻ địch đang có Sát Thương Duy Trì do người trang bị sở hữu, nhận thêm 1 tầng “Dư Nhiệt”; trong cùng một hành động tối đa nhận 2 tầng. Mỗi tầng “Dư Nhiệt” tăng 4%-8% sát thương Chiến Kỹ và 3%-6% sát thương Sát Thương Duy Trì của người trang bị.
+NORMAL_TEXT	38146	Khi đạt đủ 5 tầng “Dư Nhiệt”, lần Chiến Kỹ kế tiếp của người trang bị gây sát thương lên kẻ địch đang có Sát Thương Duy Trì do chính người trang bị sở hữu sẽ xóa toàn bộ “Dư Nhiệt” sau khi gây sát thương và lập tức kích hoạt 1 lần Sát Thương Duy Trì có sát thương hiện tại cao nhất do người trang bị sở hữu trên mỗi mục tiêu trúng đòn với 60%-100% sát thương hiện tại. Lần kích hoạt này không làm giảm thời gian tồn tại hoặc số tầng của hiệu ứng.
+HEADING_2	38594	VAJRA
+HEADING_2	38600	85. Mười Hai Vết Nứt Trên Cán Chùy
+NORMAL_TEXT	38635	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	38656	Aspect: Vajra
+NORMAL_TEXT	38670	Nhân vật đại diện: Heracles
+NORMAL_TEXT	38698	Chỉ số Lv1: HP 52 | Tấn Công 26 | Phòng Thủ 24
+NORMAL_TEXT	38745	Chỉ số Lv60: HP 917 | Tấn Công 582 | Phòng Thủ 440
+NORMAL_TEXT	38796	Nội tại — Không Có Gì Được Quyền Đứng Yên: Tăng 24%-40% %Diệt Phá của người trang bị.
+NORMAL_TEXT	38882	Khi người trang bị trực tiếp gây sát thương lên kẻ địch còn Khiên bằng Tấn Công Thường, Chiến Kỹ hoặc Tuyệt Kỹ, Hiệu Suất Phá Vỡ của hành động đó tăng 18%-30%.
+NORMAL_TEXT	39042	Sau khi người trang bị trực tiếp phá Khiên hoặc gây “Diệt Kích”, nhận “Trọng Kích” trong 2 lượt. Khi có “Trọng Kích”, sát thương gây ra tăng 12%-20% và sát thương “Diệt Kích” tăng 12%-36%. Hiệu ứng cùng tên không cộng dồn; kích hoạt lại chỉ làm mới thời gian tồn tại.
+NORMAL_TEXT	39310	Khi người trang bị gây sát thương lên kẻ địch đang ở trạng thái Vỡ Khiên, hành động gây sát thương đầu tiên trong mỗi lượt bỏ qua 8%-16% Phòng Thủ của mục tiêu và hồi 4-8 Năng Lượng sau khi hành động kết thúc. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần mỗi lượt của người trang bị.
+NORMAL_TEXT	39597	KERAUNOS
+HEADING_2	39606	86. Vòng Quế Bay Qua Thành Trì Thất Thủ
+NORMAL_TEXT	39646	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	39667	Aspect: Keraunos
+NORMAL_TEXT	39684	Nhân vật đại diện: Nike
+NORMAL_TEXT	39708	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	39755	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	39807	Nội tại — Vòng Quế Nguyệt: Tăng 8%-16% %Hồi Năng Lượng của người trang bị.
+NORMAL_TEXT	39882	Mỗi khi một đồng minh trực tiếp phá Khiên của kẻ địch, toàn bộ đồng minh tăng 12%-24% %Diệt Phá trong 2 lượt và người trang bị hồi 2-6 Năng Lượng. Hiệu ứng tăng %Diệt Phá cùng tên không cộng dồn; hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần trong mỗi hành động gây phá Khiên.
+NORMAL_TEXT	40160	Sau khi người trang bị sử dụng Tuyệt Kỹ, nếu %Diệt Phá của người trang bị lớn hơn 70%, hồi 1 điểm Planck.
+HEADING_2	40267	MJOLNIR
+HEADING_2	40277	87. Bình Sấm Chôn Trong Lồng Ngực Thép
+NORMAL_TEXT	40316	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	40337	Aspect: Mjolnir
+NORMAL_TEXT	40353	Nhân vật đại diện: Astraeus
+NORMAL_TEXT	40381	Chỉ số Lv1: HP 50 | Tấn Công 26 | Phòng Thủ 24
+NORMAL_TEXT	40428	Chỉ số Lv60: HP 882 | Tấn Công 582 | Phòng Thủ 440
+NORMAL_TEXT	40479	Nội tại — Lõi Trời Chưa Tắt: Tăng 8%-16% %Hồi Năng Lượng và 20%-36% sát thương Tuyệt Kỹ của người trang bị.Nếu giới hạn năng lượng của người trang bị lớn hơn 100, với mỗi điểm năng lượng vượt mức tăng tương ứng 0,4% Sát thương gây ra, tối đa cộng dồn 40%
+NORMAL_TEXT	40735	Sau khi người trang bị sử dụng Tuyệt Kỹ, nếu Tuyệt Kỹ đó tiêu hao từ 150 Năng Lượng trở lên, hồi 15-25 Năng Lượng; nếu tiêu hao dưới 150 Năng Lượng, hồi 5-9 Năng Lượng. Sau khi Tuyệt Kỹ kết thúc, xóa toàn bộ “Tích Áp”.
+NORMAL_TEXT	40956	GUNGNIR
+HEADING_2	40964	88. Một Nhịp Tim Trễ Hơn Cái Chết
+NORMAL_TEXT	40998	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	41019	Aspect: Gungnir
+NORMAL_TEXT	41035	Nhân vật đại diện: Thanatos
+NORMAL_TEXT	41063	Chỉ số Lv1: HP 48 | Tấn Công 26 | Phòng Thủ 22
+NORMAL_TEXT	41110	Chỉ số Lv60: HP 846 | Tấn Công 582 | Phòng Thủ 405
+NORMAL_TEXT	41161	Nội tại — Kẻ Đến Sau Không Có Lần Thứ Hai: Tăng 12%-24% %Chí Mạng và 20%-36% sát thương Chiến Kỹ của người trang bị.
+NORMAL_TEXT	41278	Sau khi người trang bị nhận hiệu ứng Ưu Tiên Hành Động, Chiến Kỹ gây sát thương kế tiếp trong 1 lượt bỏ qua 8%-16% Phòng Thủ của mục tiêu. Hiệu ứng cùng tên không cộng dồn; nhận Ưu Tiên Hành Động lần nữa chỉ làm mới điều kiện cho Chiến Kỹ kế tiếp.
+NORMAL_TEXT	41526	Sau khi người trang bị sử dụng Tuyệt Kỹ, Chiến Kỹ kế tiếp trong 2 lượt tăng 20%-36% Sát Thương Chí Mạng. 
+HEADING_2	41632	PANDORA
+HEADING_2	41640	89. Chiếc Sừng Thứ Hai Không Có Tiếng Vang
+NORMAL_TEXT	41683	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	41704	Aspect: Pandora
+NORMAL_TEXT	41720	Nhân vật đại diện: Janus
+NORMAL_TEXT	41745	Chỉ số Lv1: HP 52 | Tấn Công 26 | Phòng Thủ 22
+NORMAL_TEXT	41792	Chỉ số Lv60: HP 917 | Tấn Công 582 | Phòng Thủ 405
+NORMAL_TEXT	41843	Nội tại — Chiếc Sừng Ở Mặt Bên Kia: Tăng 24%-40% %Diệt Phá của người trang bị. Trong thời gian “Sừng Thứ Hai” tồn tại, sát thương Diệt Kích người trang bị gây lên kẻ địch tăng 20%-36%. Nếu người trang bị gây Đòn Đánh Theo Sau, lần gây sát thương đầu tiên của Đòn Đánh Theo Sau đó hồi 4-8 Năng Lượng; tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+HEADING_2	42201	CADUCEUS
+HEADING_2	42210	90. Điệu Waltz Còn Ấm Sau Nửa Đêm
+NORMAL_TEXT	42244	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	42265	Aspect: Caduceus
+NORMAL_TEXT	42282	Nhân vật đại diện: Hestia
+NORMAL_TEXT	42308	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	42355	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	42407	Nội tại — Khách Cuối Không Rời Bàn: Tăng 18%-30% HP và 10%-18% Lượng Trị Liệu của người trang bị.
+NORMAL_TEXT	42505	Sau khi người trang bị sử dụng Chiến Kỹ, toàn bộ đồng minh nhận “Dư Tiệc” trong 2 lượt, tăng 16%-28% sát thương Diệt Kích gây ra. Hiệu ứng cùng tên không cộng dồn; kích hoạt lại chỉ làm mới thời gian tồn tại.
+NORMAL_TEXT	42714	Mỗi khi một đồng minh trực tiếp phá Khiên của ít nhất một kẻ địch, người trang bị hồi 4-8 Năng Lượng và hồi HP cho đồng minh có tỷ lệ HP hiện tại thấp nhất bằng 3%-5% HP tối đa của người trang bị + 80-160. Trong cùng một hành động, hiệu ứng này chỉ kích hoạt 1 lần.
+HEADING_2	42981	VAJRA
+HEADING_2	42987	91. Lưỡi Kiếm Đốt Cháy Màu Của Lửa
+NORMAL_TEXT	43022	Độ hiếm: 5★ Xron giới hạn
+NORMAL_TEXT	43048	Aspect: Vajra
+NORMAL_TEXT	43062	Nhân vật đại diện: Surtr
+NORMAL_TEXT	43087	Chỉ số Lv1: HP 54 | Tấn Công 28 | Phòng Thủ 24
+NORMAL_TEXT	43134	Chỉ số Lv60: HP 953 | Tấn Công 658 | Phòng Thủ 440
+NORMAL_TEXT	43185	Nội tại — Sau Khi Thế Giới Cháy Hết: Tăng 24%-40% %Diệt Phá của người trang bị.
+NORMAL_TEXT	43265	Sau khi người trang bị sử dụng Tuyệt Kỹ, hai lần Chiến Kỹ gây sát thương kế tiếp trước lần Tuyệt Kỹ tiếp theo tăng 20%-36% Hiệu Suất Phá Vỡ và tăng 16%-28% sát thương Diệt Kích. Hiệu ứng được tính riêng cho từng lần Chiến Kỹ và biến mất sau khi đã áp dụng đủ 2 lần hoặc khi người trang bị sử dụng Tuyệt Kỹ tiếp theo.
+NORMAL_TEXT	43582	Sau khi người trang bị đã sử dụng đủ 2 Chiến Kỹ gây sát thương kể từ Tuyệt Kỹ gần nhất, hồi 1 Điểm Planck cho đội. Hiệu ứng hồi Điểm Planck tối đa kích hoạt 1 lần cho mỗi lần sử dụng Tuyệt Kỹ và không thể vượt quá giới hạn Điểm Planck của đội.
+NORMAL_TEXT	43827	KERAUNOS
+NORMAL_TEXT	43837	92. Tiếng Cá Voi Đi Qua Đáy Biển
+NORMAL_TEXT	43870	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	43891	Aspect: Keraunos
+NORMAL_TEXT	43908	Nhân vật đại diện: Amphitrite
+NORMAL_TEXT	43938	Chỉ số Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	43985	Chỉ số Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	44037	Nội tại — Ngọc Châu Giữ Lại Hải Ca: Tăng 8%-16% %Hồi Năng Lượng của người trang bị.
+NORMAL_TEXT	44121	Sau khi người trang bị sử dụng Tuyệt Kỹ lên một đồng minh, mục tiêu nhận “Hải Quyền” trong 2 lượt, tăng 16%-28% sát thương Chiến Kỹ và Đòn Đánh Theo Sau.
+NORMAL_TEXT	44275	Khi đồng minh đang có “Hải Quyền” thực hiện một hành động gây sát thương lên từ 2 kẻ địch trở lên, người trang bị hồi 5-9 Năng Lượng và mục tiêu tăng thêm 8%-16% sát thương gây ra trong 1 lượt. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	44550	Sau khi người trang bị gây sát thương lên toàn bộ kẻ địch bằng một hành động, toàn bộ kẻ địch tăng 6%-12% sát thương phải nhận trong 1 lượt. Hiệu ứng cùng tên không cộng dồn; kích hoạt lại chỉ làm mới thời gian tồn tại.
+NORMAL_TEXT	44772	VAJRA
+HEADING_2	44778	93. Vết Lõm Còn Nóng Trên Đe Trời
+NORMAL_TEXT	44812	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	44833	Aspect: Vajra
+NORMAL_TEXT	44847	Nhân vật đại diện: Thor
+NORMAL_TEXT	44871	Chỉ số Lv1: HP 52 | Tấn Công 26 | Phòng Thủ 24
+NORMAL_TEXT	44918	Chỉ số Lv60: HP 917 | Tấn Công 582 | Phòng Thủ 440
+NORMAL_TEXT	44969	Nội tại — Khoảnh Khắc Trước Thiên Lôi: Tăng 24%-40% %Diệt Phá của người trang bị.
+NORMAL_TEXT	45051	Khi người trang bị sử dụng Tuyệt Kỹ gây sát thương, Hiệu Suất Phá Vỡ của Tuyệt Kỹ đó tăng 18%-30%.
+NORMAL_TEXT	45150	Nếu Tuyệt Kỹ gây sát thương lên ít nhất 3 kẻ địch khác nhau, sát thương Diệt Kích do chính Tuyệt Kỹ đó gây ra tăng 16%-28% cho đến khi hành động kết thúc.
+NORMAL_TEXT	45305	Sau khi Tuyệt Kỹ gây Diệt Kích lên ít nhất 2 kẻ địch khác nhau, người trang bị hồi 8-16 Năng Lượng. Hiệu ứng hồi Năng Lượng chỉ có thể kích hoạt 1 lần trong mỗi lần sử dụng Tuyệt Kỹ.
+NORMAL_TEXT	45488	Mảnh Ký Ức Trấn — Dưới Con Ngươi Của Bạch HổĐộ hiếm: 5★
+NORMAL_TEXT	45547	Aspect: AegisNhân vật đại diện: Durga
+NORMAL_TEXT	45586	Chỉ số Lv1: HP 52 | Tấn Công 26 | Phòng Thủ 24
+NORMAL_TEXT	45633	Chỉ số Lv60: HP 917 | Tấn Công 658 | Phòng Thủ 440
+NORMAL_TEXT	45684	Nội Tại — Hổ Gầm: Tăng Tấn Công của người trang bị 18%-30%.
+NORMAL_TEXT	45744	Sau khi người trang bị tạo hoặc làm mới Khiên, toàn bộ đồng minh đang có Khiên tăng 10%-18% sát thương gây ra trong 2 lượt. Nếu đồng minh thuộc Aspect Mjolnir, Sát Thương của họ tăng thêm 6%-10% trong cùng thời gian.
+NORMAL_TEXT	45961	Khi một đồng minh đang có Khiên gây sát thương lên ít nhất 3 kẻ địch khác nhau trong cùng một hành động, người trang bị hồi 4-8 Năng Lượng. Hiệu ứng này chỉ có thể kích hoạt 1 lần giữa hai lượt của người trang bị.
+NORMAL_TEXT	46176	Hỏa Chủng Mang Hai Nhịp Tim
+NORMAL_TEXT	46204	Độ hiếm: 5★
+NORMAL_TEXT	46216	Aspect: Mjolnir
+NORMAL_TEXT	46232	Nhân vật phù hợp: Agni
+NORMAL_TEXT	46256	Chỉ số cơ bản
+NORMAL_TEXT	46270	Lv1: HP 48 | Tấn Công 30 | Phòng Thủ 20
+NORMAL_TEXT	46310	Lv60: HP 846 | Tấn Công 752 | Phòng Thủ 367
+NORMAL_TEXT	46355	Nội tại - Dư Hỏa Đồng Hành
+NORMAL_TEXT	46382	Tăng Tấn Công của người trang bị thêm 18%- 30%.
+NORMAL_TEXT	46430	Mỗi khi một đồng minh khác người trang bị hoàn tất một hành động gây sát thương, người trang bị nhận 1 tầng ‘Dư Hỏa’ cho mỗi kẻ địch khác nhau thực sự nhận sát thương từ hành động đó, tối đa 3 tầng trong mỗi hành động, duy trì 2 lượt.
+NORMAL_TEXT	46665	Mỗi tầng ‘Dư Hỏa’ tăng Sát Thương Đòn Đánh Theo Sau của người trang bị thêm 20%-36%Khi có đủ 3 tầng ‘Dư Hỏa’, Sát Thương Chí Mạng của Đòn Đánh Theo Sau do người trang bị gây ra tăng thêm 20%-36%
+NORMAL_TEXT	46861	Sát Thương Duy Trì và sát thương không được tính là một hành động tấn công riêng của đồng minh sẽ không tạo ‘Dư Hỏa’. Nhiều hit lên cùng một kẻ địch trong một hành động chỉ tính mục tiêu đó 1 lần.
+NORMAL_TEXT	47063	Bốn Vết Vuốt Trên Phiến Đá Đen
+NORMAL_TEXT	47094	Độ hiếm: 5★
+NORMAL_TEXT	47106	Aspect: Pandora
+NORMAL_TEXT	47122	Nhân vật phù hợp: Sekhmet
+NORMAL_TEXT	47149	Chỉ số cơ bản
+NORMAL_TEXT	47163	Lv1: HP 49 | Tấn Công 27 | Phòng Thủ 22
+NORMAL_TEXT	47203	Lv60: HP 864 | Tấn Công 677 | Phòng Thủ 404
+NORMAL_TEXT	47248	Nội tại — Dấu Chân Không Trở Lại
+NORMAL_TEXT	47281	Tăng Chính Xác Hiệu Ứng của người trang bị thêm 18%-30%.
+NORMAL_TEXT	47338	Khi một đồng minh gây sát thương lên kẻ địch đang mang hiệu ứng bất lợi do người trang bị áp dụng, ghi nhớ loại nguồn hành động vừa gây sát thương lên mục tiêu đó trong số Tấn Công Thường, Chiến Kĩ, Tuyệt Kĩ và Đòn Đánh Theo Sau.
+NORMAL_TEXT	47568	Nếu loại nguồn hành động này khác với loại nguồn hành động được ghi nhớ ngay trước đó trên cùng mục tiêu, sát thương của hành động hiện tại bỏ qua 8%-16% Phòng Thủ của mục tiêu.
+NORMAL_TEXT	47746	Sau khi điều kiện đổi loại nguồn hành động được kích hoạt, người trang bị hồi 5- 9 Năng Lượng. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần trong mỗi lượt của người trang bị.
+NORMAL_TEXT	47923	Thông tin loại nguồn hành động được ghi nhớ riêng cho từng mục tiêu; khi mục tiêu không còn hiệu ứng bất lợi do người trang bị áp dụng, thông tin ghi nhớ của mục tiêu đó bị xóa.
+NORMAL_TEXT	48104	Mặt Trời Không Đội Vương Miện
+NORMAL_TEXT	48134	Độ hiếm: 5★ Xron giới hạn
+NORMAL_TEXT	48160	Aspect: Mjolnir
+NORMAL_TEXT	48176	Nhân vật phù hợp: Apollo
+NORMAL_TEXT	48202	Chỉ số cơ bản
+NORMAL_TEXT	48216	Lv1: HP 48 | Tấn Công 30 | Phòng Thủ 22
+NORMAL_TEXT	48256	Lv60: HP 846 | Tấn Công 752 | Phòng Thủ 404
+NORMAL_TEXT	48301	Nội tại - A Sky Made to Feed the Sun
+NORMAL_TEXT	48338	Tăng Sát Thương Chí Mạng của người trang bị thêm 24%-40%.
+NORMAL_TEXT	48396	Mỗi khi một đồng minh khác hoàn tất một hành động gây sát thương, người trang bị hồi 4-8 Năng Lượng. Nếu đồng minh có cùng Aspect với người trang bị, lượng hồi tăng thành 6-10 Năng Lượng.
+NORMAL_TEXT	48584	Mỗi đồng minh chỉ có thể kích hoạt hiệu ứng hồi Năng Lượng này 1 lần giữa hai lượt thực tế liên tiếp của người trang bị. Giới hạn được theo dõi riêng cho từng đồng minh.
+NORMAL_TEXT	48754	Khi người trang bị sử dụng một Tuyệt Kĩ tiêu hao ít nhất 150 Năng Lượng, sát thương Tuyệt Kĩ đó tăng 20%-36% và nhận 10%-18% Xuyên Kháng Nguyên Tố cho đến khi hành động kết thúc
+NORMAL_TEXT	48932	Đêm Dài Chỉ Có Một Vầng Trăng
+NORMAL_TEXT	48962	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	48983	Aspect: Keraunos
+NORMAL_TEXT	49000	Nhân vật đại diện: Máni
+NORMAL_TEXT	49024	Chỉ số cơ bản
+NORMAL_TEXT	49038	Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	49078	Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	49123	Nội tại - The Orbit Remembers One Name
+NORMAL_TEXT	49162	Tăng Hồi Năng Lượng của người trang bị thêm 8%-16%.
+NORMAL_TEXT	49214	Sau khi người trang bị sử dụng Chiến Kĩ lên một đồng minh khác, mục tiêu nhận ‘Dẫn Quỹ’ trong 2 lượt. Khi đồng minh có ‘Dẫn Quỹ’ thực hiện một hành động mà toàn bộ sát thương trực tiếp chỉ gây lên 1 kẻ địch, sát thương của hành động đó tăng 12%-24%.
+NORMAL_TEXT	49464	Nếu kẻ địch nhận sát thương cũng là kẻ địch duy nhất chịu sát thương trực tiếp từ hành động gây sát thương gần nhất của đồng minh có ‘Dẫn Quỹ’, Sát Thương Chí Mạng của hành động hiện tại tăng thêm 18%-30%.
+NORMAL_TEXT	49670	Sau khi đồng minh có ‘Dẫn Quỹ’ hoàn tất 2 lượt thực tế liên tiếp và trong mỗi lượt đều gây sát thương trực tiếp lên cùng 1 kẻ địch duy nhất, người trang bị hồi 6-10 Năng Lượng. Hiệu ứng hồi Năng Lượng chỉ có thể kích hoạt 1 lần trong mỗi lần ‘Dẫn Quỹ’ được áp dụng.
+NORMAL_TEXT	49938	Vương Miện Treo Trên Lưỡi Kiếm Băng
+NORMAL_TEXT	49974	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	49995	Aspect: Fragarach
+NORMAL_TEXT	50013	Nhân vật đại diện: Lugh
+NORMAL_TEXT	50037	Chỉ số cơ bản
+NORMAL_TEXT	50051	Lv1: HP 48 | Tấn Công 30 | Phòng Thủ 22
+NORMAL_TEXT	50091	Lv60: HP 846 | Tấn Công 652 | Phòng Thủ 404
+NORMAL_TEXT	50135	Nội tại - A Crown Needs No Second Warning
+NORMAL_TEXT	50177	Tăng Tỉ Lệ Chí Mạng của người trang bị thêm 12%-20%.
+NORMAL_TEXT	50230	Khi một hành động tấn công của Myrk chọn người trang bị làm mục tiêu, sát thương người trang bị phải chịu từ hành động đó giảm 8%-12%. Sau khi hành động kết thúc, nếu người trang bị thi triển Phản Kích lên kẻ tấn công, Phản Kích đó tăng 24%-40% sát thương.
+NORMAL_TEXT	50487	Mỗi hành động của Myrk chỉ có thể kích hoạt các hiệu ứng trên 1 lần, bất kể số hit. Hiệu ứng tăng sát thương chỉ áp dụng cho Phản Kích được kích hoạt từ chính hành động đó và mất hiệu lực nếu kẻ tấn công bị hạ trước khi Phản Kích được thi triển.
+NORMAL_TEXT	50733	Gió Chỉ Đường, Cánh Chim Không Dừng
+NORMAL_TEXT	50771	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	50792	Aspect: Keraunos
+NORMAL_TEXT	50809	Nhân vật đại diện: Nemty
+NORMAL_TEXT	50834	Chỉ số cơ bản
+NORMAL_TEXT	50848	Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	50888	Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	50933	Nội tại - Every Journey Begins Above the Dust
+NORMAL_TEXT	50979	Tăng Hồi Năng Lượng của người trang bị thêm 8%-16%.
+NORMAL_TEXT	51031	Sau khi người trang bị sử dụng Chiến Kĩ lên một đồng minh khác, mục tiêu nhận ‘Lộ Ấn’ trong 2 lượt. Đồng minh có ‘Lộ Ấn’ tăng 12%-20% sát thương gây ra.
+NORMAL_TEXT	51184	Khi một hành động tấn công của Myrk chọn đồng minh có ‘Lộ Ấn’ làm mục tiêu, sát thương mục tiêu phải chịu từ hành động đó giảm 8%-12%. Sau khi hành động kết thúc, hành động gây sát thương kế tiếp của mục tiêu tăng thêm 18%-30% sát thương.
+NORMAL_TEXT	51423	Hiệu ứng tăng sát thương tồn tại đến khi lượt thực tế kế tiếp của mục tiêu kết thúc và bị tiêu hao sau hành động gây sát thương. Mỗi hành động của Myrk chỉ có thể kích hoạt hiệu ứng một lần; cùng một đồng minh tối đa kích hoạt 2 lần giữa hai lượt thực tế liên tiếp của người trang bị.
+NORMAL_TEXT	51708	Mầm Xanh Trong Bình Thuốc Rỗng
+NORMAL_TEXT	51739	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	51760	Aspect: Caduceus
+NORMAL_TEXT	51777	Nhân vật đại diện: Asclepius
+NORMAL_TEXT	51806	Chỉ số cơ bản
+NORMAL_TEXT	51820	Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	51860	Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	51905	Nội tại - A Cure Written Before the Wound
+NORMAL_TEXT	51947	Tăng HP tối đa của người trang bị thêm 20%-36%.
+NORMAL_TEXT	51995	Sau khi người trang bị sử dụng Chiến Kĩ lên một đồng minh, mục tiêu nhận ‘Tiên Dược’ trong 2 lượt. Đồng minh có ‘Tiên Dược’ tăng 12%-20% sát thương gây ra.
+NORMAL_TEXT	52151	Lần đầu đồng minh có ‘Tiên Dược’ giảm xuống dưới 80% HP do nhận sát thương, hồi HP cho mục tiêu bằng 5%-9% HP tối đa của người trang bị + 100-180. Sau khi hồi phục, hành động gây sát thương kế tiếp của mục tiêu tăng thêm 12%-20% sát thương.
+NORMAL_TEXT	52392	Hiệu ứng tăng sát thương tồn tại đến khi lượt thực tế kế tiếp của mục tiêu kết thúc và bị tiêu hao sau hành động gây sát thương. Mỗi lần ‘Tiên Dược’ được áp dụng chỉ có thể kích hoạt hồi HP và hiệu ứng tăng sát thương kế tiếp một lần.
+NORMAL_TEXT	52627	—------------------------------------------------------------------------------------------------------------------------
+NORMAL_TEXT	52749	Mũi Tên Thứ Mười Nằm Ngoài Bao
+NORMAL_TEXT	52780	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	52801	Aspect: Gungnir
+NORMAL_TEXT	52817	Nhân vật đại diện: Hou Yi
+NORMAL_TEXT	52843	Chỉ số cơ bản
+NORMAL_TEXT	52857	Lv1: HP 48 | Tấn Công 30 | Phòng Thủ 21
+NORMAL_TEXT	52897	Lv60: HP 846 | Tấn Công 652 | Phòng Thủ 396
+NORMAL_TEXT	52941	Nội tại - The Tenth Arrow Waits Alone
+NORMAL_TEXT	52979	Tăng Sát Thương Chí Mạng của người trang bị thêm 24%-40%.
+NORMAL_TEXT	53037	Sau khi người trang bị hoàn tất một hành động chỉ gây sát thương trực tiếp lên một kẻ địch, ghi lại HP hiện tại của mục tiêu cho đến khi người trang bị bắt đầu lượt thực tế kế tiếp. Chỉ có thể ghi lại HP của một mục tiêu; đổi mục tiêu sẽ thay thế giá trị cũ.
+NORMAL_TEXT	53296	Khi người trang bị bắt đầu lượt thực tế kế tiếp, nếu HP hiện tại của mục tiêu thấp hơn giá trị đã ghi và mục tiêu vẫn còn trên sân, người trang bị nhận ‘Tàn Dương’ trong 1 lượt. Khi có ‘Tàn Dương’, sát thương gây lên mục tiêu đó tăng 20%-36% và bỏ qua 8%-16% Phòng Thủ của mục tiêu.
+NORMAL_TEXT	53579	Nếu mục tiêu không còn trên sân hoặc HP hiện tại không thấp hơn giá trị đã ghi, ‘Tàn Dương’ không được áp dụng. Hiệu ứng chỉ kiểm tra một lần khi lượt bắt đầu và không thay đổi trong lượt đó.
+NORMAL_TEXT	53772	—------------------------------------------------------------------------------------------------------------------------
+NORMAL_TEXT	53894	Chiếc Sừng Chỉ Thổi Một Lần
+NORMAL_TEXT	53922	Độ hiếm: 5★ giới hạn
+NORMAL_TEXT	53943	Aspect: Keraunos
+NORMAL_TEXT	53960	Nhân vật đại diện: Heimdall
+NORMAL_TEXT	53988	Chỉ số cơ bản
+NORMAL_TEXT	54002	Lv1: HP 65 | Tấn Công 21 | Phòng Thủ 28
+NORMAL_TEXT	54042	Lv60: HP 1270 | Tấn Công 370 | Phòng Thủ 510
+NORMAL_TEXT	54087	Nội tại - The Horn Remembers Every Oath
+NORMAL_TEXT	54127	Tăng Hồi Năng Lượng của người trang bị thêm 8%-16%.
+NORMAL_TEXT	54179	Sau khi người trang bị sử dụng Chiến Kĩ lên một đồng minh khác, mục tiêu nhận ‘Vọng Gác’ trong 2 lượt. Đồng minh có ‘Vọng Gác’ tăng 20%-36% sát thương Phản Kích.
+NORMAL_TEXT	54341	Khi đồng minh có ‘Vọng Gác’ thi triển Phản Kích, Phản Kích đó bỏ qua 8%-16% Phòng Thủ của mục tiêu và người trang bị hồi 4-8 Năng Lượng. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 2 lần giữa hai lượt thực tế liên tiếp của người trang bị.
+NORMAL_TEXT	54577	Nếu một hành động tấn công của Myrk chọn đồng minh có ‘Vọng Gác’ làm mục tiêu, sát thương mục tiêu phải chịu từ hành động đó giảm 8%-12%. Một hành động nhiều hit chỉ kích hoạt hiệu ứng này một lần.
+NORMAL_TEXT	54775	—------------------------------------------------------------------------------------------------------------------------
+NORMAL_TEXT	54900	Nàng Dệt Áo Tang Cho Bầu Trời
+NORMAL_TEXT	54931	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	54952	Aspect: Aegis
+NORMAL_TEXT	54966	Nhân vật đại diện: Nephele
+NORMAL_TEXT	54994	Chỉ số cơ bản
+NORMAL_TEXT	55008	Cấp 1: HP 52 | Tấn Công 30 | Phòng Thủ 24
+NORMAL_TEXT	55050	Cấp 60: HP 917 | Tấn Công 658 | Phòng Thủ 440
+NORMAL_TEXT	55097	Nội Tại - The Sky Keeps What the Storm Leaves Behind
+NORMAL_TEXT	55150	Tăng 24%-40% Tấn Công cho người trang bị.
+NORMAL_TEXT	55192	Khi người trang bị tạo hoặc làm mới Khiên cho đồng minh, tăng 18%-30% Sát Thương DoT do người trang bị gây ra trong 2 lượt của người trang bị. Hiệu ứng này không cộng dồn; kích hoạt lại chỉ làm mới thời hạn.
+NORMAL_TEXT	55400	Mỗi lần một kẻ địch chịu Sát Thương DoT, phục hồi Khiên do người trang bị tạo cho đồng minh đang có lượng Khiên đó thấp nhất một lượng bằng 6%-10% Tấn Công của người trang bị + 60-100. Hiệu ứng này kích hoạt tối đa 3 lần trong cùng một lượt của mỗi kẻ địch, không thể tạo Khiên mới và không thể khiến Khiên vượt quá giá trị ban đầu của lần tạo gần nhất.
+NORMAL_TEXT	55755	────────────────────────────────────────────────────────────
+NORMAL_TEXT	55817	Bàn Tay Để Lại Trong Hàm Sói
+NORMAL_TEXT	55847	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	55868	Aspect: Fragarach
+NORMAL_TEXT	55886	Nhân vật đại diện: Týr
+NORMAL_TEXT	55910	Chỉ số cơ bản
+NORMAL_TEXT	55924	Cấp 1: HP 60 | Tấn Công 21 | Phòng Thủ 34
+NORMAL_TEXT	55966	Cấp 60: HP 1058 | Tấn Công 370 | Phòng Thủ 658
+NORMAL_TEXT	56014	Nội Tại - The Price Every Oath Remembers
+NORMAL_TEXT	56055	Tăng 24%-40% Phòng Thủ cho người trang bị.
+NORMAL_TEXT	56098	Khi một hành động tấn công của Myrk chọn người trang bị hoặc một đồng minh đang có hiệu ứng do người trang bị áp dụng làm mục tiêu, sát thương người trang bị phải chịu từ hành động đó giảm 12%-20% và Phản Kích kế tiếp của người trang bị tăng 20%-36% sát thương. Hiệu ứng tăng sát thương tồn tại đến khi Phản Kích được thi triển và không cộng dồn.
+NORMAL_TEXT	56446	────────────────────────────────────────────────────────────
+NORMAL_TEXT	56508	Hai Bánh Xe Nghiền Nát Lệnh Trời
+NORMAL_TEXT	56542	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	56563	Aspect: Fragarach
+NORMAL_TEXT	56581	Nhân vật đại diện: Nezha
+NORMAL_TEXT	56607	Chỉ số cơ bản
+NORMAL_TEXT	56621	Cấp 1: HP 48 | Tấn Công 30 | Phòng Thủ 22
+NORMAL_TEXT	56663	Cấp 60: HP 846 | Tấn Công 652 | Phòng Thủ 404
+NORMAL_TEXT	56710	Nội Tại - The Sky Was Late to Give Permission
+NORMAL_TEXT	56756	Tăng 12%-20% Tỉ Lệ Chí Mạng và 20%-36% sát thương Phản Kích của người trang bị.
+NORMAL_TEXT	56836	Khi Phản Kích được thi triển trước lúc hành động tấn công của Myrk gây sát thương, nếu mục tiêu còn trên 50% Sức Bền tối đa, Hiệu Suất Phá Vỡ của đòn đánh tăng 16%-28%; nếu mục tiêu còn từ 50% Sức Bền tối đa trở xuống, đòn đánh bỏ qua 10%-18% Phòng Thủ.
+NORMAL_TEXT	57090	Sau khi người trang bị trực tiếp phá Sức Bền bằng Phản Kích, Ưu Tiên Hành Động của người trang bị 12%-20%. Hiệu ứng tối đa kích hoạt 1 lần giữa hai lượt thực tế liên tiếp của người trang bị.
+NORMAL_TEXT	57282	────────────────────────────────────────────────────────────
+NORMAL_TEXT	57343	Người Trong Gương Không Có Bóng
+NORMAL_TEXT	57376	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	57397	Aspect: Pandora
+NORMAL_TEXT	57413	Nhân vật đại diện: Chang’e
+NORMAL_TEXT	57441	Chỉ số cơ bản
+NORMAL_TEXT	57455	Cấp 1: HP 54 | Tấn Công 28 | Phòng Thủ 26
+NORMAL_TEXT	57497	Cấp 60: HP 953 | Tấn Công 658 | Phòng Thủ 475
+NORMAL_TEXT	57544	Nội Tại - The Exile Has Learned to Reflect
+NORMAL_TEXT	57587	Tăng 24%-40% Chính Xác Hiệu Ứng cho người trang bị.
+NORMAL_TEXT	57639	Sau khi một đồng minh khác hoàn tất hành động chỉ gây sát thương trực tiếp lên một kẻ địch, nếu người trang bị lập tức thi triển Đòn Đánh Theo Sau, sát thương của đòn đánh đó tăng 20%-36%.
+NORMAL_TEXT	57828	────────────────────────────────────────────────────────────
+NORMAL_TEXT	57890	Sư Tử Quỳ Dưới Ngôi Sao Thứ Tám
+NORMAL_TEXT	57923	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	57944	Aspect: Trishula
+NORMAL_TEXT	57961	Nhân vật đại diện: Ishtar
+NORMAL_TEXT	57988	Chỉ số cơ bản
+NORMAL_TEXT	58002	Cấp 1: HP 50 | Tấn Công 30 | Phòng Thủ 23
+NORMAL_TEXT	58044	Cấp 60: HP 882 | Tấn Công 677 | Phòng Thủ 420
+NORMAL_TEXT	58091	Nội Tại - The City Remembers Her Footsteps
+NORMAL_TEXT	58134	Tăng 12%-20% Tỉ Lệ Chí Mạng cho người trang bị.
+NORMAL_TEXT	58182	Sau khi người trang bị sử dụng Chiến Kĩ lần đầu, ghi nhớ mục tiêu chính của hành động đó. Từ lần sử dụng Chiến Kĩ tiếp theo, nếu mục tiêu chính khác với mục tiêu đã được ghi nhớ, sát thương Chiến Kĩ gây ra tăng 24%-40% và người trang bị hồi 6-10 Năng Lượng sau khi hành động kết thúc.
+NORMAL_TEXT	58467	Mục tiêu được ghi nhớ luôn được thay thế bằng mục tiêu chính của Chiến Kĩ vừa sử dụng. Hiệu ứng hồi Năng Lượng tối đa kích hoạt 1 lần trong mỗi lượt của người trang bị.
+NORMAL_TEXT	58637	────────────────────────────────────────────────────────────
+NORMAL_TEXT	58699	Mười Hai Vỏ Đạn Dưới Cực Quang
+NORMAL_TEXT	58731	Độ hiếm: 5★ Xron Giới Hạn
+NORMAL_TEXT	58757	Aspect: Gungnir
+NORMAL_TEXT	58773	Nhân vật đại diện: Skadi
+NORMAL_TEXT	58799	Chỉ số cơ bản
+NORMAL_TEXT	58813	Cấp 1: HP 48 | Tấn Công 30 | Phòng Thủ 22
+NORMAL_TEXT	58855	Cấp 60: HP 846 | Tấn Công 752 | Phòng Thủ 404
+NORMAL_TEXT	58902	Nội Tại - No Footprints After the Shot
+NORMAL_TEXT	58941	Tăng 16%-24% Hồi Năng Lượng cho người trang bị.
+NORMAL_TEXT	58989	Sau khi đồng minh áp dụng hiệu ứng có lợi lên bản thân người trang bị, nhận ngay một tầng ‘Sương Giá’, tối đa cộng dồn 4 tầng. Mỗi tầng ‘Sương Giá’ tăng 12% Sát Thương Chiến Kĩ và 8% Sát Thương Tuyệt Kĩ
+NORMAL_TEXT	59192	────────────────────────────────────────────────────────────
+NORMAL_TEXT	59253	Thành Phố Không Tẩy Được Tên Nàng
+NORMAL_TEXT	59288	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	59309	Aspect: Keraunos
+NORMAL_TEXT	59326	Nhân vật đại diện: Taranis
+NORMAL_TEXT	59354	Chỉ số cơ bản
+NORMAL_TEXT	59368	Cấp 1: HP 60 | Tấn Công 22 | Phòng Thủ 30
+NORMAL_TEXT	59410	Cấp 60: HP 1058 | Tấn Công 388 | Phòng Thủ 550
+NORMAL_TEXT	59458	Nội Tại - Her Name Outlived the Rain
+NORMAL_TEXT	59495	Tăng 16%-24% Hồi Năng Lượng cho người trang bị.
+NORMAL_TEXT	59543	Sau khi người trang bị sử dụng Tấn Công Thường, kéo dài hiệu ứng có lợi đơn mục tiêu gần nhất mà Chiến Kĩ của người trang bị đã áp dụng lên một đồng minh thêm 1 lượt của mục tiêu. Mỗi lần hiệu ứng được áp dụng chỉ có thể được kéo dài theo cách này một lần; hiệu ứng kéo dài tối đa kích hoạt 1 lần giữa hai lượt thực tế liên tiếp của người trang bị.
+NORMAL_TEXT	59893	────────────────────────────────────────────────────────
+NORMAL_TEXT	59951	Sau Mí Mắt Khép Vẫn Còn Một Trời Sáng
+NORMAL_TEXT	59993	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	60014	Aspect: Aegis
+NORMAL_TEXT	60028	Nhân vật đại diện: Dian Mu
+NORMAL_TEXT	60056	Chỉ số cơ bản
+NORMAL_TEXT	60070	Cấp 1: HP 65 | Tấn Công 18 | Phòng Thủ 31
+NORMAL_TEXT	60112	Cấp 60: HP 1270 | Tấn Công 317 | Phòng Thủ 570
+NORMAL_TEXT	60160	Nội Tại - The Storm Sees Through Closed Eyes
+NORMAL_TEXT	60205	Tăng 24%-40% HP tối đa của người trang bị.
+NORMAL_TEXT	60248	Giá trị Khiên do người trang bị tạo tăng 12%-20%.
+NORMAL_TEXT	60298	Sau khi người trang bị áp dụng thành công hiệu ứng giảm Tốc Độ lên một hoặc nhiều Myrk, hồi 4-8 Năng Lượng. Mỗi Myrk chỉ có thể kích hoạt hiệu ứng này một lần trong cùng một hành động; tổng cộng tối đa kích hoạt 3 lần giữa hai lượt thực tế liên tiếp của người trang bị.
+NORMAL_TEXT	60569	────────────────────────────────────────
+NORMAL_TEXT	60610	Tấm Vé Không Ghi Hiệp Cuối
+NORMAL_TEXT	60638	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	60659	Aspect: Trishula
+NORMAL_TEXT	60676	Nhân vật đại diện: Marduk
+NORMAL_TEXT	60703	Chỉ số cơ bản
+NORMAL_TEXT	60717	Cấp 1: HP 52 | Tấn Công 29 | Phòng Thủ 24
+NORMAL_TEXT	60759	Cấp 60: HP 917 | Tấn Công 700 | Phòng Thủ 438
+NORMAL_TEXT	60806	Nội Tại - The Corner Keeps No Clock
+NORMAL_TEXT	60842	Tăng 20%-36% Tấn Công cho người trang bị.
+NORMAL_TEXT	60884	Sau khi người trang bị sử dụng Chiến Kĩ hoặc Tuyệt Kĩ, nhận ‘Góc Đài’ trong 3 lượt. Khi có ‘Góc Đài’, Sát Thương Tấn Công Thường tăng 24%-40%.
+NORMAL_TEXT	61027	────────────────────────────────────────────────────────────
+NORMAL_TEXT	61088	Đèn Cấp Cứu Vẫn Sáng Dưới Mặt Nước
+NORMAL_TEXT	61124	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	61145	Aspect: Caduceus
+NORMAL_TEXT	61162	Nhân vật đại diện: Freyja
+NORMAL_TEXT	61189	Chỉ số cơ bản
+NORMAL_TEXT	61203	Cấp 1: HP 65 | Tấn Công 19 | Phòng Thủ 30
+NORMAL_TEXT	61245	Cấp 60: HP 1270 | Tấn Công 335 | Phòng Thủ 550
+NORMAL_TEXT	61293	Nội Tại - No Name Leaves the Night Shift
+NORMAL_TEXT	61334	Tăng 24%-40% HP tối đa của người trang bị.
+NORMAL_TEXT	61377	Khi hiệu ứng của chính người trang bị làm giảm HP bản thân để hồi HP cho đồng minh, lượng hồi phục của lần đó tăng 12%-20%. Sau khi hiệu ứng hoàn tất, người trang bị phục hồi 3%-5% HP tối đa; phần phục hồi này tối đa kích hoạt 2 lần giữa hai lượt thực tế liên tiếp của người trang bị.
+NORMAL_TEXT	61662	Sau khi người trang bị hồi sinh thành công ít nhất một đồng minh bằng Tuyệt Kĩ, hồi 18-30 Năng Lượng. Hiệu ứng này tối đa kích hoạt một lần trong mỗi lần sử dụng Tuyệt Kĩ.
+NORMAL_TEXT	61834	────────────────────────────────────────────────────────────
+NORMAL_TEXT	61895	Lề Sách Không Còn Chỗ Cho Tên Người
+NORMAL_TEXT	61932	Độ hiếm: 5★ Giới Hạn
+NORMAL_TEXT	61953	Aspect: Pandora
+NORMAL_TEXT	61969	Nhân vật đại diện: Nyx
+NORMAL_TEXT	61993	Chỉ số cơ bản
+NORMAL_TEXT	62007	Cấp 1: HP 54 | Tấn Công 28 | Phòng Thủ 26
+NORMAL_TEXT	62049	Cấp 60: HP 953 | Tấn Công 658 | Phòng Thủ 475
+NORMAL_TEXT	62096	Nội Tại - The Margin Writes Back in Blood
+NORMAL_TEXT	62138	Tăng 20%-36% Tấn Công cho người trang bị.
+NORMAL_TEXT	62180	Sau khi người trang bị áp dụng thành công một hiệu ứng bất lợi, mục tiêu tăng 12%-20% Sát Thương Duy Trì phải nhận trong 2 lượt. Hiệu ứng cùng nguồn không cộng dồn; kích hoạt lại chỉ làm mới thời hạn.
+NORMAL_TEXT	62381	────────────────────────────────────────────────────────────
+

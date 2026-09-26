@@ -15,7 +15,7 @@ Mở `Mythborne-Damage-Lab.html` bằng trình duyệt. Chạy `python3 damage-s
 
 ## Giới hạn hiện tại
 
-Web hỗ trợ cả cấu hình thủ công và kit tự động cho 61/61 Veyr. Xem `CHARACTERS.md` để biết cơ chế, cách tạo rotation và kiểm tra. Chỉ số gốc Lv60 đã lấy từ nguồn live, hàng từ kit tự lấy hệ số, hàng thủ công nhập tay. Dữ liệu chuẩn hoá nằm trong `data/`, gồm 61 Veyr, 102 Mảnh Ký Ức, 22 bộ Thần Vật và 46 Myrk. Bước 3 đã nối chỉ số/nội tại của 102 Mảnh Ký Ức và 22 bộ Thần Vật theo hành động khai báo; xem `GEAR.md`. Bước 4 đã nối đủ roster hiện tại. VM3/VM5 tạm chưa tăng cấp kỹ năng theo xác nhận của người dùng.
+Web hỗ trợ cả cấu hình thủ công và kit tự động cho toàn bộ 74 Veyr trong nguồn live. Xem `CHARACTERS.md` để biết cơ chế, cách tạo rotation và kiểm tra. Chỉ số gốc Lv60 đã lấy từ nguồn live, hàng từ kit tự lấy hệ số, hàng thủ công nhập tay. Dữ liệu chuẩn hoá nằm trong `data/`, gồm 74 Veyr, 114 Mảnh Ký Ức, 22 bộ Thần Vật và 46 Myrk. Bộ thực thi trang bị hiện bao phủ 114 Mảnh Ký Ức và 22 bộ Thần Vật; xem `GEAR.md`. VM3/VM5 tạm chưa tăng cấp kỹ năng theo xác nhận của người dùng.
 
 Các kit hỗ trợ FUA, phản kích, DoT, Diệt Kích và các biến thể theo điều kiện riêng; vẫn có chế độ thủ công để thử công thức. Chế độ tự sinh lặp chuỗi lượt thật riêng của từng Veyr; hàng chen ngang vẫn dùng AV cố định. DoT trong UI là đặt debuff, không gây sát thương trực tiếp. Giảm DEF/RES/vulnerability có thể nhập cho một đòn hoặc tạo bằng hành động Debuff có thời hạn.
 

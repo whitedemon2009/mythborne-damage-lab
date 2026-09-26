@@ -12,7 +12,10 @@
     "fixedGainAffectedByRecharge": true,
     "percentageGainAffectedByRecharge": false,
     "characterCaps": {
-      "veyr:janus": 130
+      "veyr:janus": 130,
+      "veyr:nephele": 130,
+      "veyr:tyr": 140,
+      "veyr:nezha": 130
     }
   },
   "planck": {
@@ -42,7 +45,8 @@
       "Lôi": 1,
       "Thủy": 0.5,
       "Ám": 0.5,
-      "Quang": 1
+      "Quang": 1,
+      "Vật Lý": 1.5
     },
     "elementAliases": {
       "Hỏa Ngục": "Hỏa",
@@ -98,6 +102,21 @@
   },
   "dot": {
     "durationDecrement": "Immediately after damage tick at Myrk turn"
+  },
+  "physicalElement": {
+    "myrkWeaknessExists": false,
+    "universalToughnessDamage": true,
+    "toughnessDamageMultiplier": 0.5,
+    "canBreakToughness": true,
+    "breakCoefficient": 1.5,
+    "breakEffect": {
+      "name": "Chảy Máu",
+      "duration": 2,
+      "stacking": false,
+      "stackingException": "Only when an explicit kit says otherwise",
+      "tickTiming": "At the start of the affected Myrk turn",
+      "damage": "min(5% target maximum HP, 200% ATK of the Veyr who caused the Physical Break)"
+    }
   },
   "quangTich": {
     "recordFraction": 0.2,

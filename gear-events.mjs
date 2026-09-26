@@ -1,7 +1,7 @@
 import {memoryEvent} from './memory-events.mjs';
 import {artifactEvent} from './artifact-events.mjs';
 import {effectiveStats} from './effects.mjs';
-import {normalizeElement} from './formulas.mjs';
+import {damageElements,normalizeElement} from './formulas.mjs';
 export class GearEvents {
  constructor(ctx){this.ctx=ctx;this.serial=0;this.depth=0;}
  key(u){return u.gear?.memory?.key;}
@@ -34,7 +34,7 @@ export class GearEvents {
   const originalAction=event.action;try{this.ctx.characterEvent?.(type,event);if(type==='modify'&&originalAction?.damageSource)event.action=new Proxy(originalAction,{get:(a,k)=>k==='source'?a.damageSource:a[k]});for(const u of this.allies()){memoryEvent(this,u,type,event);artifactEvent(this,u,type,event);}}finally{if(originalAction)event.action=originalAction;this.depth--;}
  }
  modifiers(u,t,a,count){
-  const e={unit:u,target:t,action:a,stats:{...this.eff(u)},enemy:{...this.eff(t)},count,bonus:0,pen:0,resPen:0,crit:0,critDmg:0,efficiency:0,breakBonus:0,vulnerability:0,dkBonus:0};
+  const e={unit:u,target:t,action:a,stats:{...this.eff(u)},enemy:{...this.eff(t)},elements:damageElements(this.eff(u),a),count,bonus:0,pen:0,resPen:0,crit:0,critDmg:0,efficiency:0,breakBonus:0,vulnerability:0,dkBonus:0};
   // Scoped buffs are evaluated for the actual damage source/target, never made permanent.
   for(const b of u.effects){if(!b.scoped)continue;if(b.enhancedOnly&&!a.enhanced)continue;if(b.sources&&!b.sources.includes(a.damageSource||a.source))continue;if(b.target!==undefined&&b.target!==t.index)continue;
    for(const [k,v] of Object.entries(b.scoped))e[k]=(e[k]||0)+v*(b.stacks||1);

@@ -4,6 +4,7 @@ import {newPiece,pieceStats} from './artifacts.mjs';
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
 close(baseAV(100.4),100);close(changeSpeedAV(80,100,200),40);close(defMultiplier(60,60),.5);close(defMultiplier(60,60,.8,.4),1);close(mitigation([.6,.6]),.1);close(baseBreak(30),845.5);
 assert.equal(coefficients[normalizeElement('Hoả Ngục')],2);assert.equal(coefficients.Quang,1);
+assert.equal(coefficients['Vật Lý'],1.5);assert.equal(normalizeElement('Hàn Băng'),'Băng');
 assert.deepEqual(applyShields(1200,[1000,600]),{hpDamage:200,shields:[0,0]});close(energyGain(10,.192),11.92);
 assert.equal(canFollow('A','A'),false);assert.equal(canFollow('B','A'),true);
 assert.equal(quangValue({owner:0,recorded:2000},[{atk:500}]),1000);assert.equal(quangValue({owner:0,recorded:2000},[{atk:1200}]),2000);
@@ -16,6 +17,8 @@ let r=runCombat(cfg,[c],[{...a,annihilate:true}]);assert.ok(r.log.some(x=>x.mess
 r=runCombat({...cfg,weaknesses:[]},[c],[a]);assert.ok(!r.log.some(x=>x.message.includes('(Break)')));
 r=runCombat({...cfg,weaknesses:[]},[c],[{...a,implant:true}]);assert.ok(r.log.some(x=>x.message.includes('(Break)')));
 r=runCombat({...cfg,weaknesses:['Băng']},[{...c,element:'Băng'}],[a]);assert.equal(r.enemies[0].toughness,0);assert.ok(r.log.some(x=>x.message.includes('bỏ hành động')));
+r=runCombat({...cfg,maxToughness:15,toughness:15,weaknesses:[],cycles:2},[{...c,element:'Vật Lý'}],[a]);assert.ok(r.log.some(x=>x.message.includes('(Break)')));assert.ok(r.log.some(x=>x.message.includes('(DoT)')));
+r=runCombat({...cfg,weaknesses:['Băng']},[{...c,element:'Hàn Băng'}],[a]);assert.ok(r.log.find(x=>x.kind==='direct').amount>800);assert.ok(!r.log.some(x=>x.message.includes('bỏ hành động')));
 r=runCombat({...cfg,weaknesses:['Phong']},[{...c,element:'Phong'}],[a]);assert.equal(r.enemies[0].toughness,30);
 r=runCombat(cfg,[c],[{...a,source:'Skill',cost:4}]);assert.equal(r.enemies[0].hp,cfg.hp);assert.ok(r.log.some(x=>x.message.includes('thiếu Planck')));
 r=runCombat(cfg,[c],[{...a,source:'FUA',energy:10,refund:0,realTurn:false}]);assert.ok(r.log.some(x=>x.message.includes('NL 70.00/120')));

@@ -21,6 +21,10 @@ export function effectiveStats(unit){
   out.speed=Math.max(1,Math.round((unit.speedRaw??unit.speed)+(unit.speedBaseTotal??unit.speed)*sum('speedPct')+sum('speed')));
   const mapping={efficiency:'efficiency',BasicDamage:'BasicDamage',shieldBonus:'shieldBonus',outgoing:'outgoing',SkillDamage:'SkillDamage',UltDamage:'UltDamage',FUADamage:'FUADamage',CounterDamage:'CounterDamage',DoTDamage:'DoTDamage',damage:'allDamage',crit:'crit',critDmg:'critDmg',energy:'energy',hit:'hit',resist:'resist',pierce:'pierce',break:'break',elementDamage:'elementDamage',threat:'threat'};
   for(const [type,key] of Object.entries(mapping))out[key]=(unit[key]||0)+sum(type);
+  for(const element of ['Nham','Hỏa','Phong','Băng','Lôi','Thủy','Ám','Quang','Vật Lý']){
+    out[element+'Damage']=(unit[element+'Damage']||0)+sum(element+'Damage');
+    out[element+'ResReduction']=(unit[element+'ResReduction']||0)+sum(element+'ResReduction');
+  }
   out.defReduction=(unit.defReduction||0)+sum('defReduction');
   out.res=(unit.res||0)-sum('resReduction');
   out.vulnerability=(unit.vulnerability||0)+sum('vulnerability');

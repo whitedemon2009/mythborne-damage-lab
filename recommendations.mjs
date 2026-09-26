@@ -64,6 +64,19 @@ const reviewedProfiles = [
  ['Hồi máu tức thời/dự trữ theo HP và buff; Tuyệt Kĩ không gây sát thương.',100,[60,49],[18,4]],
  ['Sát thương trực tiếp ghi Vạch Nhật rồi kích nổ; lượng lưu trữ không phải FUA.',101,[54,36],[17,1]],
  ['Phán quyết sau hành động địch, giảm Phòng Thủ và tăng sát thương nhận.',null,[57,42],[19]],
+ ['Chọn Fragarach để tăng Phản Kích và bảo vệ mục tiêu được canh gác.',102,[68,58],[20,5]],
+ ['Khiên theo Tấn Công và Sát Thương Duy Trì Phong.',103,[93,46],[8,3]],
+ ['Phản Kích theo Phòng Thủ, liên kết đồng minh và chia sát thương.',104,[98,62],[14,3]],
+ ['Phản Kích trước hành động Myrk, cần Chí Mạng và bào Sức Bền.',105,[98,62],[14,13]],
+ ['Đòn Đánh Theo Sau đơn mục tiêu sao chép nhịp tấn công của đồng minh.',106,[76,42],[11,19]],
+ ['Chiến Kĩ đổi mục tiêu trong giao tranh 2–3 Myrk.',107,[55,38],[0,1]],
+ ['Chiến Kĩ Cường Hóa đơn mục tiêu Hàn Băng, cần đồng minh liên tục buff.',108,[54,36],[1,16]],
+ ['Chiến Kĩ chọn một đồng minh, buff riêng đội Băng–Lôi.',109,[68,58],[5,20]],
+ ['Khiên theo HP và Siêu Dẫn cho đội thuần Băng–Lôi.',110,[46,59],[3,5]],
+ ['Hỗ trợ bào Sức Bền và Diệt Kích; nhân vật 4★ không có trấn.',null,[52,51],[6,13]],
+ ['Tấn Công Thường Cường Hóa theo Tấn Công.',111,[55,38],[15,1]],
+ ['HP chuyển thành hồi máu cho mục tiêu Kết Nối và hồi sinh.',112,[60,48],[18,4]],
+ ['Debuff, nhiều tầng Chảy Máu và kích hoạt Sát Thương Duy Trì.',113,[50,42],[8,2,19]],
 ];
 
 const memoryReasons={
@@ -95,6 +108,22 @@ const memoryReasons={
  60:'HP tăng lượng hồi máu; chữa mục tiêu đạt ít nhất 80% HP để buff sát thương. Có thể khó duy trì khi Myrk gây sát thương quá lớn.',
  62:'Tăng Phản Kích và hồi HP sau Phản Kích; không yêu cầu người đeo phải bị chọn. Phòng Thủ là chỉ số bảo kê, không tăng hệ số ATK.',
  63:'HP và ST Chí Mạng cho Phản Kích kế tiếp khi bản thân bị chọn. Không kích hoạt chỉ nhờ đồng đội bị đánh.',
+ 68:'Hồi Năng Lượng và buff một đồng minh qua Chiến Kĩ; dùng được cho Keraunos cần xoay Tuyệt Kĩ thường xuyên.',
+ 76:'Tăng Sát Thương Duy Trì và Chính Xác Hiệu Ứng; phần Planck yêu cầu tích đủ lần sát thương rồi dùng đòn trực tiếp.',
+ 93:'Tăng khiên theo Tấn Công và sát thương đồng minh đang có khiên; phần năng lượng cần ba mục tiêu.',
+ 98:'Tăng Chí Mạng và Phản Kích; nhánh giảm sát thương chỉ mở khi chính người đeo bị Myrk chọn.',
+ 102:'Chiến Kĩ đánh dấu một đồng minh Fragarach; Phản Kích của họ được tăng sát thương, xuyên Phòng Thủ và sạc Năng Lượng cho người đeo.',
+ 103:'Tạo Khiên tăng Sát Thương Duy Trì và các lần sát thương đó phục hồi Khiên thấp nhất do người đeo tạo.',
+ 104:'Tăng Phòng Thủ, giảm sát thương khi chuỗi liên kết bị nhắm và cường hóa Phản Kích kế tiếp.',
+ 105:'Tăng Chí Mạng và Phản Kích; nhánh trước đòn địch đổi giữa bào Sức Bền và xuyên Phòng Thủ.',
+ 106:'Tăng Chính Xác Hiệu Ứng; Đòn Đánh Theo Sau ngay sau đòn đơn mục tiêu của đồng minh được tăng sát thương.',
+ 107:'Ghi nhận mục tiêu Chiến Kĩ; đổi sang mục tiêu khác sẽ tăng sát thương và hồi Năng Lượng.',
+ 108:'Mỗi buff đồng minh áp dụng cho người đeo tích một tầng tăng Chiến Kĩ và Tuyệt Kĩ, tối đa bốn tầng.',
+ 109:'Sau Tấn Công Thường, kéo dài buff đơn mục tiêu gần nhất từ Chiến Kĩ.',
+ 110:'HP và Khiên cao; mỗi Myrk bị giảm Tốc Độ sạc Năng Lượng trong giới hạn giữa hai lượt.',
+ 111:'Chiến Kĩ hoặc Tuyệt Kĩ mở buff ba lượt cho Tấn Công Thường Cường Hóa.',
+ 112:'Tăng lượng hồi từ cơ chế tự giảm HP, hoàn HP cho người đeo và hoàn Năng Lượng sau khi Tuyệt Kĩ hồi sinh.',
+ 113:'Mỗi debuff thành công áp dụng tăng Sát Thương Duy Trì mục tiêu phải nhận trong hai lượt.',
 };
 // Borrowed 5★ options are explicit, with the portion of their passive that
 // transfers to this kit. They are not labelled as this character's signature.

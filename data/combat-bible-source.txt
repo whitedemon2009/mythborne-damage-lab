@@ -2290,3 +2290,44 @@ Hiện còn một số edge case cần chốt trước khi simulator đạt mứ
 15. Chi tiết đầy đủ bộ kit Janus và Mảnh Ký Ức trấn của cô ấy.
 
 Nếu lấy bộ trên làm **Combat Engine Specification**, thì phần lõi damage, Break, action order, Energy, Planck, shield, heal, DoT, FUA, death/revive và artifact hiện đã đủ để xây simulator thực tế rồi.
+
+---
+
+# CẬP NHẬT CANON — NGUYÊN TỐ VẬT LÝ
+
+Phần này là quyết định mới hơn và được ưu tiên nếu có nội dung cũ mâu thuẫn.
+
+## Điểm Yếu và bào Sức Bền
+
+Myrk không tồn tại Điểm Yếu Vật Lý.
+
+Veyr Vật Lý vẫn luôn có thể bào Sức Bền của Myrk, với lượng bằng 50% giá trị bào Sức Bền thông thường của hành động. Phần bào này có thể trực tiếp phá vỡ Sức Bền.
+
+$$
+\boxed{ToughnessDMG_{Vật\ Lý}=ToughnessDMG_{gốc}\times0.5}
+$$
+
+## Hệ số phá vỡ
+
+$$
+\boxed{ElementCoeff_{Vật\ Lý}=1.5}
+$$
+
+## Hiệu ứng phá vỡ — ‘Chảy Máu’
+
+Khi một Veyr Vật Lý trực tiếp phá vỡ Sức Bền của Myrk, áp dụng ‘Chảy Máu’ trong 2 lượt.
+
+Khi Myrk có ‘Chảy Máu’ bắt đầu lượt, mục tiêu chịu sát thương bằng giá trị thấp hơn giữa 5% HP tối đa của chính Myrk và 200% Tấn Công của Veyr đã gây ra lần phá vỡ Vật Lý:
+
+$$
+\boxed{
+DMG_{Chảy\ Máu}
+=
+\min\left(
+0.05\times MaxHP_{Myrk},
+2.0\times ATK_{Breaker}
+\right)
+}
+$$
+
+‘Chảy Máu’ không cộng dồn; áp dụng lại chỉ làm mới hiệu ứng, trừ khi bộ kỹ năng ghi rõ ngoại lệ.

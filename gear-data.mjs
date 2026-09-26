@@ -1,5 +1,5 @@
 export const memoryRules={
-  "memory:thien-thuong-tan-anh": {
+  "memory:mui-giao-sut-tren-tuong-bac": {
     "static": [
       {
         "stat": "atkPct",
@@ -10,55 +10,55 @@ export const memoryRules={
     "key": 0,
     "sourceHash": "6c7d897cdc05ee1b6ec952a8e6d8abf713f6aea6ba92d1b8cfbbd2786bf3d31f"
   },
-  "memory:dau-xuyen-tinh-ha": {
+  "memory:vet-sao-trong-khe-ngam": {
     "static": [],
     "complete": true,
     "key": 1,
     "sourceHash": "c82287508e3abfd1b5f75a606c7855af9c14f849ae7be3bb76ade725a266c4f9"
   },
-  "memory:mui-giao-dinh-menh": {
+  "memory:soi-chi-do-buoc-chuoi-thuong": {
     "static": [],
     "complete": true,
     "key": 2,
     "sourceHash": "9bd85ae504af5a340e54d890ec30e789de6e195eb94b2bcbbb1592bf144a922b"
   },
-  "memory:tam-nhan-phan-thien": {
+  "memory:ba-vet-cat-tren-cung-mot-tam-giap": {
     "static": [],
     "complete": true,
     "key": 3,
     "sourceHash": "1a198f2175558f8a2410403704bedc2144eb918193a93c979edaad4e83fb8d95"
   },
-  "memory:vet-chem-cua-ba-nguyet": {
+  "memory:ba-luoi-cong-duoi-trang-non": {
     "static": [],
     "complete": true,
     "key": 4,
     "sourceHash": "cdf9ad136329506f86117ebbce59e4556948c6a0ff0d8b03b4e9077640f1449d"
   },
-  "memory:tan-quang-tam-gioi": {
+  "memory:dom-sang-con-lai-sau-ba-nhat-chem": {
     "static": [],
     "complete": true,
     "key": 5,
     "sourceHash": "81c4156c44dea97f06d7b5ba01d537717d3241131b20429b266994e0da62ec8f"
   },
-  "memory:thien-chan-vo-thanh": {
+  "memory:tieng-ren-bi-chon-trong-chuong-dong": {
     "static": [],
     "complete": true,
     "key": 6,
     "sourceHash": "ae78d6dee5521e657ce283a0374fb670fa21539424043fcb47d9864ba7e97340"
   },
-  "memory:tro-tan-cua-than-phat": {
+  "memory:nam-tro-trong-gang-tay-den": {
     "static": [],
     "complete": true,
     "key": 7,
     "sourceHash": "5f8c9eadbc164c4e43cdcee7f336c7c899b02073503731afc198e9d66f25233d"
   },
-  "memory:vuc-troi-sup-do": {
+  "memory:ban-do-cua-thanh-pho-da-mat": {
     "static": [],
     "complete": true,
     "key": 8,
     "sourceHash": "3ff20a65a432df73ca9d06e4c7e1b76acede7e96e7c82b95e903b2fe69ce4f39"
   },
-  "memory:xieng-xich-u-minh": {
+  "memory:mat-xich-thu-muoi-ba": {
     "static": [
       {
         "stat": "hit",
@@ -69,7 +69,7 @@ export const memoryRules={
     "key": 9,
     "sourceHash": "22292d43c3515f2640a0898d2d82a19a906d0450bdf55ea004c447fd2c538423"
   },
-  "memory:loi-nguyen-duoi-trang-den": {
+  "memory:vet-muc-kho-tren-la-bua-chay": {
     "static": [],
     "complete": true,
     "key": 10,
@@ -81,13 +81,13 @@ export const memoryRules={
     "key": 11,
     "sourceHash": "bb0206803669e1b783b9deb7b25a6448548b1317a67024fe51c0347a10693591"
   },
-  "memory:an-dien-tren-dinh-troi": {
+  "memory:dong-xu-dat-tren-be-tho-cao": {
     "static": [],
     "complete": true,
     "key": 12,
     "sourceHash": "d2f0ca1193c6f5540aa4fccc0c320cf970ac32fc457e82e3041019791ddda325"
   },
-  "memory:khuc-ca-cua-binh-minh": {
+  "memory:khuc-nhac-viet-cho-nguoi-day-som": {
     "static": [],
     "complete": true,
     "key": 13,
@@ -104,7 +104,7 @@ export const memoryRules={
     "key": 14,
     "sourceHash": "1588b527bfc4bee340488aede197199834662cbb67117f69152f42fa0f189f29"
   },
-  "memory:khien-than-ben-cong-co": {
+  "memory:manh-khien-gac-ben-cong-do": {
     "static": [
       {
         "stat": "defPct",
@@ -115,19 +115,19 @@ export const memoryRules={
     "key": 15,
     "sourceHash": "e26f5bb47804dc41e3fe7fbb5da4339fe6324fd81e0ceeb68f0fc91ff194f094"
   },
-  "memory:thanh-luy-cua-nguoi-khong-lo": {
+  "memory:phien-da-ke-duoi-got-khong-lo": {
     "static": [],
     "complete": true,
     "key": 16,
     "sourceHash": "6c818aa89c1e791d9d92e5b21b131a859969db664ef8f26414d4dfe2d6aa1740"
   },
-  "memory:loi-the-truoc-thanh-mon": {
+  "memory:sap-nen-tren-ban-the-cu": {
     "static": [],
     "complete": true,
     "key": 17,
     "sourceHash": "94f56b13622ef96856ab59634d084d4e9d56f23b0a7980167487deaee69e1f7b"
   },
-  "memory:giot-suong-tu-suoi-than": {
+  "memory:giot-nuoc-trong-binh-dat-nut": {
     "static": [
       {
         "stat": "outgoing",
@@ -138,7 +138,7 @@ export const memoryRules={
     "key": 18,
     "sourceHash": "f62d70e89b704eca473832356a294ff4ff23caacbb9cd299493be8246257e538"
   },
-  "memory:nhanh-cay-bat-tu": {
+  "memory:canh-non-moc-qua-xuong-trang": {
     "static": [
       {
         "stat": "hpPct",
@@ -149,7 +149,7 @@ export const memoryRules={
     "key": 19,
     "sourceHash": "d29c35d102ee9b555bb08c807725299ee82235c2e483f1feaea6ab2efe0a4f12"
   },
-  "memory:hoi-tho-cua-nu-than": {
+  "memory:chiec-chen-con-giu-hoi-am": {
     "static": [],
     "complete": true,
     "key": 20,
@@ -280,7 +280,7 @@ export const memoryRules={
     "key": 35,
     "sourceHash": "9d91ec2412dc7c2b6ec817e91b2a19fc9144d220c21e8debefead50d39aa2c36"
   },
-  "memory:mui-thuong-xe-thien-mon": {
+  "memory:mui-thuong-khong-co-lan-thu-hai": {
     "static": [
       {
         "stat": "SkillDamage",
@@ -291,19 +291,19 @@ export const memoryRules={
     "key": 36,
     "sourceHash": "431b2a09a432e1e624b317a8c33b0d317f009a3524c21ff5e8da662ccc39d086"
   },
-  "memory:ngon-giao-chon-duoi-hoang-tuyen": {
+  "memory:ngon-giao-dung-ben-mo-khong-ten": {
     "static": [],
     "complete": true,
     "key": 37,
     "sourceHash": "c8a1046aba06d44f5be6d37b743a9982a2eb9a1ca688e15d93f1746b8d1eb00e"
   },
-  "memory:ba-nguyet-dong-quy": {
+  "memory:ba-vang-trang-trong-mot-vung-mau": {
     "static": [],
     "complete": true,
     "key": 38,
     "sourceHash": "574ad53580ac861eca236b17e1577fe83b034d52c21212498cb61daef236f42c"
   },
-  "memory:tan-kich-noi-tam-gioi": {
+  "memory:vet-chem-con-sang-tren-ba-canh-cong": {
     "static": [],
     "complete": true,
     "key": 39,
@@ -320,7 +320,7 @@ export const memoryRules={
     "key": 40,
     "sourceHash": "ccf70628b395cda684a829688a46c315f097798349d3f88cb1f095ced17f247d"
   },
-  "memory:vuong-chung-tan-the": {
+  "memory:qua-chuong-treo-tren-thanh-pho-cuoi": {
     "static": [],
     "complete": true,
     "key": 41,
@@ -337,7 +337,7 @@ export const memoryRules={
     "key": 42,
     "sourceHash": "93aba14c273bf6ac6dc1b02824fb647721050e81940ad1561a111c3de81fa04d"
   },
-  "memory:khe-uoc-duoi-vuc-den": {
+  "memory:chu-ky-khong-thuoc-ve-nguoi-song": {
     "static": [
       {
         "stat": "defPct",
@@ -348,7 +348,7 @@ export const memoryRules={
     "key": 43,
     "sourceHash": "46dccd7c926ab55d86770b2995ce51e91955613c37e68ad6ff89236942a20a78"
   },
-  "memory:loi-sam-truoc-binh-minh": {
+  "memory:loi-sam-khac-sau-mi-mat": {
     "static": [],
     "complete": true,
     "key": 44,
@@ -360,7 +360,7 @@ export const memoryRules={
     "key": 45,
     "sourceHash": "cbe4d6fae50d07b149f23ba63120b3578fcb5976b3f5409b3796fcf06147f091"
   },
-  "memory:tam-khien-dung-truoc-cua-troi": {
+  "memory:canh-cua-chi-mo-ve-phia-sau": {
     "static": [
       {
         "stat": "shieldBonus",
@@ -371,13 +371,13 @@ export const memoryRules={
     "key": 46,
     "sourceHash": "b9c446bcd3b13e5c12e4a893768a0b52c07aaeb24f4307a425016383aa781b5c"
   },
-  "memory:di-cot-cua-titan": {
+  "memory:khop-xuong-khong-chiu-quy": {
     "static": [],
     "complete": true,
     "key": 47,
     "sourceHash": "776fdfc4c1879a3e9599cfd0b752e8a1045eebdcce4c4bcfa6eb1d07c3f0f309"
   },
-  "memory:suoi-nguon-khong-tat": {
+  "memory:chiec-binh-khong-bao-gio-can": {
     "static": [
       {
         "stat": "outgoing",
@@ -388,7 +388,7 @@ export const memoryRules={
     "key": 48,
     "sourceHash": "084772f82109cfcc034fba87498d23ad66f8fa8b3a92f25ab4198a0a4d9ef881"
   },
-  "memory:thanh-ca-cua-ke-tro-ve": {
+  "memory:bai-ca-chua-lai-mot-cho-trong": {
     "static": [],
     "complete": true,
     "key": 49,
@@ -427,7 +427,7 @@ export const memoryRules={
     "key": 52,
     "sourceHash": "d0b52563ee7f056aaefbe8363cf9b0d953b9b56855965aeda048a6917fdd019d"
   },
-  "memory:duong-ran-chay-qua-binh-minh": {
+  "memory:duong-ran-hat-len-anh-dong": {
     "static": [],
     "complete": true,
     "key": 53,
@@ -547,7 +547,7 @@ export const memoryRules={
     "key": 63,
     "sourceHash": "a9368e92a76fc16e889b3c441bc732635a29ab4469b49bd34b2e94f919012dd0"
   },
-  "memory:noi-sam-set-khep-thanh-vong": {
+  "memory:vong-set-khoa-chat-ten-nguoi": {
     "static": [
       {
         "stat": "critDmg",
@@ -595,7 +595,7 @@ export const memoryRules={
     "key": 67,
     "sourceHash": "141c387cc5df2f143a67a4e848d4c8c2f6d24e649a9fe48213787d49c125e22f"
   },
-  "memory:khi-cac-vi-sao-muon-mot-phut": {
+  "memory:chiec-dong-ho-nuot-mat-mot-vi-sao": {
     "static": [
       {
         "stat": "energy",
@@ -606,7 +606,7 @@ export const memoryRules={
     "key": 68,
     "sourceHash": "a83094de871fbea4eb6b6f9881c42f68392eb64229b62d4609d91d4de7d90eb4"
   },
-  "memory:thanh-tuyen-noi-mua-dong-dung-buoc": {
+  "memory:thanh-tuyen-chan-dung-mua-dong": {
     "static": [
       {
         "stat": "defPct",
@@ -699,7 +699,7 @@ export const memoryRules={
     "key": 75,
     "sourceHash": "6542b5e99bee6a4a41c2eaf9f868b8b8ed01db8846f135a50ada822fb6db7d1d"
   },
-  "memory:khi-trai-tim-nhe-hon-mot-chiec-long": {
+  "memory:trai-tim-dat-sai-ben-can-can": {
     "static": [
       {
         "stat": "hit",
@@ -729,7 +729,7 @@ export const memoryRules={
     "key": 77,
     "sourceHash": "263e33339bcca29e5504abbc7e011539c8692d752987d8d07e54a53b016b3f28"
   },
-  "memory:khi-duong-chan-troi-chim-duoi-song": {
+  "memory:ngai-vang-troi-sau-dai-hong-thuy": {
     "static": [
       {
         "stat": "critDmg",
@@ -748,7 +748,7 @@ export const memoryRules={
     "key": 78,
     "sourceHash": "6e00bb5d63e9f14402246c2874901554a516533f9bdbe95fb14401759c6eeb80"
   },
-  "memory:khi-mat-dat-truot-khoi-trang-sach": {
+  "memory:dong-chu-thich-lam-nghieng-the-gioi": {
     "static": [
       {
         "stat": "hit",
@@ -800,7 +800,7 @@ export const memoryRules={
     "key": 82,
     "sourceHash": "6bb4a5a522cf92a7f2d0d06b4e0c7552bd821e7f390cd6bbdaaf18cab50fea9b"
   },
-  "memory:khi-xieng-xich-khong-con-giu-duoc-ngon-lua": {
+  "memory:xieng-xich-chi-giu-lai-tro-nong": {
     "static": [
       {
         "stat": "hit",
@@ -815,7 +815,7 @@ export const memoryRules={
     "key": 83,
     "sourceHash": "c4ebdb72127dd3bb4d0495d900ff89cc20a7e0dcc7de40a71ac2c288c7f122a7"
   },
-  "memory:khi-ngon-nui-cuoi-cung-cung-phai-cui-dau": {
+  "memory:muoi-hai-vet-nut-tren-can-chuy": {
     "static": [
       {
         "stat": "break",
@@ -826,7 +826,7 @@ export const memoryRules={
     "key": 84,
     "sourceHash": "c6e9e2e40a565dcb8843ed9f060693bc9869a2e6cf73d1cbfb053e8f11ab5926"
   },
-  "memory:khi-chien-thang-tu-moc-canh": {
+  "memory:vong-que-bay-qua-thanh-tri-that-thu": {
     "static": [
       {
         "stat": "energy",
@@ -837,7 +837,7 @@ export const memoryRules={
     "key": 85,
     "sourceHash": "9d7d0c3e86b863602c71ea61e3ca4b6bcd1327740e391c7cee86095178be786e"
   },
-  "memory:khi-bau-troi-giu-lai-tieng-sam-cuoi-cung": {
+  "memory:binh-sam-chon-trong-long-nguc-thep": {
     "static": [
       {
         "stat": "energy",
@@ -867,7 +867,7 @@ export const memoryRules={
     "key": 87,
     "sourceHash": "49f61d8e6145c5218723b467108bb5c46efb8bc9e52ddbf8fa7fc2c355c02ed6"
   },
-  "memory:chien-tranh-va-hoa-binh": {
+  "memory:chiec-sung-thu-hai-khong-co-tieng-vang": {
     "static": [
       {
         "stat": "break",
@@ -893,7 +893,7 @@ export const memoryRules={
     "key": 89,
     "sourceHash": "1359245a159be021db0159ee610ce5ca8a13163691b0242a1b4df7f5536767be"
   },
-  "memory:phuong-hoang-tai-sinh": {
+  "memory:luoi-kiem-dot-chay-mau-cua-lua": {
     "static": [
       {
         "stat": "break",
@@ -915,7 +915,7 @@ export const memoryRules={
     "key": 91,
     "sourceHash": "8fafd26bdbfb11c2f53dcf2742a5b3509649a15873884e22444c813db0b71320"
   },
-  "memory:truoc-khi-sam-dong-troi-luon-im-lang": {
+  "memory:vet-lom-con-nong-tren-de-troi": {
     "static": [
       {
         "stat": "break",
@@ -937,7 +937,7 @@ export const memoryRules={
     "key": 93,
     "sourceHash": "4b9f59f73d30b1b36251fc454a64b8830c28278f7f566cb386a06080ee340939"
   },
-  "memory:noi-hai-ngon-lua-cung-chay": {
+  "memory:hoa-chung-mang-hai-nhip-tim": {
     "static": [
       {
         "stat": "atkPct",
@@ -948,7 +948,7 @@ export const memoryRules={
     "key": 94,
     "sourceHash": "a9dfd25b10ff8fc7016626d5172452483ba604cd41832048c66132a96dc12fe7"
   },
-  "memory:khi-su-tu-nam-im-duoi-da": {
+  "memory:bon-vet-vuot-tren-phien-da-den": {
     "static": [
       {
         "stat": "hit",
@@ -959,7 +959,7 @@ export const memoryRules={
     "key": 95,
     "sourceHash": "d14037442d72543bca6b36ce2c0a42dfd4917c1a37bfa6095ff28c21d1186988"
   },
-  "memory:khi-mat-troi-ha-thap-hon-moi-vuong-mien": {
+  "memory:mat-troi-khong-doi-vuong-mien": {
     "static": [
       {
         "stat": "critDmg",
@@ -981,7 +981,7 @@ export const memoryRules={
     "key": 97,
     "sourceHash": "bac8a6c57ecdda73e76dce0209c574eed62ba93e0000468b91a1ae922d7f286b"
   },
-  "memory:noi-luoi-kiem-cham-mua-dong": {
+  "memory:vuong-mien-treo-tren-luoi-kiem-bang": {
     "static": [
       {
         "stat": "crit",
@@ -1003,7 +1003,7 @@ export const memoryRules={
     "key": 99,
     "sourceHash": "c4ee11c77664f093a3d787074d3e9cdd726f47c5b56863c6d3d00d72eea5b16c"
   },
-  "memory:khi-mam-song-chua-quen-anh-sang": {
+  "memory:mam-xanh-trong-binh-thuoc-rong": {
     "static": [
       {
         "stat": "hpPct",
@@ -1014,7 +1014,7 @@ export const memoryRules={
     "key": 100,
     "sourceHash": "ce37db85065ae9b5883d8a1016b87018c04b46b49b96c8f0b33ed16bf1a7d5fe"
   },
-  "memory:noi-chin-vang-duong-cung-tat": {
+  "memory:mui-ten-thu-muoi-nam-ngoai-bao": {
     "static": [
       {
         "stat": "critDmg",
@@ -1023,8 +1023,20 @@ export const memoryRules={
     ],
     "complete": true,
     "key": 101,
-    "sourceHash": "5f303f0eacb57beb107b686d4ba7a9eb531bdcf3f3ab21590f8ec5ada45d5e98"
-  }
+    "sourceHash": "0160f35850b41a4c64c792e568aec97b6289c0f5946a0d0523c82d6e340a3fcc"
+  },
+  "memory:chiec-sung-chi-thoi-mot-lan": {"static":[{"stat":"energy","range":0}],"complete":true,"key":102,"sourceHash":"041d0cf423cc867e5a836aa4d50c4997ff86bb5d4fd1848fb891ca88f63eae60"},
+  "memory:nang-det-ao-tang-cho-bau-troi": {"static":[{"stat":"atkPct","range":0}],"complete":true,"key":103,"sourceHash":"fc29382ea87efb7bd6789e9ce9cc5ba76ca32eab02a8a41eb4d8ccc1e9ec65ed"},
+  "memory:ban-tay-de-lai-trong-ham-soi": {"static":[{"stat":"defPct","range":0}],"complete":true,"key":104,"sourceHash":"4437e00e5d72df12bb68373d6079fa176039a5c9a68bde122c518aabbbfe24f6"},
+  "memory:hai-banh-xe-nghien-nat-lenh-troi": {"static":[{"stat":"crit","range":0}],"complete":true,"key":105,"sourceHash":"cc2b63fbea07bc9b2c2755f1ae101dfb44e401a9aa3ca1af8e77e6d861e1bb0d"},
+  "memory:nguoi-trong-guong-khong-co-bong": {"static":[{"stat":"hit","range":0}],"complete":true,"key":106,"sourceHash":"e808b76fa00a83c80582e0552cc878e0aa433b5531e1a20e399c3bf6e1e90be1"},
+  "memory:su-tu-quy-duoi-ngoi-sao-thu-tam": {"static":[{"stat":"crit","range":0}],"complete":true,"key":107,"sourceHash":"2225458ecc7f49c6a920521fb4321105cafd1a259a46d1724d2ac68be6ee37f9"},
+  "memory:muoi-hai-vo-dan-duoi-cuc-quang": {"static":[{"stat":"energy","range":0}],"complete":true,"key":108,"sourceHash":"7cae30b1a8a67f090945c429a0d29ce17dec278f2ef501d2b9a3615ec614c250"},
+  "memory:thanh-pho-khong-tay-duoc-ten-nang": {"static":[{"stat":"energy","range":0}],"complete":true,"key":109,"sourceHash":"2fd61b5c10205e354d4b9dfd74705a7e0c4b4152202983abc04f527618037c2b"},
+  "memory:sau-mi-mat-khep-van-con-mot-troi-sang": {"static":[{"stat":"hpPct","range":0},{"stat":"shieldBonus","range":1}],"complete":true,"key":110,"sourceHash":"c3f23ccb41db3e04c72d6b12e0bfaedd008e4eb3075ee07b6d7431745e404d7f"},
+  "memory:tam-ve-khong-ghi-hiep-cuoi": {"static":[{"stat":"atkPct","range":0}],"complete":true,"key":111,"sourceHash":"0872f8ec6b3ca71693e979e07bf69ad539458613c876ceb80f0b5a9233378441"},
+  "memory:den-cap-cuu-van-sang-duoi-mat-nuoc": {"static":[{"stat":"hpPct","range":0}],"complete":true,"key":112,"sourceHash":"852c63f94a68226a01413162e01920b6eaaa433f6ca5af067677b395f1ffd01d"},
+  "memory:le-sach-khong-con-cho-cho-ten-nguoi": {"static":[{"stat":"atkPct","range":0}],"complete":true,"key":113,"sourceHash":"6493441ce2aac04f16e0ed03344c5b5033cc3c05ed83dae4f156188af4bd32b4"}
 };
 export const setRules={
   "artifact:vo-dai-cuu-chien": {

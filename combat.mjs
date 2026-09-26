@@ -7,8 +7,13 @@ import {actionToughness} from './character-rules.mjs';
 import {GearEvents} from './gear-events.mjs';
 import {Timeline} from './timeline.mjs';
 import {addEffect,expireEffects,effectiveStats,effectChance} from './effects.mjs';
-import {baseAV,clamp,normalizeElement,threat,seeded,weightedTarget,applyShields,directDamage,breakDamage,annihilation,quangValue,energyGain,defMultiplier,resMultiplier,mitigation,canFollow} from './formulas.mjs';
+import {addDot,dotStacks,elapseDot} from './dot-system.mjs';
+import {reviveState,spendHP} from './life-system.mjs';
+import {baseAV,clamp,normalizeElement,damageElements,toughnessScale,damageDefenseMultiplier,damageResistanceMultiplier,threat,seeded,weightedTarget,applyShields,directDamage,breakDamage,annihilation,quangValue,energyGain,defMultiplier,resMultiplier,mitigation,canFollow} from './formulas.mjs';
 export * from './formulas.mjs';
+export * from './dot-system.mjs';
+export * from './element-conversion.mjs';
+export * from './life-system.mjs';
 export {effectChance} from './effects.mjs';
 
 // Generic engine. Character-specific triggers must be registered explicitly.
@@ -49,7 +54,7 @@ function runCombatPass(config,roster,actions){
   fixedDamage:(t,value,u,kind,a)=>damage(t,value,u.index,kind,a.row,a.reportDetail||detail(effective(u),effective(t),a,'stored','normal',1,value)),
   extraDamage:(u,ratio,element,a)=>{gearDeferred.push(()=>{for(const t of enemies.filter(living)){const c={...effective(u),element},action={ratio,source:'Extra',flat:0,name:'Sát thương phụ trang bị'};damage(t,directDamage(c,effective(t),action,config.critMode),u.index,'gear',a.row,detail(c,effective(t),action,'direct',config.critMode));}});}
  });
- runtime=new CharacterRuntime({extraTurn:(u,a)=>timeline.add({at:timeline.time,side:"ally",index:u.index,natural:false,extraTurn:true,action:{...a,actor:u.index,realTurn:true,preserveDurations:true}}),reduceToughness:(u,t,n,a)=>{const before=t.toughness;t.toughness=Math.max(0,before-n);if(before>0&&!t.toughness)breakTarget(t,{...a,actor:u.index});},units,enemies,config,gear,retime,install,gain,emit,random,pending,shield:createShield,applyDebuff,tick,heal:healValue,planckCount:()=>planck,planckCap:()=>planckCap,delay:(t,n)=>timeline.advance('enemy',t.index,baseAV(effective(t).speed),-n),planck:(u,n)=>{const old=planck;planck=Math.min(planckCap,planck+n);emit(`${u.name} · Kit hồi ${planck-old} Planck`,'character');if(planck>old)gear.dispatch('planck',{unit:u,amount:planck-old});}});
+ runtime=new CharacterRuntime({extraTurn:(u,a)=>timeline.add({at:timeline.time,side:"ally",index:u.index,natural:false,extraTurn:true,action:{...a,actor:u.index,realTurn:true,preserveDurations:true}}),reduceToughness:(u,t,n,a)=>{const before=t.toughness;t.toughness=Math.max(0,before-n);if(before>0&&!t.toughness)breakTarget(t,{...a,actor:u.index});},units,enemies,config,gear,retime,install,gain,emit,random,pending,shield:createShield,applyDebuff,tick,triggerDots,heal:healValue,loseHP,revive:reviveUnit,planckCount:()=>planck,planckCap:()=>planckCap,delay:(t,n)=>timeline.advance('enemy',t.index,baseAV(effective(t).speed),-n),planck:(u,n)=>{const old=planck;planck=Math.min(planckCap,planck+n);emit(`${u.name} · Kit hồi ${planck-old} Planck`,'character');if(planck>old)gear.dispatch('planck',{unit:u,amount:planck-old});}});
  runtime.ctx.rotationMoment=()=>rotationMoment;
  const originalPlanck=runtime.ctx.planck;runtime.ctx.planck=(u,n)=>{if(planck+n>planckCap)diagnose('planckOverflow',u,`${u.name}: ${planck+n-planckCap} Planck vượt giới hạn`,{amount:planck+n-planckCap});originalPlanck(u,n);};
  function createShield(u,t,ratio,flat,duration,key,a){
@@ -62,6 +67,20 @@ function runCombatPass(config,roster,actions){
   const event={unit:u,target:t,outgoing:effective(u).outgoing||0,...meta};gear.dispatch('beforeHeal',event);
   const before=t.currentHP,effectiveAmount=Math.max(0,Math.min(value*(1+event.outgoing),meta.maxHeal??Infinity)),actual=Math.max(0,Math.min(effectiveAmount,effective(t).hp-before));t.currentHP+=actual;
   emit(`${u.name} hồi ${actual.toFixed(2)} HP cho ${t.name}`,'heal');gear.dispatch('heal',{...event,before,amount:actual,effectiveAmount});gear.dispatch('sync',{});return actual;
+ }
+ function loseHP(source,target,value,meta={}){
+  if(!living(target))return 0;const lost=spendHP(target,value,meta.floor??(meta.canKill?0:1));
+  if(lost){gear.dispatch('hpLost',{unit:target,source,amount:lost,self:source===target,action:meta.action,sacrifice:!!meta.sacrifice});emit(`${target.name} mất ${lost.toFixed(2)} HP`,'hpLoss');}
+  if(target.currentHP<=0)death(target);return lost;
+ }
+ function reviveUnit(source,target,options={}){
+  if(!target||target.side!=='ally'||!reviveState(target,options))return false;
+  timeline.remove(e=>e.side==='ally'&&e.index===target.index);
+  timeline.add({at:timeline.time+(options.immediate?0:baseAV(effective(target).speed)),side:'ally',index:target.index,natural:true});
+  emit(`${source?.name||'Hiệu ứng'} hồi sinh ${target.name}`,'revive');gear.dispatch('revive',{unit:source,target,options});return true;
+ }
+ function triggerDots(source,target,options={},action={}){
+  let count=0;for(const dot of [...target.dots]){if(options.predicate&&!options.predicate(dot))continue;tick(target,dot,options.multiplier??1,true,source,{...action,triggerDotIgnoreDef:!!options.ignoreDef});count++;}return count;
  }
  function hook(event,parent=null){
   for(const t of triggers){
@@ -109,16 +128,15 @@ function runCombatPass(config,roster,actions){
   const immune=(config.immunities||[]).includes(a.effectName)||(config.immunities||[]).includes(a.buffType);
   const chance=effectChance(a.baseChance,c.hit||0,t.resist||0,a.guaranteed,immune);
   if(chance<1&&random()>=chance){emit(`Myrk ${e.index+1} kháng ${a.effectName}`,'resisted');return false;}
-  if(a.source==='DoT'){
-   const old=e.dots.find(d=>d.name===a.effectName),stacks=a.maxStacks?Math.min(a.maxStacks,(old?.stacks||0)+1):1;
-   e.dots=e.dots.filter(d=>d.name!==a.effectName);e.dots.push({name:a.effectName,owner:a.actor,action:{...a},duration:a.duration,stacks,row:a.row});
-  }else if(a.buffType==='delay'||a.buffType==='advance'){const delayed={unit:units[a.actor],target:e,action:a,amount:a.buffValue};if(a.buffType==='delay')gear.dispatch('delay',delayed);timeline.advance('enemy',e.index,baseAV(t.speed),a.buffType==='delay'?-delayed.amount:delayed.amount);}
+  if(a.source==='DoT')addDot(e,{name:a.effectName,owner:a.actor,action:{...a},duration:a.duration,stacks:1,row:a.row,maxStacks:a.maxStacks,independentDurations:!!a.independentDurations,separateByOwner:!!a.separateByOwner});
+  else if(a.buffType==='delay'||a.buffType==='advance'){const delayed={unit:units[a.actor],target:e,action:a,amount:a.buffValue};if(a.buffType==='delay')gear.dispatch('delay',delayed);timeline.advance('enemy',e.index,baseAV(t.speed),a.buffType==='delay'?-delayed.amount:delayed.amount);}
   else install(e,{name:a.effectName,type:a.buffType,value:a.buffValue*(a.supportMultiplier||1),duration:a.duration,owner:a.actor,maxStacks:a.maxStacks,element:a.implantElement,skipRecovery:a.skipRecovery});
   gear.dispatch('debuff',{unit:units[a.actor],target:e,action:a,disrupt:['delay','control'].includes(a.buffType)||['speed','speedPct'].includes(a.buffType)&&a.buffValue<0,hardDisrupt:['delay','control'].includes(a.buffType)});
   emit(`${units[a.actor].name} áp dụng ${a.effectName} lên Myrk ${e.index+1}`,'effect');return true;
  }
  function tick(e,d,mult=1,external=false,triggerOwner=null,triggerAction=null){
-  if(e.hp<=0)return;const u=units[d.owner],a={...d.action,actor:d.owner,uid:triggerAction?.uid??++actionSerial,triggerOwner:triggerOwner?.index,chain,source:'DoT',ability:'DoT',fuaId:triggerAction?.fuaId,triggerCharacter:triggerAction?.characterId,triggerEnhanced:!!triggerAction?.enhanced,dotGroup:external?'action:'+(triggerAction?.uid??actionSerial):'enemy:'+e.index+':'+e.turn,effectName:d.name,ratio:d.action.ratio*(d.stacks||1)*mult,flat:(d.action.flat||0)*(d.stacks||1)*mult,dot:true,external,duration:d.duration};
+  if(e.hp<=0)return;const u=units[d.owner],stacks=dotStacks(d),a={...d.action,actor:d.owner,uid:triggerAction?.uid??++actionSerial,triggerOwner:triggerOwner?.index,chain,source:'DoT',ability:'DoT',fuaId:triggerAction?.fuaId,triggerCharacter:triggerAction?.characterId,triggerEnhanced:!!triggerAction?.enhanced,nepheleVM2:!!triggerAction?.nepheleVM2,dotGroup:external?'action:'+(triggerAction?.uid??actionSerial):'enemy:'+e.index+':'+e.turn,effectName:d.name,ratio:d.action.ratio*stacks*mult,flat:(d.action.flat||0)*stacks*mult,dot:true,external,duration:d.duration,ignoreDef:d.action.ignoreDef||!!triggerAction?.triggerDotIgnoreDef};
+  if(a.maxHpRatio!==undefined)a.flat=Math.min(a.maxHpRatio*e.maxHP,(a.atkCapRatio??Infinity)*effective(u).atk)*stacks*mult;
   if(external)gear.dispatch('externalDot',{unit:triggerOwner||u,target:e,action:a});
   gear.dispatch('dotStart',{unit:u,target:e,dot:d,action:a});
   let amount=0;for(let hit=0;hit<(a.dotHits||1)&&living(e);hit++){const m=gear.modifiers(u,e,a,1),mode=m.action.allowDotCrit?(config.critMode==='sampled'?(random()<m.stats.crit?'crit':'normal'):config.critMode):'normal';const value=directDamage(m.stats,m.enemy,m.action,mode)*(a.countsAsDK?(m.action.dkMultiplier??1):1),brokenBefore=e.toughness===0,info=detail(m.stats,m.enemy,m.action,'direct',mode,a.countsAsDK?(m.action.dkMultiplier??1):1);
@@ -131,17 +149,20 @@ function runCombatPass(config,roster,actions){
  function breakTarget(e,a){
   e.brokenAtTurn=e.turn;
   const owner=units[a.actor],ba={...a,source:'Break',damageSource:undefined,ability:a.ability||a.source};const bm=gear.modifiers(owner,e,ba,1);
-  const breakValue=breakDamage(bm.stats,bm.enemy,bm.action),info=detail(bm.stats,bm.enemy,bm.action,'Break');gear.dispatch('hit',{unit:owner,target:e,action:ba,amount:receivedDamage(e,breakValue),calculated:breakValue,defResFactor:defMultiplier(bm.stats.level||60,bm.enemy.level,(bm.action.defReduction||0)+(bm.enemy.defReduction||0),(bm.stats.pierce||0)+(bm.action.pen||0))*resMultiplier(bm.enemy.res,bm.action.resPen||0),brokenBefore:false});
+  const breakValue=breakDamage(bm.stats,bm.enemy,bm.action),info=detail(bm.stats,bm.enemy,bm.action,'Break');gear.dispatch('hit',{unit:owner,target:e,action:ba,amount:receivedDamage(e,breakValue),calculated:breakValue,defResFactor:damageDefenseMultiplier(bm.stats,bm.enemy,bm.action)*damageResistanceMultiplier(bm.enemy,bm.action,damageElements(bm.stats,bm.action)),brokenBefore:false});
   damage(e,breakValue,a.actor,'Break',a.row,info);gear.dispatch('break',{unit:owner,target:e,action:a});
   if(!living(e)){emit(`Myrk ${e.index+1}: Vỡ Khiên`,'break');hook({type:'break',side:'ally',actor:a.actor,target:e.index},a.fuaId);return;}
-  const el=normalizeElement(units[a.actor].element);
+ const rawElement=units[a.actor].element,el=normalizeElement(rawElement);
   timeline.advance('enemy',e.index,baseAV(effective(e).speed),-(.25+(el==='Nham'?.3:0)));
-  if(['Phong','Băng','Thủy'].includes(el))install(e,{name:{Phong:'Hất Tung',Băng:'Đóng Băng',Thủy:'Chết Đuối'}[el],type:'control',value:0,duration:1,owner:a.actor,skipRecovery:el!=='Phong'});
+  if(rawElement!=='Hàn Băng'&&['Phong','Băng','Thủy'].includes(el))install(e,{name:{Phong:'Hất Tung',Băng:'Đóng Băng',Thủy:'Chết Đuối'}[el],type:'control',value:0,duration:1,owner:a.actor,skipRecovery:el!=='Phong'});
   if(['Hỏa','Lôi'].includes(el)){
    const name=el==='Hỏa'?'Thiêu Đốt':'Tê Liệt';e.dots=e.dots.filter(d=>d.name!==name);e.dots.push({name,owner:a.actor,action:{ratio:1,flat:0,scaling:'atk',bonus:a.breakDotBonus||0},duration:2,stacks:1,row:a.row});
   }
   if(el==='Ám')for(const d of [...e.dots])tick(e,d,1,true,owner,a);
   if(el==='Quang'&&living(e))e.quang={owner:a.actor,recorded:0};
+  if(el==='Vật Lý'){
+   addDot(e,{name:'Chảy Máu',owner:a.actor,action:{ratio:0,flat:0,scaling:'atk',maxHpRatio:.05,atkCapRatio:2},duration:2,stacks:1,row:a.row,exclusiveByName:true});
+  }
   if(living(e))gear.dispatch('breakResolved',{unit:owner,target:e,action:a});
   emit(`Myrk ${e.index+1}: Vỡ Khiên`,'break');hook({type:'break',side:'ally',actor:a.actor,target:e.index},a.fuaId);
  }
@@ -163,14 +184,15 @@ function runCombatPass(config,roster,actions){
     if(a.source==='Diệt Kích'||a.dkOnly){if(!dk.has(e.index)&&(before===0||a.allowUnbrokenDK)){const val=a.fixedDamage??(a.atkScaledDK?directDamage(c,m.enemy,{...modified,ratio:a.targetRatios?.[e.index]??a.ratio},'normal'):annihilation(c,m.enemy,modified))*(modified.dkMultiplier??1),info=detail(c,m.enemy,{...modified,ratio:a.targetRatios?.[e.index]??a.ratio},a.atkScaledDK?'direct':'Diệt Kích','normal',a.fixedDamage===undefined?(modified.dkMultiplier??1):1,a.fixedDamage);gear.dispatch('hit',{unit:owner,target:e,action:a,amount:receivedDamage(e,val),calculated:val,brokenBefore:true});const actual=damage(e,val,a.actor,'Diệt Kích',a.row,info);a.damageByTarget[e.index]=(a.damageByTarget[e.index]||0)+actual;dk.add(e.index);a.dkTargets.add(e.index);actualTargets.add(e.index);}continue;}
     const part={...modified,ratio:(a.targetRatios?.[e.index]??a.ratio)/hitCount,extraRatio:(a.extraRatio||0)/hitCount,flat:a.flat/hitCount};
     const hitMode=modified.forceCrit?'crit':config.critMode==='sampled'?(random()<Math.min(1,c.crit||0)?'crit':'normal'):config.critMode;
-    const factor=defMultiplier(c.level||60,m.enemy.level,(part.defReduction||0)+(m.enemy.defReduction||0),(c.pierce||0)+(part.pen||0))*resMultiplier(m.enemy.res,part.resPen||0);
+    const factor=damageDefenseMultiplier(c,m.enemy,part)*damageResistanceMultiplier(m.enemy,part,damageElements(c,part));
     const value=a.carryDamage!==undefined?a.carryDamage*factor:directDamage(c,m.enemy,part,hitMode),amount=receivedDamage(e,value),info=detail(c,m.enemy,part,'direct',hitMode);
     gear.dispatch('hit',{unit:owner,target:e,action:a,amount,calculated:value,defResFactor:factor,brokenBefore:before===0,crit:!a.trueDamage&&!modified.noCrit&&hitMode==='crit'});
     const actual=damage(e,value,a.actor,a.trueDamage?'true':'direct',a.row,info);if(actual>0){a.baseToughnessByTarget[e.index]=(a.baseToughnessByTarget[e.index]||0)+(a.targetToughness?.[e.index]??a.toughness)/hitCount;actualTargets.add(e.index);a.damageByTarget[e.index]=(a.damageByTarget[e.index]||0)+actual;}
     while(gearDeferred.length)gearDeferred.shift()();
     if(!living(e))continue;
-    const weakness=e.weaknesses.includes(normalizeElement(c.element))||a.implant||e.effects.some(b=>b.type==='weakness'&&normalizeElement(b.element)===normalizeElement(c.element));
-    if(weakness&&!a.trueDamage)e.toughness=Math.max(0,e.toughness-(a.targetToughness?.[e.index]??a.toughness)/hitCount*(1+(modified.efficiency||0)+(c.efficiency||0)));
+    const attackElements=damageElements(c,modified),physical=attackElements.includes('Vật Lý');
+    const weakness=attackElements.some(el=>e.weaknesses.includes(el)||e.effects.some(b=>b.type==='weakness'&&normalizeElement(b.element)===el))||a.implant;
+    if((weakness||physical)&&!a.trueDamage)e.toughness=Math.max(0,e.toughness-(a.targetToughness?.[e.index]??a.toughness)/hitCount*(physical?toughnessScale('Vật Lý'):1)*(1+(modified.efficiency||0)+(c.efficiency||0)));
     if(before>0&&e.toughness===0)breakTarget(e,a);
     // Once per action per actual target; includes the breaking hit.
     if(a.annihilate&&(!a.dkTargetIndices||a.dkTargetIndices.includes(e.index))&&(e.toughness===0||a.allowUnbrokenDK)&&living(e)&&!dk.has(e.index)){
@@ -197,6 +219,7 @@ function runCombatPass(config,roster,actions){
   if((a.ability||a.source)==='Ult'&&u.currentEnergy<ultCost)return blocked('energy',`${u.name}: thiếu Năng Lượng, không thi triển`);
   const recipient=units[a.recipient];
   if(['Buff','Heal','Shield'].includes(a.source)&&(!recipient||!living(recipient)))return blocked('target','Mục tiêu hỗ trợ không hợp lệ; chưa tiêu tài nguyên');
+  if(a.source==='Revive'&&(!recipient||recipient.side!=='ally'||living(recipient)))return blocked('target','Mục tiêu hồi sinh không hợp lệ; chưa tiêu tài nguyên');
   a={...a,uid:++actionSerial,chain:a.chain??chain,ability:a.ability||a.source,livingCount:enemies.filter(living).length};
   a.hestiaCandidates??={};a.sekhmetTargets??={};a.houYiBreak??={};
   a.actionUnbroken=enemies.filter(e=>e.toughness>0).map(e=>e.index);
@@ -207,8 +230,8 @@ function runCombatPass(config,roster,actions){
   if(a.level)u.level=a.level;
   runtime.before(u,a);runtime.sync();
   if(a.name)emit(`${u.name} sử dụng ${a.name}`,'skill',{actor:u.index,name:a.name});
-  if(a.selfHPCurrentCost>0){const lost=Math.min(u.currentHP-1,u.currentHP*a.selfHPCurrentCost);u.currentHP-=lost;gear.dispatch('hpLost',{unit:u,amount:lost,self:true,action:a});}
-  if(a.selfHPCost>0){const lost=Math.min(u.currentHP-1,effective(u).hp*a.selfHPCost);u.currentHP-=lost;gear.dispatch('hpLost',{unit:u,amount:lost,self:true,action:a});}
+  if(a.selfHPCurrentCost>0)loseHP(u,u,u.currentHP*a.selfHPCurrentCost,{action:a,sacrifice:true});
+  if(a.selfHPCost>0)loseHP(u,u,effective(u).hp*a.selfHPCost,{action:a,sacrifice:true});
   const c=effective(u);let grantedBuff=false;let gearTargets=new Set();
   if(a.source==='Buff'){
    if(a.buffType==='advance')gear.advance(recipient,a.buffValue);
@@ -221,8 +244,9 @@ function runCombatPass(config,roster,actions){
   }else if(a.source==='Shield'){
    const key=a.shieldSource??String(a.actor),value=Math.max(0,(a.ratio*(c[a.scaling]||0)+a.flat)*(1+(c.shieldBonus||0))*(a.supportMultiplier||1)),old=recipient.shieldLayers.find(s=>s.key===key);
    recipient.shieldLayers=recipient.shieldLayers.filter(s=>s.key!==key);recipient.shieldLayers.push({key,owner:u.index,value:Math.max(old?.value||0,value),duration:a.duration});recipient.shields=recipient.shieldLayers.map(s=>s.value);emit(`${u.name} tạo Khiên cho ${recipient.name}`,'shield');gear.dispatch('shield',{unit:u,target:recipient,action:a});
-  }else if(!['Wait','Support'].includes(a.source))gearTargets=hitTargets(a);
-  if(a.triggerDoT)for(const target of enemies.slice(a.target,a.target+a.targets).filter(living))for(const dot of [...target.dots])tick(target,dot,a.dotMultiplier??1,true,u,a);
+  }else if(a.source==='Revive')reviveUnit(u,recipient,{hpFraction:a.hpFraction??.5,energy:a.reviveEnergy??0,immediate:!!a.immediateRevive});
+  else if(!['Wait','Support'].includes(a.source))gearTargets=hitTargets(a);
+  if(a.triggerDoT)for(const target of enemies.slice(a.target,a.target+a.targets).filter(living))triggerDots(u,target,{multiplier:a.dotMultiplier??1,ignoreDef:!!a.triggerDotIgnoreDef},a);
   if(a.ability==='Skill'&&recipient&&['Buff','Heal','Shield'].includes(a.source))gear.dispatch('allySkill',{unit:u,target:recipient,action:a});
   if(a.cleanse&&recipient){const bad=recipient.effects.filter(b=>b.value<0||b.type==='control');recipient.effects=recipient.effects.filter(b=>!bad.includes(b));gear.dispatch('cleanse',{unit:u,target:recipient,action:a,count:bad.length});}
   if(gearTargets.size)for(const b of consumables)if((!b.sources||b.sources.includes(a.damageSource||a.source))&&(b.target===undefined||gearTargets.has(b.target))&&(!b.enhancedOnly||a.enhanced))(b.character?runtime.remove(units[b.owner],u,b.characterKey):gear.remove(u,{index:b.owner},b.gearKey));
@@ -231,9 +255,9 @@ function runCombatPass(config,roster,actions){
   if(living(u)){const prior=planck;if(planck+a.refund>planckCap)diagnose('planckOverflow',u,`${u.name}: ${planck+a.refund-planckCap} Planck vượt giới hạn`,{amount:planck+a.refund-planckCap});planck=Math.min(planckCap,planck+a.refund);if(planck>prior)gear.dispatch('planck',{unit:u,amount:planck-prior});gain(u,a.energy);}
   runtime.complete(u,a,gearTargets);gear.dispatch('sync',{});
   if(a.rotationPolicyKey)u.lastPolicyMoment=a.rotationPolicyKey;
-  executions.push({av:timeline.time,order:traceSerial++,actor:a.actor,row:a.row,source:a.source,name:a.name,variant:a.variant,enhanced:!!a.enhanced,realTurn:!!a.realTurn,turn:u.turn,ability:a.ability,target:a.primaryTarget??a.target,recipient:a.recipient,supportTarget:!!(a.needsRecipient||a.otherRecipient||['Buff','Heal','Shield'].includes(a.source)),...(config.rotation?.enabled?{after:snapshot()}:{} )});
+  executions.push({av:timeline.time,order:traceSerial++,actor:a.actor,row:a.row,source:a.source,name:a.name,variant:a.variant,enhanced:!!a.enhanced,realTurn:!!a.realTurn,turn:u.turn,ability:a.ability,target:a.primaryTarget??a.target,recipient:a.recipient,supportTarget:!!(a.needsRecipient||a.otherRecipient||['Buff','Heal','Shield','Revive'].includes(a.source)),...(config.rotation?.enabled?{after:snapshot()}:{} )});
   emit(`${u.name}: Planck ${planck}/${planckCap} · NL ${u.currentEnergy.toFixed(2)}/${u.energyCap}`,'resource');
-  if(!['Buff','Heal','Shield','Debuff','DoT','Wait','Diệt Kích','Extra','Support'].includes(a.source))hook({type:'afterAttack',side:'ally',actor:a.actor,target:a.target},a.fuaId);
+  if(!['Buff','Heal','Shield','Revive','Debuff','DoT','Wait','Diệt Kích','Extra','Support'].includes(a.source))hook({type:'afterAttack',side:'ally',actor:a.actor,target:a.target},a.fuaId);
   return true;
  }
  function drain(){while(true){if(pending.length){perform(pending.shift());continue;}const a=units.map(u=>runtime.autoAction(u)).find(Boolean);if(!a)break;if(!perform(a))break;}}
@@ -265,32 +289,43 @@ function runCombatPass(config,roster,actions){
   if(!living(e))return;e.turn++;
   emit(`Myrk ${e.index+1} bắt đầu lượt ${e.turn}`,'enemyTurn');
   if(config.rotation?.enabled)enemyRecords.push({av:timeline.time,index:e.index,turn:e.turn,order:traceSerial++});
-  for(const d of [...e.dots]){tick(e,d);d.duration--;if(!living(e))break;}e.dots=e.dots.filter(d=>d.duration>0);
+  for(const d of [...e.dots]){tick(e,d);elapseDot(d);if(!living(e))break;}e.dots=e.dots.filter(d=>d.duration>0&&dotStacks(d)>0);
   if(!living(e))return;
   const control=e.effects.find(b=>b.type==='control');
   if(control)emit(`Myrk ${e.index+1}: bỏ hành động (${control.name})`);
   else{
-   const chosen=[],recipients=[],damagedRecipients=new Set(),shieldNotified=new Set();
+   const chosen=[],recipients=[],damagedRecipients=new Set(),shieldNotified=new Set(),lostByUnit={},shieldLostByUnit={};
    for(let i=0;i<Math.max(1,Math.min(5,Math.floor(config.enemyTargets||1)));i++){const selected=weightedTarget(units.filter(u=>!chosen.includes(u.index)).map(u=>({...effective(u),currentHP:u.currentHP})),random);if(!selected)break;chosen.push(selected.index);}
    const initialTargets=new Set(chosen);
    if(chosen.length){
-    gear.dispatch('enemyActionStart',{enemy:e,chain,targets:initialTargets});
-    for(const index of chosen){recipients.push(index);gear.dispatch('select',{target:units[index],enemy:e,chain});}
-    for(const index of chosen){let u=units[index];
+    const enemyAction={enemy:e,chain,targets:initialTargets,recipients:damagedRecipients,lostByUnit,shieldLostByUnit,damageMultiplier:1,cancelled:false,preCounters:new Set()};
+    gear.dispatch('enemyActionStart',enemyAction);
+    for(const index of chosen){recipients.push(index);gear.dispatch('select',{target:units[index],enemy:e,chain,action:enemyAction});}
+    gear.dispatch('enemyTargetsSelected',enemyAction);drain();
+    const applyEnemyHit=(u,incoming,extra={})=>{
+     if(!living(u))return 0;
+     const pre={unit:u,target:u,enemy:e,chain,amount:incoming*(extra.transferred?1:(enemyAction.damageMultiplier??1)),action:enemyAction,transferred:!!extra.transferred,redirects:[]};gear.dispatch('beforeEnemyDamage',pre);
+     for(const redirect of pre.redirects||[])if(redirect.target&&living(redirect.target)&&redirect.amount>0)applyEnemyHit(redirect.target,redirect.amount,{transferred:true});
+     incoming=Math.max(0,pre.amount);if(incoming>0)damagedRecipients.add(u.index);if(!recipients.includes(u.index))recipients.push(u.index);
+     const priorLayers=u.shieldLayers.map(s=>({...s})),beforeShield=priorLayers.reduce((n,l)=>n+Math.max(0,l.value),0),result=applyShields(incoming,u.shields);u.shields=result.shields;u.shieldLayers.forEach((s,i)=>s.value=result.shields[i]);
+     const afterShield=u.shieldLayers.reduce((n,l)=>n+Math.max(0,l.value),0),shieldLost=Math.max(0,beforeShield-afterShield);shieldLostByUnit[u.index]=(shieldLostByUnit[u.index]||0)+shieldLost;
+     const incomingEvent={unit:u,enemy:e,damage:result.hpDamage,floor:0,action:enemyAction,transferred:!!extra.transferred};gear.dispatch('incomingDamage',incomingEvent);const lost=loseHP(null,u,incomingEvent.damage,{floor:incomingEvent.floor,canKill:true,enemy:e});lostByUnit[u.index]=(lostByUnit[u.index]||0)+lost;
+     if(!shieldNotified.has(u.index)&&priorLayers.some(l=>l.value>0)){shieldNotified.add(u.index);gear.dispatch('shieldAttack',{target:u,enemy:e,chain,layers:priorLayers,shield:Math.max(0,...priorLayers.map(l=>l.value))});}
+     const shieldOwners=new Set();for(const layer of priorLayers)if(layer.value>0&&layer.owner!==undefined&&!shieldOwners.has(layer.owner)){shieldOwners.add(layer.owner);const owner=units[layer.owner];gear.dispatch('shieldHit',{owner,target:u,enemy:e,chain,layers:priorLayers,incoming});if(!u.shieldLayers.find(s=>s.key===layer.key)?.value)gear.dispatch('shieldBroken',{owner,target:u,enemy:e,chain});}
+     emit(`Myrk ${e.index+1} đánh ${u.name}: mất ${lost.toFixed(2)} HP`,'enemyHit',{actor:u.index,amount:lost,transferred:!!extra.transferred});return lost;
+    };
+    if(!enemyAction.cancelled&&living(e))for(const index of chosen){let u=units[index];
     for(let hit=0;hit<(config.enemyHits??1);hit++){
      if(!living(u)){if(chosen.length>1)break;const next=weightedTarget(units.map(v=>({...effective(v),currentHP:v.currentHP})),random);if(!next)break;u=units[next.index];}
      if(!recipients.includes(u.index)){recipients.push(u.index);gear.dispatch('select',{target:u,enemy:e,chain});}
      gear.dispatch('sync',{});const target=effective(u),incoming=config.attack/(config.enemyHits??1)*Math.max(0,1+(effective(e).allDamage||0))*defMultiplier(config.level,u.level,target.defReduction)*resMultiplier((config.allyRes||0)+target.res)*mitigation([config.allyReduction||0,...target.reductions])*(1+target.vulnerability);
-     if(incoming>0)damagedRecipients.add(u.index);const priorLayers=u.shieldLayers.map(s=>({...s}));const result=applyShields(incoming,u.shields);u.shields=result.shields;u.shieldLayers.forEach((s,i)=>s.value=result.shields[i]);const incomingEvent={unit:u,enemy:e,damage:result.hpDamage,floor:0};gear.dispatch('incomingDamage',incomingEvent);const lost=Math.min(Math.max(0,u.currentHP-incomingEvent.floor),result.hpDamage);u.currentHP-=lost;gear.dispatch('hpLost',{unit:u,amount:lost,self:false});
-     if(!shieldNotified.has(u.index)&&priorLayers.some(l=>l.value>0)){shieldNotified.add(u.index);gear.dispatch('shieldAttack',{target:u,enemy:e,chain,layers:priorLayers,shield:Math.max(0,...priorLayers.map(l=>l.value))});}
-     const shieldOwners=new Set();for(const layer of priorLayers)if(layer.value>0&&layer.owner!==undefined&&!shieldOwners.has(layer.owner)){shieldOwners.add(layer.owner);const owner=units[layer.owner];gear.dispatch('shieldHit',{owner,target:u,enemy:e,chain,layers:priorLayers,incoming});if(!u.shieldLayers.find(s=>s.key===layer.key)?.value)gear.dispatch('shieldBroken',{owner,target:u,enemy:e,chain});}
-     emit(`Myrk ${e.index+1} đánh ${u.name}: mất ${lost.toFixed(2)} HP`,'enemyHit',{actor:u.index,amount:lost});
-     if(!living(u))death(u);
+     applyEnemyHit(u,incoming);
     }
     }
     for(const index of recipients)gain(units[index],config.hitEnergy??0);
-    gear.dispatch('damageActionEnd',{enemy:e,chain,recipients:damagedRecipients,targets:initialTargets});
-    gear.dispatch('enemyAttackEnd',{enemy:e,chain,recipients:damagedRecipients,targets:initialTargets});
+    gear.dispatch('damageActionEnd',enemyAction);
+    const pendingBefore=pending.length;gear.dispatch('enemyAttackEnd',enemyAction);
+    enemyAction.naturalCounters=new Set([...enemyAction.preCounters,...pending.slice(pendingBefore).filter(a=>a.source==='Counter').map(a=>a.actor)]);gear.dispatch('enemyCounterCheck',enemyAction);
     hook({type:'enemyHit',side:'enemy',target:e.index,recipients});drain();e.gearRecipients=damagedRecipients;
     for(const ally of units)for(const b of [...ally.effects])if(b.enemyChain===chain){gear.remove(ally,{index:b.owner},b.gearKey);if(b.afterEnemy)gear.next(units[b.owner],ally,b.gearKey+' nhịp',{},{scoped:b.afterEnemy});}
    }

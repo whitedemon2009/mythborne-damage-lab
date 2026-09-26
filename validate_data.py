@@ -7,7 +7,7 @@ data=json.loads((root/'data/normalized.json').read_text())
 snapshot=json.loads((root/'data/live-snapshot.json').read_text())
 tabs={v['tabId']:v for v in snapshot['tabs'].values()}
 assert len(tabs)==4
-for kind,count in [('characters',61),('memories',102),('artifacts',22),('myrk',46)]:
+for kind,count in [('characters',74),('memories',114),('artifacts',22),('myrk',46)]:
     records=data[kind]
     assert len(records)==count,(kind,len(records))
     assert len({r['id'] for r in records})==count
@@ -38,8 +38,11 @@ assert byname['Astraeus']['energy']['cap']==200
 assert [v['cost'] for v in byname['Astraeus']['energy']['ultimateVariants']]==[100,200]
 assert byname['Surtr']['energy']['cap']==160
 assert byname['Janus']['energy']['cap']==130
+assert byname['Nephele']['energy']['cap']==130
+assert byname['Týr']['energy']['cap']==140
+assert byname['Nezha']['energy']['cap']==130
 assert all(c['energy']['cap']>0 for c in byname.values())
 assert byname['Hestia']['energy']['cap']==130
 assert next(r for r in data['memories'] if r['name']=='Dưới Con Ngươi Của Bạch Hổ')['baseStats']['60']['values']['atk']==658
-assert next(r for r in data['memories'] if r['name']=='Nơi Chín Vầng Dương Cùng Tắt')['refinementRanges'][0]['values']==[24,28,32,36,40]
-print('PASS: 231 records, source references, all character sections, level stats, refinement and energy variants')
+assert next(r for r in data['memories'] if r['name']=='Mặt Trời Không Đội Vương Miện')['refinementRanges'][0]['values']==[24,28,32,36,40]
+print('PASS: 256 records, source references, all character sections, level stats, refinement and energy variants')

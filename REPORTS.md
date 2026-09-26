@@ -34,7 +34,7 @@ Bảng gồm tổng sát thương, ST/100 AV, thời điểm dọn xong hoặc s
 
 ## Kiểm tra
 
-- `report.test.mjs`: đối chiếu bật/tắt báo cáo cho 61 Veyr VM6, tái tạo công thức từng hit, tổng đóng góp, overkill, các chẩn đoán và tách bản đội đã lưu khỏi cấu hình hiện tại; kiểm tra công thức với 102 Mảnh Ký Ức và 22 bộ Thần Vật.
+- `report.test.mjs`: đối chiếu bật/tắt báo cáo cho 74 Veyr VM6, tái tạo công thức từng hit, tổng đóng góp, overkill, các chẩn đoán và tách bản đội đã lưu khỏi cấu hình hiện tại; kiểm tra công thức với 114 Mảnh Ký Ức và 22 bộ Thần Vật.
 - `browser-report.test.cjs`: mở chi tiết hit, lọc Veyr, lưu hai đội khác nhau, giữ trang bị/chỉ số khi nạp, so sánh chung điều kiện, xóa kết quả cũ và nạp sau khi tải lại trang.
 - Kiểm tra engine, kit, trang bị và rotation tiếp tục chạy độc lập.
 
