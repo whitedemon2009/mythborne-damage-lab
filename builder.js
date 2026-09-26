@@ -86,5 +86,5 @@ export async function mountBuilder(api) {
   document.addEventListener('mythborne-kit-enable',()=>{states.forEach((s,i)=>{s.kitEnabled=!!characterRegistry[api.characters[api.getTeam()[i]].characterId];});draw();});
   document.addEventListener('mythborne-build-snapshot',event=>{const stamps={};for(const state of states){const memory=catalog.memories.find(m=>m.name===state.memory);if(memory)stamps[memory.id]=memory.contentHash;for(const p of state.artifacts){const set=catalog.artifacts.find(s=>s.name===p.set);if(set)stamps[set.id]=set.contentHash;}}event.detail.build=JSON.parse(JSON.stringify({team:api.getTeam(),states,stamps,bases:Object.fromEntries(api.getTeam().map(n=>[n,bases[n]]))}));});
   document.addEventListener('mythborne-build-restore',event=>{const b=event.detail.build;if(!b||b.team.length!==5||new Set(b.team).size!==5||b.team.some(n=>!bases[n]))throw Error('Đội hình không hợp lệ.');api.getTeam().splice(0,5,...b.team);for(const n of b.team)bases[n]={...b.bases[n]};b.states.forEach((s,i)=>{states[i]=JSON.parse(JSON.stringify(s));});api.renderTeam();draw();});
-  draw();setupCycleExperience();api.simulate();
+  draw();setupCycleExperience();const ready=new CustomEvent('mythborne-builder-ready',{detail:{restored:false}});document.dispatchEvent(ready);if(!ready.detail.restored)api.simulate();
 }

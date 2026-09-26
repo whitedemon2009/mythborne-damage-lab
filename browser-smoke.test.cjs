@@ -34,6 +34,15 @@ const { chromium } = require('playwright');
     assert.equal(await page.locator('#cycleResults tbody tr').count(), 3);
     assert.doesNotMatch(await page.locator('#totalDamage').innerText(), /^(0|—)$|NaN|Infinity/);
     assert.match(await page.locator('#combatLog').innerText(), /HP ∞/);
+    await page.locator('#draftStatus').filter({ hasText: 'Đã tự lưu bản nháp' }).waitFor();
+    await page.reload();
+    await page.getByLabel('Veyr 1', { exact: true }).waitFor();
+    assert.equal(await page.getByLabel('Veyr 1', { exact: true }).inputValue(), 'Hades');
+    assert.equal(await page.getByLabel('Vận Mệnh 1', { exact: true }).inputValue(), '6');
+    assert.equal(await page.locator('#enemyHPMode').inputValue(), 'infinite');
+    assert.equal(await page.locator('#cycles').inputValue(), '3');
+    assert.match(await page.locator('#draftStatus').innerText(), /Đã khôi phục bản nháp/);
+    assert.doesNotMatch(await page.locator('#totalDamage').innerText(), /^(0|—)$|NaN|Infinity/);
 
     await page.locator('#teamSnapshotName').fill('Đội kiểm tra');
     await page.locator('#saveReportTeam').click();
@@ -57,7 +66,7 @@ const { chromium } = require('playwright');
     await page.evaluate(() => window.scrollTo(0, 0));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
     assert.deepEqual(errors, []);
-    console.log('PASS public browser roster, VM6 team, infinite HP, per-Veyr gear and mobile layout');
+    console.log('PASS public browser roster, VM6 team, infinite HP, draft recovery, per-Veyr gear and mobile layout');
   } finally {
     await browser.close();
   }
