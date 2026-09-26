@@ -23,8 +23,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Validate live data snapshot
+        run: python3 validate_data.py
+      - name: Test combat systems
+        run: node test-all.mjs
       - name: Build standalone site
         run: python3 build.py
+      - name: Verify public artifact
+        run: node public-artifact.test.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
