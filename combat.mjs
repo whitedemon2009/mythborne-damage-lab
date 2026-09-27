@@ -22,7 +22,7 @@ function runCombatPass(config,roster,actions){
  const units=roster.map((c,index)=>({...c,crit:c.crit??.05,critDmg:c.critDmg??.5,index,side:'ally',level:c.level??60,speed:Math.max(1,Math.round(c.speed??100)),hp:c.hp??3000,currentHP:c.hp??3000,energyCap:c.energyCap??120,energyCapExplicit:Number.isFinite(c.energyCap)&&c.energyCap>0,currentEnergy:(c.energyCap??120)/2,threat:c.threat??threat(c.aspect),effects:[],shields:[],shieldDurations:[],shieldLayers:[],revives:(c.revives||[]).map(r=>({...r})),turn:0,script:0}));
  const enemies=Array.from({length:config.count},(_,index)=>({index,side:'enemy',level:config.level,res:config.res,maxHP:config.hp,hp:config.hp,speed:Math.round(config.speed),maxToughness:config.maxToughness,toughness:config.toughness,weaknesses:config.weaknesses.map(normalizeElement),reductions:[config.reduction||0],resist:config.effectRes??0,effects:[],dots:[],quang:null,turn:0}));
  const timeline=new Timeline(),random=seeded(config.seed??1),log=[],totals={},rows=[],executions=[],pending=[],triggerUses=new Map(),gearTargetCounts={},gearDeferred=[];
- const horizon=150+100*(config.cycles-1),startingRules=characterBattleRules(roster,config),planckCap=startingRules.cap;let runtime=null;let activeUnit=null,actionSerial=0;let planck=Math.min(planckCap,startingRules.initial),steps=0,chain=0,complete=true,error=null;
+ const horizon=150+100*(config.cycles-1),startingRules=characterBattleRules(roster,config),planckCap=startingRules.cap,stepLimit=Math.max(100,Math.min(10000,Number(config.maxSteps)||10000));let runtime=null;let activeUnit=null,actionSerial=0;let planck=Math.min(planckCap,startingRules.initial),steps=0,chain=0,complete=true,error=null;
  const turnRecords=[],enemyRecords=[],damageEvents=[],diagnostics=[];let traceSerial=0,rotationMoment={phase:'start',key:'start'};
  const diagnose=(type,u,message,extra={})=>{if(config.report)diagnostics.push({av:timeline.time,type,actor:u?.index,message,...extra});};
  const detail=(...args)=>config.report?describeDamage(...args):undefined;
@@ -203,7 +203,7 @@ function runCombatPass(config,roster,actions){
   return actualTargets;
  }
  function perform(a){
-  if(++steps>10000)throw Error('Chuỗi kích hoạt vượt giới hạn kiểm tra; cần xem lại trigger, không xuất kết quả bị cắt.');
+  if(++steps>stepLimit)throw Error('Chuỗi kích hoạt vượt giới hạn kiểm tra; cần xem lại trigger, không xuất kết quả bị cắt.');
   const u=units[a.actor];if(!u||!living(u))return false;
   const blocked=(type,message)=>{diagnose(type,u,message,{ability:a.ability||a.kitAction||a.source,energy:u.currentEnergy,planck});emit(message);return false;};
   const fallback=a.fallbackBasic;
@@ -340,7 +340,7 @@ function runCombatPass(config,roster,actions){
   gear.dispatch('sync',{});runtime.init();drain();
   while(true){
    const next=timeline.peek(speed);if(!next||next.at>horizon||!enemies.some(living)||!units.some(living))break;
-   if(++steps>10000)throw Error('Lịch lượt vượt giới hạn kiểm tra; cần xem lại hiệu ứng tạo lượt.');
+   if(++steps>stepLimit)throw Error('Lịch lượt vượt giới hạn kiểm tra; cần xem lại hiệu ứng tạo lượt.');
    const event=timeline.take(speed);chain++;const u=(event.side==='ally'?units:enemies)[event.index];if(!u||!living(u))continue;
    if(event.side==='enemy'){natural(u,timeline.time+baseAV(effective(u).speed));enemyTurn(u);}
    else if(event.natural){natural(u,timeline.time+baseAV(effective(u).speed));const script=scripts[u.index];const a=script.length?script[u.script++%script.length]:{actor:u.index,source:'Wait',cost:0,refund:0,energy:0,realTurn:true};allyTurn(u,a);}
@@ -364,6 +364,7 @@ export function runCombat(config,roster,actions){
   result.supportScores=scores;return result;
  }
  if(config.critMode==='expected'&&roster.some(u=>u.gear?.memory?.key===71||(u.gear?.sets?.[1]||0)>=5))return {complete:false,error:'Trang bị kích hoạt theo Chí Mạng thực tế: chọn chế độ Chí mạng theo seed, Luôn Chí Mạng hoặc Không Chí Mạng.'};
+ if(config.searchApproximate)return runCombatPass({...config,supportPreview:true,gearTargetCounts:config.gearTargetCounts||{}},roster,actions);
  const sensitive=roster.some(u=>(u.kitEnabled&&u.characterId==='veyr:mani')||[1,3,6,21,23,25,54,55,56,65,78,92,97].includes(u.gear?.memory?.key)||(u.gear?.sets?.[1]||0)>=4);
  let previous=config.gearTargetCounts||null,result;
  for(let pass=0;pass<(sensitive?8:1);pass++){

@@ -43,6 +43,28 @@ const { chromium } = require('playwright');
     assert.equal(await page.locator('#cycles').inputValue(), '3');
     assert.match(await page.locator('#draftStatus').innerText(), /Đã khôi phục bản nháp/);
     assert.doesNotMatch(await page.locator('#totalDamage').innerText(), /^(0|—)$|NaN|Infinity/);
+    assert.equal(await page.locator('#optimizerLocked option').count(), 75);
+    await page.locator('#optimizerBudget').selectOption('80');
+    await page.locator('#optimizeRotation').click();
+    await page.locator('#optimizerMessage').filter({ hasText: /^Hoàn tất/ }).waitFor({ timeout: 120000 });
+    assert.ok(await page.locator('#optimizerResults tbody tr').count() >= 1);
+    await page.getByRole('button', { name: 'Nạp phương án', exact: true }).first().click();
+    assert.match(await page.locator('#optimizerMessage').innerText(), /Đã nạp phương án/);
+    assert.doesNotMatch(await page.locator('#totalDamage').innerText(), /^(0|—)$|NaN|Infinity/);
+    await page.locator('#optimizerLocked').selectOption('Skadi');
+    await page.locator('#optimizerSustain').selectOption('exactlyOne');
+    await page.locator('#optimizerBudget').selectOption('12');
+    await page.locator('#optimizerFate').selectOption('0');
+    await page.locator('#optimizerRefine').selectOption('1');
+    await page.locator('#cycles').fill('1');
+    await page.evaluate(() => document.querySelector('#optimizer').scrollIntoView({ behavior: 'instant' }));
+    await page.evaluate(() => document.querySelector('#optimizeTeam').click());
+    await page.waitForFunction(() => !document.querySelector('#optimizeTeam').disabled,{},{timeout:180000});
+    assert.match(await page.locator('#optimizerMessage').innerText(),/^Hoàn tất/);
+    assert.ok(await page.locator('#optimizerResults tbody tr').count() >= 1);
+    assert.match(await page.locator('#optimizerResults tbody tr').first().innerText(), /Skadi/);
+    await page.getByRole('button', { name: 'Nạp phương án', exact: true }).first().click();
+    assert.ok(await Promise.all(Array.from({ length: 5 },(_,i)=>page.getByLabel(`Veyr ${i+1}`,{exact:true}).inputValue())).then(values=>values.includes('Skadi')));
 
     await page.locator('#teamSnapshotName').fill('Đội kiểm tra');
     await page.locator('#saveReportTeam').click();
@@ -66,7 +88,7 @@ const { chromium } = require('playwright');
     await page.evaluate(() => window.scrollTo(0, 0));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
     assert.deepEqual(errors, []);
-    console.log('PASS public browser roster, VM6 team, infinite HP, draft recovery, per-Veyr gear and mobile layout');
+    console.log('PASS public browser roster, VM6 team, infinite HP, optimizer, draft recovery, per-Veyr gear and mobile layout');
   } finally {
     await browser.close();
   }

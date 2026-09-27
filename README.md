@@ -27,6 +27,8 @@ Trong **So sánh đội hình**, dùng **Xuất đội đã lưu** để tải t
 
 Web tự lưu một bản nháp của cấu hình đang chỉnh sau mỗi lần mô phỏng hợp lệ, gồm đội hình, Vận Mệnh, trang bị, Myrk, cycle và rotation. Khi tải lại trang trên cùng trình duyệt, bản nháp được khôi phục trước khi chạy mô phỏng mặc định. Nếu nguồn kit hoặc trang bị đã thay đổi, bản nháp cũ sẽ bị từ chối và xóa; nút **Xóa bản nháp đã lưu** cho phép bỏ dữ liệu khôi phục mà không làm mất cấu hình đang mở.
 
+Phần **Tự động tìm đội hình & rotation** có hai chế độ. Tối ưu rotation giữ nguyên 5 Veyr, VM và trang bị hiện tại rồi tìm chuỗi BA/Chiến Kĩ, chính sách Tuyệt Kĩ và người nhận buff. Tìm toàn roster dùng tìm kiếm tiến hóa có seed tái lập trên 74 Veyr; có thể khóa một Veyr, yêu cầu số Aegis/Caduceus, chọn VM/TL và độ sâu. Ứng viên toàn roster dùng Mảnh Ký Ức cùng bộ Thần Vật đầu tiên trong đề cử đã đối chiếu, với chỉ số món mặc định đồng nhất. Kết quả là phương án tốt nhất tìm thấy trong ngân sách, có thể nạp thẳng vào web để tiếp tục chỉnh trang bị và xem báo cáo từng hit; không được mô tả là chứng minh tối ưu tuyệt đối.
+
 ## Kiểm tra
 
 Chạy `node test-all.mjs` để kiểm tra toàn bộ dữ liệu nhân vật, công thức, trang bị, rotation và tương tác đội hình. Chạy `npm run test:browser` để mở bản đóng gói bằng Chromium và kiểm tra chọn roster, đội VM6, HP vô cực, trang bị riêng từng Veyr và giao diện di động. Trước mỗi lần xuất bản, GitHub Pages tự chạy toàn bộ các bước này; bản mới chỉ được triển khai khi tất cả đều vượt qua.

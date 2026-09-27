@@ -34,7 +34,7 @@ function setupCycleExperience(){
  document.querySelector('#rotationName').placeholder='Tên chiến thuật';
  document.querySelector('#rotationName').setAttribute('aria-label','Tên chiến thuật');
  document.querySelector('#saveRotation').textContent='Lưu chiến thuật';
- const nav=rotationNode('nav');nav.className='lab-nav';for(const [href,label] of [['#myrkSetup','01 Myrk'],['#team','02 Đội hình'],['#cycleRunner','03 Cycle'],['#combatReport','04 Báo cáo'],['#teamComparison','05 So sánh']]){const a=rotationNode('a',label);a.href=href;nav.append(a);}document.querySelector('header').after(nav);toolbar.id='myrkSetup';
+ const nav=rotationNode('nav');nav.className='lab-nav';for(const [href,label] of [['#myrkSetup','01 Myrk'],['#team','02 Đội hình'],['#cycleRunner','03 Cycle'],['#combatReport','04 Báo cáo'],['#teamComparison','05 So sánh'],['#optimizer','06 Tối ưu']]){const a=rotationNode('a',label);a.href=href;nav.append(a);}document.querySelector('header').after(nav);toolbar.id='myrkSetup';
  seedCycleActions();
 }
 function seedCycleActions(){

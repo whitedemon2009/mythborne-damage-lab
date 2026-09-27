@@ -35,7 +35,7 @@
 
 ## Phạm vi còn lại
 
-Nguồn live hiện có 74 Veyr và toàn bộ đã có runtime tự động với khóa hash nguồn. Chế độ thủ công vẫn đọc đúng chỉ số và nội dung nguồn. Nội tại trang bị nằm trong `GEAR.md`; 114 Mảnh Ký Ức đã có bộ thực thi qua GearEvents. Myrk hiện dùng dummy có thể cấu hình; chưa có bộ thực thi riêng cho từng kit Myrk. VM3/VM5 vẫn tạm hoãn tăng cấp kỹ năng. Trình tự tìm rotation tối ưu chưa được triển khai.
+Nguồn live hiện có 74 Veyr và toàn bộ đã có runtime tự động với khóa hash nguồn. Chế độ thủ công vẫn đọc đúng chỉ số và nội dung nguồn. Nội tại trang bị nằm trong `GEAR.md`; 114 Mảnh Ký Ức đã có bộ thực thi qua GearEvents. Myrk hiện dùng dummy có thể cấu hình; chưa có bộ thực thi riêng cho từng kit Myrk. VM3/VM5 vẫn tạm hoãn tăng cấp kỹ năng. Trình tự tìm kiếm có thể tối ưu đội hiện tại hoặc sàng lọc toàn roster; xem `ROTATIONS.md` để biết phạm vi tìm kiếm, chuẩn hóa trang bị và giới hạn ngân sách.
 
 ## Kiểm tra
 

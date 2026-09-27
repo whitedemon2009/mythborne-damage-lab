@@ -21,8 +21,8 @@ def classic(name):
     source=(root/name).read_text()
     source=re.sub(r'^(?:import .*|export \* .*|export \{.*)\n','',source,flags=re.M)
     return source.replace('export ', '')
-combat = '\n'.join(classic(name) for name in ['formulas.mjs','dot-system.mjs','life-system.mjs','element-conversion.mjs','report.mjs','rotation.mjs','support-targeting.mjs','action-patterns.mjs','character-rules.mjs','timeline.mjs','effects.mjs','memory-events.mjs','artifact-events.mjs','gear-events.mjs','character-data.mjs',*[str(p.relative_to(root)) for p in sorted((root/'characters').glob('*.mjs'))],'character-runtime.mjs','combat.mjs','team-comparison.mjs'])
-combat_ui = (root / 'combat-ui.js').read_text()+'\n'+(root / 'rotation-ui.js').read_text()+'\n'+(root / 'report-ui.js').read_text()+'\n'+classic('recommendation-review.mjs')+'\n'+classic('recommendations.mjs')+'\n'+(root / 'experience-ui.js').read_text()
+combat = '\n'.join(classic(name) for name in ['formulas.mjs','dot-system.mjs','life-system.mjs','element-conversion.mjs','report.mjs','rotation.mjs','support-targeting.mjs','action-patterns.mjs','optimizer.mjs','character-rules.mjs','timeline.mjs','effects.mjs','memory-events.mjs','artifact-events.mjs','gear-events.mjs','character-data.mjs',*[str(p.relative_to(root)) for p in sorted((root/'characters').glob('*.mjs'))],'character-runtime.mjs','combat.mjs','team-comparison.mjs'])
+combat_ui = (root / 'combat-ui.js').read_text()+'\n'+(root / 'rotation-ui.js').read_text()+'\n'+(root / 'report-ui.js').read_text()+'\n'+classic('recommendation-review.mjs')+'\n'+classic('recommendations.mjs')+'\n'+(root / 'experience-ui.js').read_text()+'\n'+(root / 'optimizer-ui.js').read_text()
 script = '(function(){\n' + combat + '\n' + combat_ui + '\n' + artifacts + '\n' + classic('gear-data.mjs') + '\n' + classic('gear.mjs') + '\n' + builder + '\n' + app + '\n})();'
 (root / 'bundle.js').write_text(script)
 page = (root / 'index.html').read_text()

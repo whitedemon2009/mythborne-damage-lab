@@ -26,7 +26,7 @@ Tối đa 20 bản được lưu trong trình duyệt hiện tại. Bản lưu g
 
 So sánh chạy lại mọi bản tương thích bằng **cùng đội hình, chỉ số, trang bị, Vận Mệnh, Myrk, số cycle và seed hiện tại**. Bảng gồm tổng sát thương, sát thương từng Veyr, Planck cuối, Năng Lượng và số lượt từng Veyr, Sức Bền cuối và số lần Phá Vỡ. Đổi cấu hình sẽ xóa bảng cũ để tránh dùng kết quả cũ. Bản thuộc đội khác không được nạp hoặc so sánh.
 
-Đây là trình lập và so sánh các quyết định của người dùng, chưa phải bộ tự tìm rotation tối ưu. VM3/VM5 vẫn chưa tăng cấp kỹ năng theo yêu cầu tạm hoãn.
+Phần **Tự động tìm đội hình & rotation** có thể tìm chuỗi hành động lặp, chính sách Tuyệt Kĩ và người nhận buff cho đội hiện tại. Thuật toán chạy trực tiếp qua engine chiến đấu, xếp hạng trên đúng Myrk/cycle/seed đang chọn và cho phép nạp phương án tìm được vào trình lập lượt. Do không gian quyết định rất lớn, kết quả là phương án tốt nhất trong ngân sách đã chọn, không phải chứng minh tối ưu tuyệt đối. VM3/VM5 vẫn chưa tăng cấp kỹ năng theo yêu cầu tạm hoãn.
 
 ## Kiểm tra
 
@@ -39,6 +39,8 @@ Chỉ áp dụng khi bật kit và chạy timeline tự sinh theo cycle. Hàng t
 ### Tự chọn chủ lực và Chí Mạng — 16/09/2026
 
 Ô **Chủ lực nhận buff** mặc định tự động. Chọn trong đồng minh còn sống thuộc Gungnir, Mjolnir, Trishula, Fragarach, Vajra, Pandora; nếu không có thì xét các đồng minh còn sống khác. Có nhiều ứng viên thì so tổng sát thương ước tính từ một mô phỏng sơ bộ cùng cấu hình/seed (gồm các nguồn sát thương, trước khi cắt theo HP còn lại). Lượt sơ bộ dùng thứ tự ô để phá hòa; kết quả chốt điểm cho lượt mô phỏng chính. Đây là lựa chọn theo dự báo, chưa phải tìm tối ưu toàn bộ tổ hợp buff/rotation. Sau khi mục tiêu chết, chọn lại trong ứng viên sống bằng cùng bảng điểm.
+
+Tìm đội hình toàn roster dùng tìm kiếm tiến hóa có seed tái lập thay cho vét cạn hơn 16 triệu tổ hợp. Người dùng có thể khóa một Veyr và đặt điều kiện sustain. Các Veyr được chuẩn hóa theo cùng VM/TL, đề cử Mảnh Ký Ức và bộ Thần Vật đã đối chiếu; sau khi nạp kết quả vẫn cần chỉnh chỉ số chính/phụ nếu muốn đánh giá trần trang bị cụ thể.
 
 Ưu tiên quyết định: người nhận cụ thể trong hàng/lượt → chủ lực chỉ định ở thẻ Veyr → tự động. Giá trị `recipient: -1` kế thừa thẻ; `kitRecipient: -1` bật tự chọn. Các bản lưu cũ có người nhận cụ thể giữ nguyên lựa chọn. Chuỗi mới mặc định luân phiên Skill/Basic và đổi sang Basic khi thiếu Planck; bộ tạo chuỗi riêng vẫn giữ các biến thể Apollo/Agni. Bảng **Hành động và người nhận buff** hiển thị số BA/Skill/Ult thực thi và người nhận thật, không đếm lượt bị chặn.
 

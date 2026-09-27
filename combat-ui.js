@@ -33,6 +33,7 @@ function setupCombatUI(){
  const box=document.createElement('section');box.className='panel formula-note';box.innerHTML='<h2>Nhật ký chiến đấu</h2><p>Chế độ tự sinh: các hàng lượt thật của mỗi Veyr được thực hiện lần lượt rồi lặp lại; không có hàng thì chờ. Tốc Độ và đẩy lượt tự đổi lịch. Hàng chen ngang dùng AV nhập tay; FUA chọn điều kiện sẽ tự kích hoạt. Chọn “Kỹ năng từ kit” để tự xử lý kỹ năng của Veyr đã bật kit; các hàng thủ công dùng thông số nhập tay.</p><pre id="combatLog"></pre>';document.querySelector('main').append(box);
  setupRotationUI();
  setupReportUI();
+ setupOptimizerUI();
 }
 function extendAction(node,seed){
  const source=node.querySelector('.source');

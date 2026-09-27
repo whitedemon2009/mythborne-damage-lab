@@ -11,6 +11,8 @@ const requiredContent = [
   '"name":"Nyx"',
   'Lề Sách Không Còn Chỗ Cho Tên Người',
   'Cơ chế nhân vật',
+  'Tự động tìm đội hình & rotation',
+  'Tìm đội hình từ toàn roster',
 ];
 
 for (const marker of requiredContent) {

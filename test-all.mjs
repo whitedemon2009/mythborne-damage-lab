@@ -8,6 +8,7 @@ const suites = [
   './gear.test.mjs',
   './gear-integration.test.mjs',
   './infinite-hp.test.mjs',
+  './optimizer.test.mjs',
   './recommendations.test.mjs',
   './report.test.mjs',
   './rotation.test.mjs',
