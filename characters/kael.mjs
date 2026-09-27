@@ -4,8 +4,9 @@ export const kaelKit={
  resolve(r,u,k){return k==='Basic'?{name:'Zeroing Shot',ratio:.9}:k==='Skill'?{name:'Target Lock',ratio:2}:{name:'Dead Center',ratio:3,energyCost:110};},
  sync(r,u){
   if(r.vm(u,4))r.buff(u,u,'VM4',{atk:r.enemies().some(t=>r.effect(u,t,'Nòng Súng'))?.12:0});
-  const elemental=r.ctx.units.every(t=>['Hỏa','Lôi'].includes(normalizeElement(t.element)));
+  const elemental=r.triumph(u)&&r.ctx.units.every(t=>['Hỏa','Lôi'].includes(normalizeElement(t.element)));
   for(const t of r.enemies())elemental?r.buff(u,t,'Khải Hoàn Kháng',{HỏaResReduction:.24,LôiResReduction:.24},null,{debuff:true}):r.remove(u,t,'Khải Hoàn Kháng');
+  if(!r.triumph(u)){r.remove(u,u,'Khải Hoàn Tấn Công');return;}
   const old=r.effect(u,u,'Khải Hoàn Tấn Công')?.mods.atkFlat||0,own=r.eff(u).atk-old;
   const highest=Math.max(own,...r.ctx.units.filter(t=>t!==u).map(t=>r.eff(t).atk));
   r.buff(u,u,'Khải Hoàn Tấn Công',{atkFlat:highest*.5});

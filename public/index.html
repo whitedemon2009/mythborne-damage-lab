@@ -18,6 +18,8 @@ header h1{font-size:42px}main{padding-top:20px}body{font-size:16px}.member::afte
 #reportGroups,#reportHits,#reportSummary,#teamReportResults{overflow:auto}#reportHits{max-height:750px}#reportHits details{min-width:240px;max-width:620px}#reportDiagnostics details{max-height:450px;overflow:auto}#teamReportResults td{max-width:360px;min-width:140px}#teamReportMessage{color:var(--cyan)}#reportFilters label{min-width:200px}
 .optimizer-panel{margin-bottom:24px}.optimizer-controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:14px 0}.optimizer-panel progress{width:100%;height:12px;accent-color:var(--gold)}#optimizerMessage{color:var(--cyan)}#optimizerResults{overflow:auto}#optimizerResults td{min-width:120px;max-width:420px}@media(max-width:900px){.optimizer-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.optimizer-controls{grid-template-columns:1fr}}
 html{scroll-behavior:smooth}button,summary,a,input,select{touch-action:manipulation}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}[hidden]{display:none!important}header{padding:28px 0 14px}header h1{font-size:clamp(44px,6vw,72px)}.lab-nav{display:flex;gap:8px;flex-wrap:wrap;padding:12px 0;position:sticky;top:0;background:#0a0d12ed;z-index:5;backdrop-filter:blur(12px)}.lab-nav a{color:var(--muted);text-decoration:none;padding:8px 14px;border:1px solid var(--line);border-radius:24px}.lab-nav a:hover{color:var(--gold);border-color:var(--gold)}.myrk-heading{grid-column:1/-1;color:var(--gold)}.toolbar{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px}.team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.member{padding:22px;border-top:3px solid var(--accent)}.member>label:first-child select{font-size:22px;font-weight:700}.aspect-badge{color:var(--accent);letter-spacing:.05em}.member>p{color:var(--muted)}.member>details{padding:12px;background:#0b111b;border:1px solid var(--line);border-radius:10px}.member .computed-stats{color:var(--cyan)}.cycle-runner{margin-top:26px;padding:24px}.cycle-runner>p{color:var(--muted)}.cycle-controls{display:flex;align-items:end;gap:16px}.cycle-controls label{max-width:180px}.battle-settings{margin:18px 0}.battle-settings[open]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.battle-settings summary{grid-column:1/-1}.cycle-runner table{width:100%;border-collapse:collapse}.cycle-runner th,.cycle-runner td{text-align:left;padding:14px;border-bottom:1px solid var(--line)}.cycle-runner td:last-child{color:var(--gold);font-weight:700}.workspace{grid-template-columns:1fr}.results .breakdown{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}.advanced-sequence>summary,.turn-editor>summary{padding:18px;cursor:pointer;color:var(--cyan)}.turn-editor{margin-top:20px}.turn-editor .rotation-planner{margin:0;border:0;box-shadow:none}.substat-line{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 36px;gap:8px;align-items:end}.roll-plus{height:38px;border:1px solid var(--gold);border-radius:8px;background:#3e3218;color:var(--gold);font-size:24px;margin-bottom:8px}.roll-menu{grid-column:1/-1;display:flex;gap:6px}.roll-menu button,.roll-chip{background:#202d40;color:var(--cyan);padding:8px;border:1px solid var(--line);border-radius:8px}.roll-chip{margin:3px}.roll-progress{color:var(--gold)!important}.suggestion{padding:12px;margin:10px 0;border:1px solid var(--line);border-radius:8px}.suggestion strong,.suggestion small{display:block}.suggestion p{white-space:pre-line}.suggestion button{margin-top:10px}section, #team{scroll-margin-top:80px}@media(min-width:1500px){.team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:700px){.toolbar,.team-grid,.battle-settings[open]{grid-template-columns:1fr}.cycle-runner{padding:14px}.cycle-controls{align-items:stretch;flex-direction:column}.cycle-controls label{max-width:none}.lab-nav a{font-size:12px;padding:6px 9px}.member{padding:14px}.cycle-runner th,.cycle-runner td{padding:8px;font-size:13px}}
+
+.divinity-toggle{width:100%;margin:10px 0 4px;padding:11px 14px;border:1px solid #7f6a42;border-radius:9px;background:#191711;color:#c9b47c;font-weight:800;text-align:left}.divinity-toggle.active{border-color:var(--gold);background:linear-gradient(90deg,#493a18,#242015);color:#ffe29b;box-shadow:inset 3px 0 0 var(--gold)}
 </style>
 </head>
 <body>
@@ -2071,8 +2073,9 @@ const kaelKit={
  resolve(r,u,k){return k==='Basic'?{name:'Zeroing Shot',ratio:.9}:k==='Skill'?{name:'Target Lock',ratio:2}:{name:'Dead Center',ratio:3,energyCost:110};},
  sync(r,u){
   if(r.vm(u,4))r.buff(u,u,'VM4',{atk:r.enemies().some(t=>r.effect(u,t,'Nòng Súng'))?.12:0});
-  const elemental=r.ctx.units.every(t=>['Hỏa','Lôi'].includes(normalizeElement(t.element)));
+  const elemental=r.triumph(u)&&r.ctx.units.every(t=>['Hỏa','Lôi'].includes(normalizeElement(t.element)));
   for(const t of r.enemies())elemental?r.buff(u,t,'Khải Hoàn Kháng',{HỏaResReduction:.24,LôiResReduction:.24},null,{debuff:true}):r.remove(u,t,'Khải Hoàn Kháng');
+  if(!r.triumph(u)){r.remove(u,u,'Khải Hoàn Tấn Công');return;}
   const old=r.effect(u,u,'Khải Hoàn Tấn Công')?.mods.atkFlat||0,own=r.eff(u).atk-old;
   const highest=Math.max(own,...r.ctx.units.filter(t=>t!==u).map(t=>r.eff(t).atk));
   r.buff(u,u,'Khải Hoàn Tấn Công',{atkFlat:highest*.5});
@@ -2241,7 +2244,7 @@ const nadiaKit={
  resolve(r,u,k){return k==='Basic'?{name:'Small Kindling',ratio:.75}:k==='Skill'?{name:'Lingering Mark',ratio:.9}:{name:'Burn Through',ratio:.75,aoe:true,energyCost:110};},
  after(r,u,a,targets){
   if(['Skill','Ult'].includes(a.source))for(const i of targets){const t=r.ctx.enemies[i],old=t.dots.find(d=>d.name==='Vết Cháy'&&d.owner===u.index),duration=2+(a.source==='Skill'&&r.vm(u,2)&&r.debuffs(t).length>=2?1:0);if(a.source==='Ult'&&old)r.tick(u,t,old,r.vm(u,6)?1:r.asc(u)?.7:.5,a);if(r.dot(u,t,'Vết Cháy',r.vm(u,1)?.7:.6,duration,a)&&a.source==='Skill'&&r.asc(u))r.gain(u,4);}
-  if(['Basic','Skill','Ult'].includes(a.source))for(const i of targets){const t=r.ctx.enemies[i];r.triggerDots(u,t,{multiplier:1,predicate:d=>d.owner===u.index},a);}
+  if(r.triumph(u)&&['Basic','Skill','Ult'].includes(a.source))for(const i of targets){const t=r.ctx.enemies[i];r.triggerDots(u,t,{multiplier:1,predicate:d=>d.owner===u.index},a);}
  },
  event(r,u,type,e){if(type!=='modify')return;if(r.vm(u,4)&&normalizeElement(e.unit.element)==='Hỏa')e.resPen+=.1;if(e.unit===u&&e.action.effectName==='Vết Cháy'){if(r.debuffs(e.target).length>=2)e.bonus+=.2;if(r.asc(u)&&e.target.toughness===0)e.bonus+=.15;}}
 };
@@ -2442,7 +2445,7 @@ const rhydanKit={
 
 const rowanKit={
  minor:{crit:.104,elementDamage:.078,atk:.12},
- sync(r,u){if(r.vm(u,4))r.buff(u,u,'VM4',{atk:r.enemies().length>=4?.15:0});for(const t of r.enemies())r.buff(u,t,'Khải Hoàn Kháng Hiệu Ứng',{resist:-.5},null,{debuff:true});},
+ sync(r,u){if(r.vm(u,4))r.buff(u,u,'VM4',{atk:r.enemies().length>=4?.15:0});for(const t of r.enemies())r.triumph(u)?r.buff(u,t,'Khải Hoàn Kháng Hiệu Ứng',{resist:-.5},null,{debuff:true}):r.remove(u,t,'Khải Hoàn Kháng Hiệu Ứng');},
  resolve(r,u,k){return k==='Basic'?{name:'Open Current',ratio:.8}:k==='Skill'?{name:'Wide Arc',ratio:1.2,aoe:true,cost:r.state(u).free?0:1,bonus:r.asc(u)&&r.enemies().length>=4?.12:0}:{name:'Full Spread',ratio:1.65,aoe:true,energyCost:r.asc(u)?110:120,bonus:Math.min(4,Math.max(0,r.enemies().length-1))*(r.vm(u,2)?.12:.1)};},
  before(r,u,a){if(a.source==='Skill')r.state(u).free=false;},
  after(r,u,a,targets){if(targets.size>=4){r.buff(u,u,'Crowd Pressure',{atk:.18},1);if(r.asc(u))r.gain(u,5);if(a.source==='Ult'&&r.vm(u,6))r.state(u).free=true;}},
@@ -2475,12 +2478,12 @@ const seleneKit={
 
 const seraphineKit={
  minor:{crit:.104,critDmg:.12,elementDamage:.078},
- triumph(r){return isIceLightningTeam(r.ctx.units);},
- sync(r,u){let total=0;for(const t of r.enemies()){const b=r.effect(u,t,'Nhịp Điệu');if(!b)continue;b.mods={BăngResReduction:Math.min(.3,.03*b.charges),LôiResReduction:Math.min(.3,.03*b.charges)};total+=b.charges;}r.buff(u,u,'Khải Hoàn Nhịp Điệu',{speedPct:Math.min(.5,.05*total)});},
+ triumph(r,u){return r.triumph(u)&&isIceLightningTeam(r.ctx.units);},
+ sync(r,u){let total=0;for(const t of r.enemies()){const b=r.effect(u,t,'Nhịp Điệu');if(!b)continue;b.mods=r.triumph(u)?{BăngResReduction:Math.min(.3,.03*b.charges),LôiResReduction:Math.min(.3,.03*b.charges)}:{};total+=b.charges;}r.triumph(u)?r.buff(u,u,'Khải Hoàn Nhịp Điệu',{speedPct:Math.min(.5,.05*total)}):r.remove(u,u,'Khải Hoàn Nhịp Điệu');},
  resolve(r,u,k){return k==='Basic'?{name:'Thin Line',ratio:.85}:k==='Skill'?{name:'Threefold Cue',ratio:1.45,splash:.8,blast:true}:{name:'Curtain Call',ratio:1.9,splash:1.05,blast:true,energyCost:120};},
  fua(r,u,targets,a){if(!targets.length)return;const echo=!!r.effect(u,u,'Dư Âm');r.queue(u,{name:'Answering Blade',source:'FUA',target:targets[0],targetIndices:targets,targets:targets.length,primaryTarget:targets[0],ratio:(r.vm(u,1)?1.1:.95)*(r.asc(u)&&echo?1.2:1)},a);},
- after(r,u,a,targets){if(a.source==='Skill')for(const i of targets){const t=r.ctx.enemies[i],charges=Math.min(10,(r.effect(u,t,'Nhịp Điệu')?.charges||0)+1);r.buff(u,t,'Nhịp Điệu',{},2,{charges,debuff:true});}if(a.source==='Ult')r.buff(u,u,'Dư Âm',{FUADamage:.25},2);if(a.source==='FUA'){if(r.asc(u)&&targets.size>=3)r.gain(u,4);if(r.vm(u,4)){const s=r.state(u);s.followups=(s.followups||0)+1;if(s.followups%6===0)r.advance(u,.5);}}},
- observe(r,u,{unit:t,action:a,targets}){if(t===u||!r.attack(a)||!targets.size)return;const s=r.state(u);if(seraphineKit.triumph(r)){if((s.triumphFuas||0)>=6)return;s.triumphFuas=(s.triumphFuas||0)+1;seraphineKit.fua(r,u,[...targets].slice(0,3),a);return;}if(![...targets].some(i=>r.effect(u,r.ctx.enemies[i],'Nhịp Điệu')))return;seraphineKit.fua(r,u,r.enemies().filter(t=>r.effect(u,t,'Nhịp Điệu')).slice(0,3).map(t=>t.index),a);},
+ after(r,u,a,targets){if(a.source==='Skill')for(const i of targets){const t=r.ctx.enemies[i],charges=Math.min(r.triumph(u)?10:2,(r.effect(u,t,'Nhịp Điệu')?.charges||0)+1);r.buff(u,t,'Nhịp Điệu',{},2,{charges,debuff:true});}if(a.source==='Ult')r.buff(u,u,'Dư Âm',{FUADamage:.25},2);if(a.source==='FUA'){if(!r.triumph(u))for(const i of targets){const t=r.ctx.enemies[i],b=r.effect(u,t,'Nhịp Điệu');if(b?.charges>1)b.charges--;else if(b)r.remove(u,t,'Nhịp Điệu');}if(r.asc(u)&&targets.size>=3)r.gain(u,4);if(r.vm(u,4)){const s=r.state(u);s.followups=(s.followups||0)+1;if(s.followups%6===0)r.advance(u,.5);}}},
+ observe(r,u,{unit:t,action:a,targets}){if(t===u||!r.attack(a)||!targets.size)return;const s=r.state(u);if(seraphineKit.triumph(r,u)){if((s.triumphFuas||0)>=6)return;s.triumphFuas=(s.triumphFuas||0)+1;seraphineKit.fua(r,u,[...targets].slice(0,3),a);return;}if(![...targets].some(i=>r.effect(u,r.ctx.enemies[i],'Nhịp Điệu')))return;seraphineKit.fua(r,u,r.enemies().filter(t=>r.effect(u,t,'Nhịp Điệu')).slice(0,3).map(t=>t.index),a);},
  event(r,u,type,e){if(type==='turnStart'&&e.unit===u)r.state(u).triumphFuas=0;if(type==='break'&&r.vm(u,2)&&r.effect(u,e.target,'Nhịp Điệu'))seraphineKit.fua(r,u,[e.target.index],e.action);if(type==='modify'&&e.unit===u&&e.action.source==='FUA'){if(r.asc(u))e.crit+=.1;if(r.vm(u,6)&&r.effect(u,u,'Dư Âm')&&e.target.index===e.action.primaryTarget)e.bonus+=.3;}}
 };
 
@@ -2630,7 +2633,7 @@ const tomasKit={
  after(r,u,a){if(a.ability==='Skill'){const t=r.ctx.units[a.recipient];if(r.asc(u)&&!r.effect(u,t,'Dưỡng Hộ'))r.heal(u,t,.03,40,a);r.buff(u,t,'Dưỡng Hộ',{},3);if(r.asc(u))r.cleanse(u,t,a);r.allySkill(u,t,a);}if(a.ability==='Ult'){const targets=r.allies().filter(t=>r.effect(u,t,'Dưỡng Hộ'));if(targets.length){for(const t of targets){tomasKit.tick(r,u,t,a);if(r.vm(u,6))tomasKit.tick(r,u,t,a,.5);r.effect(u,t,'Dưỡng Hộ').duration++;if(r.asc(u))r.cleanse(u,t,a);}if(r.asc(u)&&targets.length>=3)r.planck(u,1);}else for(const t of r.allies()){r.heal(u,t,.05,80,a);if(r.asc(u))r.cleanse(u,t,a);}}},
  event(r,u,type,e){
   if(type==='turnStart'&&r.effect(u,e.unit,'Dưỡng Hộ'))tomasKit.tick(r,u,e.unit,{ability:'Talent'});
-  if(type==='heal'&&e.unit===u&&e.target?.side==='ally'&&e.amount>0){const old=r.effect(u,e.target,'Khải Hoàn Sinh Lực')?.charges||0,charges=Math.min(25,old+1);r.buff(u,e.target,'Khải Hoàn Sinh Lực',{hp:.01*charges},null,{charges});}
+  if(r.triumph(u)&&type==='heal'&&e.unit===u&&e.target?.side==='ally'&&e.amount>0){const old=r.effect(u,e.target,'Khải Hoàn Sinh Lực')?.charges||0,charges=Math.min(25,old+1);r.buff(u,e.target,'Khải Hoàn Sinh Lực',{hp:.01*charges},null,{charges});}
  },
  observe(r,u,{action:a,targets}){if(!r.vm(u,4)||!r.attack(a))return;for(const target of targets)r.queue(u,{name:'Tomas VM4',source:'Extra',ratio:.08,scaling:'hp',noCrit:true,energy:0,toughness:0,target},a);}
 };
@@ -2663,7 +2666,7 @@ const veylenKit={
  after(r,u,a){const s=r.state(u);if(a.source==='Skill'){if(a.enhanced){if(r.vm(u,2)){const actual=Object.values(a.damageByTarget||{}).reduce((x,y)=>x+y,0);r.queue(u,{name:'Veylen VM2',source:'Extra',ratio:0,flat:actual*.03*a.feedback,trueDamage:true,toughness:0,energy:0,aoe:true},a);}s.feedback=s.keepTwo?Math.min(2,a.feedback):0;s.keepTwo=false;if(r.asc(u)&&a.actualCrit)r.gain(u,8);}else veylenKit.feedback(r,u,1);if(r.vm(u,4)){s.skills=(s.skills||0)+1;if(s.skills%2===0)veylenKit.feedback(r,u,1);}}
   if(a.source==='Ult'){veylenKit.feedback(r,u,2);if(r.asc(u))r.buff(u,u,'A2',{},null,{scoped:{bonus:.15},sources:['Skill'],consume:'damage'});if(r.vm(u,6))s.keepTwo=true;}
  },
- observe(r,u,{unit:t,action:a,targets}){if(t===u)return;if(a.source==='FUA')veylenKit.feedback(r,u,1);if(!r.attack(a)||a.source==='FUA'||!targets.size)return;const s=r.state(u);if((s.triumphHits||0)>=3)return;s.triumphHits=(s.triumphHits||0)+1;const indices=[...targets];r.queue(u,{name:'Khải Hoàn Veylen',source:'Extra',ratio:1,element:'Lôi',target:indices[0],targetIndices:indices,targets:indices.length,energy:0,toughness:0},a);},
+ observe(r,u,{unit:t,action:a,targets}){if(t===u||!r.triumph(u))return;if(a.source==='FUA')veylenKit.feedback(r,u,1);if(!r.attack(a)||a.source==='FUA'||!targets.size)return;const s=r.state(u);if((s.triumphHits||0)>=3)return;s.triumphHits=(s.triumphHits||0)+1;const indices=[...targets];r.queue(u,{name:'Khải Hoàn Veylen',source:'Extra',ratio:1,element:'Lôi',target:indices[0],targetIndices:indices,targets:indices.length,energy:0,toughness:0},a);},
  event(r,u,type,e){if(type==='turnStart'&&e.unit===u)r.state(u).triumphHits=0;if(e.unit!==u)return;if(type==='hit'&&e.crit&&e.amount>0)e.action.actualCrit=true;if(type==='modify'&&e.action.source==='Skill'&&e.action.enhanced&&e.action.feedback>=3&&r.asc(u))e.crit+=.12;}
 };
 
@@ -2695,6 +2698,7 @@ class CharacterRuntime {
  enemies(){return this.ctx.enemies.filter(u=>this.alive(u));}
  eff(u){return effectiveStats(u);}
  asc(u){return u.kitAscensions!==false;}
+ triumph(u){return u.kitDivinityTriumph!==false;}
  vm(u,n){return (u.kitFate||0)>=n;}
  log(u,text){this.ctx.emit(`${u.name} · ${text}`,'character');}
  effect(u,t,key){return t.effects.find(e=>e.characterKey===key&&e.owner===u.index);}
@@ -3776,9 +3780,9 @@ function optimizerSeeds(names){return names.flatMap(name=>['Skill','Basic'].map(
 function optimizerStamps(state,catalog){const stamps={};const memory=catalog.memories.find(item=>item.name===state.memory);if(memory)stamps[memory.id]=memory.contentHash;for(const piece of state.artifacts){const set=catalog.artifacts.find(item=>item.name===piece.set);if(set)stamps[set.id]=set.contentHash;}return stamps;}
 function standardOptimizerCandidate(names,context,settings){
  const states=[],roster=[],stamps={};for(const name of names){const record=context.catalog.characters.find(item=>optimizerKeyName(item.name)===name),base=optimizerClone(context.bases[name]);if(!record||!base)throw Error('Thiếu dữ liệu chuẩn hóa cho '+optimizerDisplayName(name));
-  const state={kitPattern:'skill-basic',kitRecipient:-1,memory:'',refine:settings.refine,kitEnabled:true,kitAscensions:true,kitMinor:true,kitFate:settings.fate,kitAutoUlt:name==='Astraeus'?'full':'ready',artifacts:Array.from({length:6},(_,slot)=>newPiece(slot))};
+  const state={kitPattern:'skill-basic',kitRecipient:-1,memory:'',refine:settings.refine,kitEnabled:true,kitAscensions:true,kitMinor:true,kitFate:settings.fate,kitDivinityTriumph:true,kitAutoUlt:name==='Astraeus'?'full':'ready',artifacts:Array.from({length:6},(_,slot)=>newPiece(slot))};
   const review=reviewedGearSuggestions(record,context.catalog,state);if(review.memories[0])state.memory=review.memories[0].item.name;if(review.sets[0]){let slot=0;for(const part of review.sets[0].pieces)for(let i=0;i<part.count&&slot<6;i++)state.artifacts[slot++].set=part.item.name;}
-  Object.assign(stamps,optimizerStamps(state,context.catalog));const unit={...composeGear(base,state,context.catalog),...Object.fromEntries(['kitPattern','kitRecipient','kitEnabled','kitAscensions','kitMinor','kitFate','kitAutoUlt'].map(key=>[key,state[key]])),name:optimizerDisplayName(name)};roster.push(unit);states.push(state);
+  Object.assign(stamps,optimizerStamps(state,context.catalog));const unit={...composeGear(base,state,context.catalog),...Object.fromEntries(['kitPattern','kitRecipient','kitEnabled','kitAscensions','kitMinor','kitFate','kitDivinityTriumph','kitAutoUlt'].map(key=>[key,state[key]])),name:optimizerDisplayName(name)};roster.push(unit);states.push(state);
  }
  return {kind:'team',names:[...names],roster,actions:optimizerActions(names),seeds:optimizerSeeds(names),build:{team:[...names],states,stamps,bases:Object.fromEntries(names.map(name=>[name,optimizerClone(context.bases[name])]))},standardized:true};
 }
@@ -5121,7 +5125,7 @@ async function mountBuilder(api) {
       energyCap:r.energy?.cap ?? undefined,ultimateRequirement:r.energy?.ultimateCost??undefined,
       aspect:r.aspect, element:r.element, source:r.source,characterId:r.id,characterHash:r.contentHash };
   }
-  const states = Array.from({length:5}, (_,i) => ({kitPattern:'inherit',kitRecipient:-1,memory:'',refine:1,kitEnabled:true,kitAscensions:true,kitMinor:true,kitFate:0,kitAutoUlt:'ready',artifacts:Array.from({length:6},(_,j)=>newPiece(j))}));
+  const states = Array.from({length:5}, (_,i) => ({kitPattern:'inherit',kitRecipient:-1,memory:'',refine:1,kitEnabled:true,kitAscensions:true,kitMinor:true,kitFate:0,kitDivinityTriumph:true,kitAutoUlt:'ready',artifacts:Array.from({length:6},(_,j)=>newPiece(j))}));
   const bases=Object.fromEntries(Object.entries(api.characters).map(([k,v])=>[k,{...v}]));
   const host = document.querySelector('#team');
   const el = (tag, text) => { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; return n; };
@@ -5133,7 +5137,7 @@ async function mountBuilder(api) {
   function draw() {
     const opened=[...host.querySelectorAll('details')].map(d=>d.open);host.replaceChildren();
     api.getTeam().forEach((id,i)=>{
-      const state=states[i],base=bases[id];state.kitPattern??='inherit'; Object.assign(api.characters[id],composeGear(base,state,catalog),...['kitEnabled','kitAscensions','kitMinor','kitFate','kitAutoUlt','kitRecipient','kitPattern'].map(k=>({[k]:state[k]}))); const c=api.characters[id],card=el('article');card.className='member';
+      const state=states[i],base=bases[id];state.kitPattern??='inherit';state.kitDivinityTriumph??=true; Object.assign(api.characters[id],composeGear(base,state,catalog),...['kitEnabled','kitAscensions','kitMinor','kitFate','kitDivinityTriumph','kitAutoUlt','kitRecipient','kitPattern'].map(k=>({[k]:state[k]}))); const c=api.characters[id],card=el('article');card.className='member';
       card.append(select(`Veyr ${i+1}`,catalog.characters.map(r=>[key(r.name),r.name]),id,next=>{
         if(next===id)return;
         if(api.getTeam().some((n,j)=>j!==i&&n===next)){draw();return;}
@@ -5150,6 +5154,8 @@ async function mountBuilder(api) {
           option('Xu hướng hành động '+(i+1),actionPatterns.map(p=>[p.id,p.label]),'kitPattern');
           card.append(el('small','BA = Tấn Công Thường. Chuỗi lặp theo lượt Veyr, kể cả lượt thêm; Tuyệt Kĩ/FUA không chiếm bước. Thiếu Planck thì dùng BA. Lượt chỉnh riêng được ưu tiên.'));
           option('Đột Phá '+(i+1),[['true','Bật A1 / A2 / A3'],['false','Tắt Đột Phá']],'kitAscensions',v=>v==='true');
+          const dossier=catalog.characters.find(r=>key(r.name)===id),hasTriumph=dossier?.text.some(line=>/^KHẢI HOÀN THẦN TÍNH\s*:/i.test(line));
+          if(hasTriumph){const toggle=el('button',state.kitDivinityTriumph?'Khải Hoàn Thần Tính · Đang bật':'Khải Hoàn Thần Tính · Đang tắt');toggle.type='button';toggle.className='divinity-toggle'+(state.kitDivinityTriumph?' active':'');toggle.setAttribute('aria-label','Khải Hoàn Thần Tính '+(i+1));toggle.setAttribute('aria-pressed',String(state.kitDivinityTriumph));toggle.onclick=()=>{state.kitDivinityTriumph=!state.kitDivinityTriumph;draw();api.simulate();};card.append(toggle);}
           option('Mốc phụ '+(i+1),[['true','Bật Mốc phụ'],['false','Tắt Mốc phụ']],'kitMinor',v=>v==='true');
           option('Vận Mệnh '+(i+1),Array.from({length:7},(_,n)=>[String(n),'VM'+n]),'kitFate',Number);
           option('Tự dùng Tuyệt Kĩ '+(i+1),[['false','Theo hàng rotation'],['ready','Ngay khi đủ Năng Lượng'],...(id==='Astraeus'?[['full','Chờ Tuyệt Kĩ II']]:[])],'kitAutoUlt',v=>v==='false'?false:v);
@@ -5189,7 +5195,7 @@ async function mountBuilder(api) {
     refreshCharacterRows();
     document.querySelector('#teamRule').textContent='5 Veyr · 1 Mảnh Ký Ức/Veyr · 6 Thần Vật/Veyr';
   }
-  document.addEventListener('mythborne-kit-team',()=>{states.forEach((s,i)=>{s.kitEnabled=!!characterRegistry[api.characters[api.getTeam()[i]].characterId];s.kitAscensions=true;s.kitMinor=true;s.kitAutoUlt=api.getTeam()[i]==='Astraeus'?'full':'ready';});draw();});
+  document.addEventListener('mythborne-kit-team',()=>{states.forEach((s,i)=>{s.kitEnabled=!!characterRegistry[api.characters[api.getTeam()[i]].characterId];s.kitAscensions=true;s.kitMinor=true;s.kitDivinityTriumph=true;s.kitAutoUlt=api.getTeam()[i]==='Astraeus'?'full':'ready';});draw();});
   document.addEventListener('mythborne-kit-enable',()=>{states.forEach((s,i)=>{s.kitEnabled=!!characterRegistry[api.characters[api.getTeam()[i]].characterId];});draw();});
   document.addEventListener('mythborne-build-snapshot',event=>{const stamps={};for(const state of states){const memory=catalog.memories.find(m=>m.name===state.memory);if(memory)stamps[memory.id]=memory.contentHash;for(const p of state.artifacts){const set=catalog.artifacts.find(s=>s.name===p.set);if(set)stamps[set.id]=set.contentHash;}}event.detail.build=JSON.parse(JSON.stringify({team:api.getTeam(),states,stamps,bases:Object.fromEntries(api.getTeam().map(n=>[n,bases[n]]))}));});
   document.addEventListener('mythborne-optimizer-context',event=>{event.detail.context={catalog,bases:JSON.parse(JSON.stringify(bases))};});

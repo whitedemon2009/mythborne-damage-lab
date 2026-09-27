@@ -97,6 +97,7 @@ export class CharacterRuntime {
  enemies(){return this.ctx.enemies.filter(u=>this.alive(u));}
  eff(u){return effectiveStats(u);}
  asc(u){return u.kitAscensions!==false;}
+ triumph(u){return u.kitDivinityTriumph!==false;}
  vm(u,n){return (u.kitFate||0)>=n;}
  log(u,text){this.ctx.emit(`${u.name} · ${text}`,'character');}
  effect(u,t,key){return t.effects.find(e=>e.characterKey===key&&e.owner===u.index);}

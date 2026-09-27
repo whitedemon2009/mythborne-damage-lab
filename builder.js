@@ -14,7 +14,7 @@ export async function mountBuilder(api) {
       energyCap:r.energy?.cap ?? undefined,ultimateRequirement:r.energy?.ultimateCost??undefined,
       aspect:r.aspect, element:r.element, source:r.source,characterId:r.id,characterHash:r.contentHash };
   }
-  const states = Array.from({length:5}, (_,i) => ({kitPattern:'inherit',kitRecipient:-1,memory:'',refine:1,kitEnabled:true,kitAscensions:true,kitMinor:true,kitFate:0,kitAutoUlt:'ready',artifacts:Array.from({length:6},(_,j)=>newPiece(j))}));
+  const states = Array.from({length:5}, (_,i) => ({kitPattern:'inherit',kitRecipient:-1,memory:'',refine:1,kitEnabled:true,kitAscensions:true,kitMinor:true,kitFate:0,kitDivinityTriumph:true,kitAutoUlt:'ready',artifacts:Array.from({length:6},(_,j)=>newPiece(j))}));
   const bases=Object.fromEntries(Object.entries(api.characters).map(([k,v])=>[k,{...v}]));
   const host = document.querySelector('#team');
   const el = (tag, text) => { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; return n; };
@@ -26,7 +26,7 @@ export async function mountBuilder(api) {
   function draw() {
     const opened=[...host.querySelectorAll('details')].map(d=>d.open);host.replaceChildren();
     api.getTeam().forEach((id,i)=>{
-      const state=states[i],base=bases[id];state.kitPattern??='inherit'; Object.assign(api.characters[id],composeGear(base,state,catalog),...['kitEnabled','kitAscensions','kitMinor','kitFate','kitAutoUlt','kitRecipient','kitPattern'].map(k=>({[k]:state[k]}))); const c=api.characters[id],card=el('article');card.className='member';
+      const state=states[i],base=bases[id];state.kitPattern??='inherit';state.kitDivinityTriumph??=true; Object.assign(api.characters[id],composeGear(base,state,catalog),...['kitEnabled','kitAscensions','kitMinor','kitFate','kitDivinityTriumph','kitAutoUlt','kitRecipient','kitPattern'].map(k=>({[k]:state[k]}))); const c=api.characters[id],card=el('article');card.className='member';
       card.append(select(`Veyr ${i+1}`,catalog.characters.map(r=>[key(r.name),r.name]),id,next=>{
         if(next===id)return;
         if(api.getTeam().some((n,j)=>j!==i&&n===next)){draw();return;}
@@ -43,6 +43,8 @@ export async function mountBuilder(api) {
           option('Xu hướng hành động '+(i+1),actionPatterns.map(p=>[p.id,p.label]),'kitPattern');
           card.append(el('small','BA = Tấn Công Thường. Chuỗi lặp theo lượt Veyr, kể cả lượt thêm; Tuyệt Kĩ/FUA không chiếm bước. Thiếu Planck thì dùng BA. Lượt chỉnh riêng được ưu tiên.'));
           option('Đột Phá '+(i+1),[['true','Bật A1 / A2 / A3'],['false','Tắt Đột Phá']],'kitAscensions',v=>v==='true');
+          const dossier=catalog.characters.find(r=>key(r.name)===id),hasTriumph=dossier?.text.some(line=>/^KHẢI HOÀN THẦN TÍNH\s*:/i.test(line));
+          if(hasTriumph){const toggle=el('button',state.kitDivinityTriumph?'Khải Hoàn Thần Tính · Đang bật':'Khải Hoàn Thần Tính · Đang tắt');toggle.type='button';toggle.className='divinity-toggle'+(state.kitDivinityTriumph?' active':'');toggle.setAttribute('aria-label','Khải Hoàn Thần Tính '+(i+1));toggle.setAttribute('aria-pressed',String(state.kitDivinityTriumph));toggle.onclick=()=>{state.kitDivinityTriumph=!state.kitDivinityTriumph;draw();api.simulate();};card.append(toggle);}
           option('Mốc phụ '+(i+1),[['true','Bật Mốc phụ'],['false','Tắt Mốc phụ']],'kitMinor',v=>v==='true');
           option('Vận Mệnh '+(i+1),Array.from({length:7},(_,n)=>[String(n),'VM'+n]),'kitFate',Number);
           option('Tự dùng Tuyệt Kĩ '+(i+1),[['false','Theo hàng rotation'],['ready','Ngay khi đủ Năng Lượng'],...(id==='Astraeus'?[['full','Chờ Tuyệt Kĩ II']]:[])],'kitAutoUlt',v=>v==='false'?false:v);
@@ -82,7 +84,7 @@ export async function mountBuilder(api) {
     refreshCharacterRows();
     document.querySelector('#teamRule').textContent='5 Veyr · 1 Mảnh Ký Ức/Veyr · 6 Thần Vật/Veyr';
   }
-  document.addEventListener('mythborne-kit-team',()=>{states.forEach((s,i)=>{s.kitEnabled=!!characterRegistry[api.characters[api.getTeam()[i]].characterId];s.kitAscensions=true;s.kitMinor=true;s.kitAutoUlt=api.getTeam()[i]==='Astraeus'?'full':'ready';});draw();});
+  document.addEventListener('mythborne-kit-team',()=>{states.forEach((s,i)=>{s.kitEnabled=!!characterRegistry[api.characters[api.getTeam()[i]].characterId];s.kitAscensions=true;s.kitMinor=true;s.kitDivinityTriumph=true;s.kitAutoUlt=api.getTeam()[i]==='Astraeus'?'full':'ready';});draw();});
   document.addEventListener('mythborne-kit-enable',()=>{states.forEach((s,i)=>{s.kitEnabled=!!characterRegistry[api.characters[api.getTeam()[i]].characterId];});draw();});
   document.addEventListener('mythborne-build-snapshot',event=>{const stamps={};for(const state of states){const memory=catalog.memories.find(m=>m.name===state.memory);if(memory)stamps[memory.id]=memory.contentHash;for(const p of state.artifacts){const set=catalog.artifacts.find(s=>s.name===p.set);if(set)stamps[set.id]=set.contentHash;}}event.detail.build=JSON.parse(JSON.stringify({team:api.getTeam(),states,stamps,bases:Object.fromEntries(api.getTeam().map(n=>[n,bases[n]]))}));});
   document.addEventListener('mythborne-optimizer-context',event=>{event.detail.context={catalog,bases:JSON.parse(JSON.stringify(bases))};});

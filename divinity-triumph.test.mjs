@@ -19,21 +19,30 @@ near(effectiveStats(r.enemies[0]).LôiResReduction,.24);
 r=run([v('Kael',{atk:500}),v('Sol',{atk:1000})],[]);
 near(effectiveStats(r.units[0]).atk,1000);
 near(effectiveStats(r.enemies[0]).HỏaResReduction,0);
+r=run([v('Kael',{atk:500,kitDivinityTriumph:false}),v('Veylen',{atk:1000})],[]);
+near(effectiveStats(r.units[0]).atk,500);
+near(effectiveStats(r.enemies[0]).HỏaResReduction,0);
 
 // Rowan's reduction participates in the actual effect-chance stat.
 r=run([v('Rowan')],[]);
 near(effectiveStats(r.enemies[0]).resist,.3);
+r=run([v('Rowan',{kitDivinityTriumph:false})],[]);
+near(effectiveStats(r.enemies[0]).resist,.8);
 
 // Skill installs Vết Cháy before the Khải Hoàn trigger; a later Basic triggers
 // the same DoT once more without shortening it.
 r=run([v('Nadia')],[a(0,'Skill'),a(0,'Basic',2)],{effectRes:0});
 assert.equal(r.damageEvents.filter(e=>e.kind==='DoT').length,2);
 assert.equal(r.enemies[0].dots.find(d=>d.name==='Vết Cháy').duration,2);
+r=run([v('Nadia',{kitDivinityTriumph:false})],[a(0,'Skill'),a(0,'Basic',2)],{effectRes:0});
+assert.equal(r.damageEvents.filter(e=>e.kind==='DoT').length,0);
 
 // A real Tomas heal permanently raises that target's maximum HP once.
 r=run([v('Tomas',{kitAscensions:true}),v('Kael',{kitEnabled:false})],[{actor:1,source:'Basic',ratio:0,selfHPCost:.5,av:1},{...a(0,'Skill',2),recipient:1}]);
 const life=r.units[1].effects.find(e=>e.characterKey==='Khải Hoàn Sinh Lực');
 assert.equal(life.charges,1);near(life.mods.hp,.01);
+r=run([v('Tomas',{kitAscensions:true,kitDivinityTriumph:false}),v('Kael',{kitEnabled:false})],[{actor:1,source:'Basic',ratio:0,selfHPCost:.5,av:1},{...a(0,'Skill',2),recipient:1}]);
+assert.equal(r.units[1].effects.some(e=>e.characterKey==='Khải Hoàn Sinh Lực'),false);
 
 // A teammate attack calls Veylen's extra damage at most three times and the
 // Seraphine FUA grants Phản Hồi. Seraphine is capped at six calls per interval.
@@ -43,6 +52,10 @@ r=run([v('Veylen'),v('Seraphine'),driver],attacks,{res:0});
 assert.equal(r.executions.filter(e=>e.name==='Khải Hoàn Veylen').length,3);
 assert.equal(r.executions.filter(e=>e.name==='Answering Blade').length,6);
 assert.equal(r.units[0].characterState.feedback,4);
+r=run([v('Veylen',{kitDivinityTriumph:false}),v('Seraphine',{kitDivinityTriumph:false}),driver],attacks,{res:0});
+assert.equal(r.executions.filter(e=>e.name==='Khải Hoàn Veylen').length,0);
+assert.equal(r.executions.filter(e=>e.name==='Answering Blade').length,0);
+assert.equal(r.units[0].characterState?.feedback||0,0);
 
 // Nhịp Điệu now reaches ten stacks, is not consumed by Answering Blade, and
 // grants matching Ice/Lightning resistance reduction plus Seraphine speed.
@@ -51,5 +64,9 @@ r=run([v('Seraphine')],skills,{initialPlanck:5,res:0});
 const rhythm=r.enemies[0].effects.find(e=>e.characterKey==='Nhịp Điệu');
 assert.equal(rhythm.charges,5);near(effectiveStats(r.enemies[0]).BăngResReduction,.15);near(effectiveStats(r.enemies[0]).LôiResReduction,.15);
 near(r.units[0].effects.find(e=>e.characterKey==='Khải Hoàn Nhịp Điệu').mods.speedPct,.25);
+r=run([v('Seraphine',{kitDivinityTriumph:false})],skills,{initialPlanck:5,res:0});
+assert.equal(r.enemies[0].effects.find(e=>e.characterKey==='Nhịp Điệu').charges,2);
+near(effectiveStats(r.enemies[0]).BăngResReduction,0);
+assert.equal(r.units[0].effects.some(e=>e.characterKey==='Khải Hoàn Nhịp Điệu'),false);
 
-console.log('PASS six Khải Hoàn Thần Tính upgrades, team gates, trigger caps, permanent battle stacks and elemental resistance');
+console.log('PASS six toggleable Khải Hoàn Thần Tính upgrades, disabled baselines, team gates, trigger caps, permanent battle stacks and elemental resistance');

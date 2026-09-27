@@ -26,6 +26,8 @@
 
 Bản live ngày 26/09/2026 đã được đối chiếu và nối lại source guard cho Kael, Rowan, Nadia, Tomas, Veylen, Seraphine, Thanatos, Lugh, Hou Yi và Alecto. Sáu nâng cấp mới được thực thi như sau:
 
+Trong giao diện, sáu Veyr sở hữu **Khải Hoàn Thần Tính** có công tắc riêng ngay sau Đột Phá. Trạng thái này được lưu theo bản dựng đội hình; tắt công tắc chỉ đưa nhân vật về kit trước Khải Hoàn, không tắt A1–A3, Mốc phụ hoặc Vận Mệnh.
+
 - Kael kế thừa 50% Tấn Công cao nhất trong đội; đội chỉ có Hỏa/Lôi giảm 24% Kháng Hỏa và Lôi của toàn bộ Myrk.
 - Rowan giảm 50% Kháng Hiệu Ứng của toàn bộ Myrk.
 - Mỗi Tấn Công Thường, Chiến Kĩ và Tuyệt Kĩ của Nadia kích hoạt Sát Thương Duy Trì do cô áp dụng một lần với hệ số 100%, không giảm thời hạn.
